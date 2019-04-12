@@ -1,0 +1,16 @@
+<resources>
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">відчуття.тиші</string>
+    <!-- Category name for Zigmund Afraid [CHAR LIMIT=20] -->
+    <string name="category_zigmund_afraid">Zigmund Afraid</string>
+
+    <!-- Category name for the songs for SenseOfSilence [CHAR LIMIT=20] -->
+    <string name="category_sense_of_silence">Відчуття Тиші</string>
+
+    <!-- Category name for the album songs for Zombi [CHAR LIMIT=20] -->
+    <string name="category_zombi">Зомбі</string>
+
+    <!-- Category name for the songs for Crime album[CHAR LIMIT=20] -->
+    <string name="category_crime">Злочин</string>
+    <string name="picture_of_the_song">picture of the song</string>
+</resources>
