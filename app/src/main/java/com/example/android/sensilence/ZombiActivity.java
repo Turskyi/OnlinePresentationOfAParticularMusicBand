@@ -171,14 +171,6 @@ public class ZombiActivity extends AppCompatActivity {
     };
 
     @Override
-    public void onBackPressed() {
-        if(mMediaPlayer.isPlaying()){
-            mMediaPlayer.pause();
-        }
-        super.onBackPressed();
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         //When the activity is stopped, release the media player resources because we won't

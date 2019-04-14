@@ -223,13 +223,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
-    @Override
-    public void onBackPressed() {
-        if(mMediaPlayer.isPlaying()){
-            mMediaPlayer.pause();
-        }
-        super.onBackPressed();
-    }
+
     @Override
     protected void onStop() {
         super.onStop();

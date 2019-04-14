@@ -164,13 +164,7 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    public void onBackPressed() {
-        if(mMediaPlayer.isPlaying()){
-            mMediaPlayer.pause();
-        }
-        super.onBackPressed();
-    }
+
     @Override
     protected void onStop() {
         super.onStop();

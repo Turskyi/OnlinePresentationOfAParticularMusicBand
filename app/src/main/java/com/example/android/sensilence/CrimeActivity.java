@@ -87,9 +87,9 @@ public class CrimeActivity extends AppCompatActivity {
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
                         ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3", R.drawable.ic_play_arrow));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.logo,
-                "https://t4.bcbits.com/stream/a3cb17f6c16abe47f26ee22d9001ec93/mp3-128" +
-                        "/1592747743?p=0&ts=1555231112&t=f814b7ec5be63fd1ee1097c9722092f6394cc1d8&token=" +
-                        "1555231112_799345503a57104af93a5670cfd9c67133a7a726", R.drawable.ic_play_arrow));
+                "https://cs1.djbag.net/download/36310917" +
+                        "/YmNlUVJZS1lnK0Y2eGo4Y1phejZaK2pJcTBlZWNGbERTZUJLOEFCZHYrdjRQbzczOTVFR0p1ci9CUXZDejB1YnMwR1RXRmpndDZzNEhrbER0TU51UWxJS3RBYUJCNTV1QXBHSUxhRHFBNTQ5bXdWTzlGZExoSTB1WVpWcGxpRjk" +
+                        "/Vdchuttya_Tish_Ne_khotv_(djbag.net).mp3", R.drawable.ic_play_arrow));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.logo,
                 "https://cdnet2.mixmuz.ru/4012d24567f2/5ffd9e61bbb4" +
                         "/b31996b77e2788855af79da85f7dc4c8-11923422d-11f59e62-1-c07ced7e512" +
@@ -130,8 +130,10 @@ public class CrimeActivity extends AppCompatActivity {
 
                 //Release the media player if it currently exists.
                 releaseMediaPlayer();
+
                 imageView = findViewById(R.id.btn_image);
                 imageView.setImageResource(R.drawable.ic_pause);
+
 //               imageView = song.setmBtnResourceID(R.drawable.ic_pause);
 //               imageView = song.getBtnResourceID();
 //                song.setmBtnResourceID(R.drawable.ic_pause);
@@ -184,14 +186,6 @@ public class CrimeActivity extends AppCompatActivity {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
-
-    @Override
-    public void onBackPressed() {
-        if(mMediaPlayer.isPlaying()){
-            mMediaPlayer.pause();
-        }
-        super.onBackPressed();
-    }
 
     @Override
     protected void onStop() {
