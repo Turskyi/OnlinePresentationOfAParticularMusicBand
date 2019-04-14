@@ -57,8 +57,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         } else {
             imageView.setVisibility(View.GONE);
         }
-        ImageView btnImageView = listItemView.findViewById(R.id.btn_image);
-        btnImageView.setImageResource(currentSong.getBtnResourceID());
         //Set the theme color for the list item
         View textContainer = listItemView.findViewById(R.id.text_container);
         //Find the color that the resource ID maps to

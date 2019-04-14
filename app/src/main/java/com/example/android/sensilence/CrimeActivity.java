@@ -76,25 +76,25 @@ public class CrimeActivity extends AppCompatActivity {
                 "https://cdnet2.mixmuz.ru/64a95a47daa9/ead14b4c2829" +
                         "/b31996b77e2788855af79da85f7dc4c8-28516309-11f59c6d-1-" +
                         "15b9d922d175/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%94%D0%BE%20%D0%90%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B8.mp3", R.drawable.ic_play_arrow));
+                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%94%D0%BE%20%D0%90%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B8.mp3"));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.logo,
                 "https://cs1.mp3ix.net/download/106038282" +
                         "/QU8zeGtCNUsyRTRQZmZ5TUd6bnJDTHVKRnlQV3pjdU1TazhjUndnTmpNR1BmQTZCNDYzOVE1a2k2TGd2MHhUNmhLdC9uZTdjZzkxSEU3WFk3RlZzdjV5YmZpK0dMRHgxS2dUK2drNUtQUXlsN3dweFBSMndvQ1BYUE5uWmNGa3c" +
-                        "/Vdchuttya_Tish_angelscream_(mp3ix.net).mp3", R.drawable.ic_play_arrow));
+                        "/Vdchuttya_Tish_angelscream_(mp3ix.net).mp3"));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)", R.drawable.logo,
                 "https://cdnet2.mixmuz.ru/10ccf89fbf4c1/b66693572cab" +
                         "/b31996b77e2788855af79da85f7dc4c8-1191ff91d-11f59f66-1-137c23fe30ee" +
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3", R.drawable.ic_play_arrow));
+                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3"));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.logo,
                 "https://cs1.djbag.net/download/36310917" +
                         "/YmNlUVJZS1lnK0Y2eGo4Y1phejZaK2pJcTBlZWNGbERTZUJLOEFCZHYrdjRQbzczOTVFR0p1ci9CUXZDejB1YnMwR1RXRmpndDZzNEhrbER0TU51UWxJS3RBYUJCNTV1QXBHSUxhRHFBNTQ5bXdWTzlGZExoSTB1WVpWcGxpRjk" +
-                        "/Vdchuttya_Tish_Ne_khotv_(djbag.net).mp3", R.drawable.ic_play_arrow));
+                        "/Vdchuttya_Tish_Ne_khotv_(djbag.net).mp3"));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.logo,
                 "https://cdnet2.mixmuz.ru/4012d24567f2/5ffd9e61bbb4" +
                         "/b31996b77e2788855af79da85f7dc4c8-11923422d-11f59e62-1-c07ced7e512" +
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BB%D0%BE%D1%87%D0%B8%D0%BD.mp3", R.drawable.ic_play_arrow));
+                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BB%D0%BE%D1%87%D0%B8%D0%BD.mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
@@ -131,12 +131,8 @@ public class CrimeActivity extends AppCompatActivity {
                 //Release the media player if it currently exists.
                 releaseMediaPlayer();
 
-                imageView = findViewById(R.id.btn_image);
+                imageView = view.findViewById(R.id.btn_image);
                 imageView.setImageResource(R.drawable.ic_pause);
-
-//               imageView = song.setmBtnResourceID(R.drawable.ic_pause);
-//               imageView = song.getBtnResourceID();
-//                song.setmBtnResourceID(R.drawable.ic_pause);
 
                 //Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,

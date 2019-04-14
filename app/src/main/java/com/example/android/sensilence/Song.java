@@ -20,7 +20,7 @@ class Song {
     /**
      * Image resource ID for the song
      */
-    private int mImageResourceID = NO_IMAGE_PROVIDED;
+    private int mImageResourceID;
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
@@ -29,32 +29,17 @@ class Song {
      */
     private String mAudioResourceId;
 
-    private int mBtnResourceID;
-
-//    /**
-//     * Create a new Song object.
-//     *  @param nameOfTheBand is the name of the band
-//     * @param defaultSong is the song that the user is already familiar with
-//     * @param audioResourceId is the resource ID for the audio file associated with word.
-//     */
-//   public Song(String nameOfTheBand, String defaultSong, String audioResourceId) {
-//        mDefaultSong = defaultSong;
-//        mNameOfTheBand = nameOfTheBand;
-//        mAudioResourceId = audioResourceId;
-//    }
-
     /**
      * Create a new Song object.
-     *
-     * @param defaultSong   is the song that the user is already familiar with
-     * @param nameOfTheBand is the name of the band
+     *  @param nameOfTheBand is the name of the band
+     * @param defaultSong is the song that the user is already familiar with
+     * @param audioResourceId is the resource ID for the audio file associated with word.
      */
-    Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId, int btnResourceId) {
+    Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
         mDefaultSong = defaultSong;
         mNameOfTheBand = nameOfTheBand;
-        mImageResourceID = imageResourceId;
         mAudioResourceId = audioResourceId;
-        mBtnResourceID = btnResourceId;
+       mImageResourceID = imageResourceId;
     }
 
     /**
@@ -76,14 +61,6 @@ class Song {
      */
     int getImageResourceId() {
         return mImageResourceID;
-    }
-
-    int getBtnResourceID() {
-        return mBtnResourceID;
-    }
-
-    public void setmBtnResourceID(int mBtnResourceID) {
-        this.mBtnResourceID = mBtnResourceID;
     }
 
     /**

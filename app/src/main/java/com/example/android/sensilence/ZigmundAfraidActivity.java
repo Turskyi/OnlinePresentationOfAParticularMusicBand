@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ZigmundAfraidActivity extends AppCompatActivity {
+    ImageView imageView;
     ListView listView;
     private MediaPlayer mMediaPlayer;
 
@@ -70,15 +72,15 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
                 "https://cdnet2.mixmuz.ru/d5cc8706f161/be71e243bdb8/3df388fe97e47666a3bb6c0c565b126b-" +
-                        "119197cd4-d0cbbc4-1-4dbf195e362/Zigmund%20Afraid%20%E2%80%94%20Abroad.mp3", R.drawable.ic_play_arrow);
+                        "119197cd4-d0cbbc4-1-4dbf195e362/Zigmund%20Afraid%20%E2%80%94%20Abroad.mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
                 R.drawable.ic_za, "https://cdnet2.mixmuz.ru/572b0772ab29/cecaee037925" +
                 "/3df388fe97e47666a3bb6c0c565b126b-1795a24a-11f59ad6-1-aa98b5dd3e8" +
-                "/Zigmund%20Afraid%20%E2%80%94%20Abroad%20%28Retroflex%20Encoded%29.mp3", R.drawable.ic_play_arrow));
+                "/Zigmund%20Afraid%20%E2%80%94%20Abroad%20%28Retroflex%20Encoded%29.mp3"));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
                 R.drawable.ic_za, "https://api.soundcloud.com/tracks/335521943" +
-                "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136-fzDcrgHney5w0F", R.drawable.ic_play_arrow));
+                "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136-fzDcrgHney5w0F"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zigmund_afraid);
@@ -115,6 +117,9 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
                 //Release the media player if it currently exists because we are about to
                 //play a different sound file.
                 releaseMediaPlayer();
+
+                imageView = view.findViewById(R.id.btn_image);
+                imageView.setImageResource(R.drawable.ic_pause);
                 //Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         //Use the music stream.
@@ -160,6 +165,7 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mMediaPlayer.pause();
+            imageView.setImageResource(R.drawable.ic_play_arrow);
             listView.setOnItemClickListener(firstClickListener);
         }
     };
