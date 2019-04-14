@@ -13,13 +13,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-
         // Find the View that shows the zombi category
         TextView zombi = findViewById(R.id.zombi);
-
         // Set a click listener on that View
         zombi.setOnClickListener(new OnClickListener() {
             // The code in this method will be executed when the zombi category is clicked on.
@@ -35,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(zombiIntent);
             }
         });
-
         // Find the View that shows the crime category
         TextView crime = findViewById(R.id.crime);
 
@@ -48,12 +44,10 @@ public class MainActivity extends AppCompatActivity {
                         "Пісні з альбому Злочин", Toast.LENGTH_SHORT).show();
                 // Create a new intent to open the {@link CrimeActivity}
                 Intent crimeIntent = new Intent(MainActivity.this, CrimeActivity.class);
-
                 // Start the new activity
                 startActivity(crimeIntent);
             }
         });
-
         // Find the View that shows the sense of silence category
         TextView senseOfSilence = findViewById(R.id.sense_of_silence);
 
@@ -72,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(senseOfSilenceIntent);
             }
         });
-
         // Find the View that shows the zigmund afraid category
         TextView zigmundAfraid = findViewById(R.id.zigmund_afraid);
 
@@ -86,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 // Create a new intent to open the {@link ZigmundAfraidActivity}
                 Intent zigmundAfraidIntent = new Intent(MainActivity.this,
                         ZigmundAfraidActivity.class);
-
                 // Start the new activity
                 startActivity(zigmundAfraidIntent);
             }

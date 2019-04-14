@@ -1,36 +1,43 @@
 package com.example.android.sensilence;
 
-import android.net.Uri;
-
 /**
  * {@link Song} represents a album song that the user wants to listen.
  * It contains a default Name of the album and a  song for that album.
  */
 
 @SuppressWarnings("DanglingJavadoc")
-public class Song {
-    /** Default song for the album */
+class Song {
+    /**
+     * Default song for the album
+     */
     private String mDefaultSong;
 
-    /** Name of the album */
+    /**
+     * Name of the album
+     */
     private String mNameOfTheBand;
 
-    /**Image resource ID for the song*/
-private int mImageResourceID = NO_IMAGE_PROVIDED;
+    /**
+     * Image resource ID for the song
+     */
+    private int mImageResourceID = NO_IMAGE_PROVIDED;
 
-private static final int NO_IMAGE_PROVIDED = -1;
-
-/** Audio resource ID for the word */
-private String mAudioResourceId;
+    private static final int NO_IMAGE_PROVIDED = -1;
 
     /**
-     * Create a new Song object.
-     *  @param nameOfTheBand is the name of the band
-     * @param defaultSong is the song that the user is already familiar with
-     * @param audioResourceId is the resource ID for the audio file associated with word.
-     * @param s
+     * Audio resource ID for the word
      */
-//   public Song(String nameOfTheBand, String defaultSong, int audioResourceId, String s) {
+    private String mAudioResourceId;
+
+    private int mBtnResourceID;
+
+//    /**
+//     * Create a new Song object.
+//     *  @param nameOfTheBand is the name of the band
+//     * @param defaultSong is the song that the user is already familiar with
+//     * @param audioResourceId is the resource ID for the audio file associated with word.
+//     */
+//   public Song(String nameOfTheBand, String defaultSong, String audioResourceId) {
 //        mDefaultSong = defaultSong;
 //        mNameOfTheBand = nameOfTheBand;
 //        mAudioResourceId = audioResourceId;
@@ -39,15 +46,15 @@ private String mAudioResourceId;
     /**
      * Create a new Song object.
      *
-     * @param defaultSong is the song that the user is already familiar with
+     * @param defaultSong   is the song that the user is already familiar with
      * @param nameOfTheBand is the name of the band
-     *
      */
-    public Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
+    Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId, int btnResourceId) {
         mDefaultSong = defaultSong;
         mNameOfTheBand = nameOfTheBand;
         mImageResourceID = imageResourceId;
         mAudioResourceId = audioResourceId;
+        mBtnResourceID = btnResourceId;
     }
 
     /**
@@ -66,27 +73,30 @@ private String mAudioResourceId;
 
     /**
      * Return the image resource ID of the word.
-      */
-    public int getImageResourceId(){
+     */
+    int getImageResourceId() {
         return mImageResourceID;
+    }
+
+    int getBtnResourceID() {
+        return mBtnResourceID;
+    }
+
+    public void setmBtnResourceID(int mBtnResourceID) {
+        this.mBtnResourceID = mBtnResourceID;
     }
 
     /**
      * Returns whether or not there is an image for this song.
      */
-    public boolean hasImage() {
-return mImageResourceID != NO_IMAGE_PROVIDED;
+    boolean hasImage() {
+        return mImageResourceID != NO_IMAGE_PROVIDED;
     }
 
     /**
      * Return the audio resource ID of the song.
-     * @return
      */
-    public String getmAudioResourceId() {
+    String getmAudioResourceId() {
         return mAudioResourceId;
     }
-
-//    public int getmAudioResourceId() {
-//        return mAudioResourceId;
-//    }
 }

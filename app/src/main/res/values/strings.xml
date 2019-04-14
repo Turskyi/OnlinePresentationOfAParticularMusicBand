@@ -13,4 +13,5 @@
     <!-- Category name for the songs for Crime album[CHAR LIMIT=20] -->
     <string name="category_crime">Злочин</string>
     <string name="picture_of_the_song">picture of the song</string>
+    <string name="play_button">play button</string>
 </resources>
