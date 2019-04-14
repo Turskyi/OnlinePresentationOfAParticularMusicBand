@@ -13,6 +13,14 @@
         android:layout_weight="1"
         android:background="@color/category_sense_of_silence">
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:alpha="0.3"
+            android:src="@drawable/white_and_black"
+            android:contentDescription="@string/background" />
+
         <TextView
             android:id="@+id/sense_of_silence"
             style="@style/CategoryStyle"
@@ -20,6 +28,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/category_sense_of_silence"
+            android:textSize="32sp"
             android:textColor="@android:color/black"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
@@ -31,6 +40,14 @@
         android:layout_weight="1"
         android:background="@color/category_crime">
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:alpha="0.45"
+            android:src="@drawable/crime"
+            android:contentDescription="@string/background" />
+
         <TextView
             android:id="@+id/crime"
             style="@style/CategoryStyle"
@@ -38,6 +55,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/category_crime"
+            android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
     <!-- Zombi category -->
@@ -45,7 +63,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/category_zombi">
+        android:background="@color/category_sense_of_silence">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:alpha="0.5"
+            android:src="@drawable/zombi_cover"
+            android:contentDescription="@string/background" />
 
         <TextView
             android:id="@+id/zombi"
@@ -54,6 +79,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/category_zombi"
+            android:textColor="@android:color/black"
+            android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
 
@@ -63,6 +90,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/category_zigmund_afraid">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:alpha="0.3"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zigmund_afraid_cover"
+            android:contentDescription="@string/background" />
 
         <TextView
             android:id="@+id/zigmund_afraid"
@@ -71,6 +105,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/category_zigmund_afraid"
+            android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
 </LinearLayout>
