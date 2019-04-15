@@ -33,7 +33,7 @@ public class ZombiActivity extends AppCompatActivity {
                         //our app is allowed to continue playing sound but at a lower volume.
 
                         //Pause playback and reset player to the start of the file. That way, when
-                        //play the word from the beginning when we resume playback.
+                        //play the song from the beginning when we resume playback.
                         mMediaPlayer.pause();
                         mMediaPlayer.seekTo(0);
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {

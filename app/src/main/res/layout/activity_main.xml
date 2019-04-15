@@ -16,10 +16,10 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="250dp"
+            android:alpha="0.7"
+            android:contentDescription="@string/background"
             android:scaleType="fitXY"
-            android:alpha="0.3"
-            android:src="@drawable/white_and_black"
-            android:contentDescription="@string/background" />
+            android:src="@drawable/white_and_black" />
 
         <TextView
             android:id="@+id/sense_of_silence"
@@ -27,9 +27,13 @@
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="50"
             android:text="@string/category_sense_of_silence"
-            android:textSize="32sp"
             android:textColor="@android:color/black"
+            android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
 
@@ -43,10 +47,10 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="250dp"
+            android:alpha="0.8"
+            android:contentDescription="@string/background"
             android:scaleType="fitXY"
-            android:alpha="0.45"
-            android:src="@drawable/crime"
-            android:contentDescription="@string/background" />
+            android:src="@drawable/crime" />
 
         <TextView
             android:id="@+id/crime"
@@ -54,6 +58,10 @@
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:text="@string/category_crime"
             android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
@@ -64,13 +72,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/category_sense_of_silence">
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="250dp"
+            android:alpha="0.8"
+            android:contentDescription="@string/background"
             android:scaleType="fitXY"
-            android:alpha="0.5"
-            android:src="@drawable/zombi_cover"
-            android:contentDescription="@string/background" />
+            android:src="@drawable/zombi_cover" />
 
         <TextView
             android:id="@+id/zombi"
@@ -78,6 +87,10 @@
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:text="@string/category_zombi"
             android:textColor="@android:color/black"
             android:textSize="32sp"
@@ -90,13 +103,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/category_zigmund_afraid">
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="250dp"
-            android:alpha="0.3"
+            android:alpha="0.6"
+            android:contentDescription="@string/background"
             android:scaleType="centerCrop"
-            android:src="@drawable/zigmund_afraid_cover"
-            android:contentDescription="@string/background" />
+            android:src="@drawable/zigmund_afraid_cover" />
 
         <TextView
             android:id="@+id/zigmund_afraid"
@@ -104,6 +118,10 @@
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:text="@string/category_zigmund_afraid"
             android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
