@@ -3,127 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tan_background"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.example.android.sensilence.MainActivity">
-    <!-- відчуття.тиші category -->
-    <FrameLayout
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        style="@style/CategoryTab"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/category_sense_of_silence">
+        android:layout_height="wrap_content" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.7"
-            android:contentDescription="@string/background"
-            android:scaleType="fitXY"
-            android:src="@drawable/white_and_black" />
-
-        <TextView
-            android:id="@+id/sense_of_silence"
-            style="@style/CategoryStyle"
-            android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:shadowColor="@android:color/white"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="50"
-            android:text="@string/category_sense_of_silence"
-            android:textColor="@android:color/black"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
-    </FrameLayout>
-
-    <!-- Злочин category -->
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/category_crime">
+        android:layout_height="match_parent"/>
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/background"
-            android:scaleType="fitXY"
-            android:src="@drawable/crime" />
-
-        <TextView
-            android:id="@+id/crime"
-            style="@style/CategoryStyle"
-            android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:shadowColor="@android:color/black"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
-            android:text="@string/category_crime"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
-    </FrameLayout>
-    <!-- Zombi category -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/category_sense_of_silence">
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.8"
-            android:contentDescription="@string/background"
-            android:scaleType="fitXY"
-            android:src="@drawable/zombi_cover" />
-
-        <TextView
-            android:id="@+id/zombi"
-            style="@style/CategoryStyle"
-            android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:shadowColor="@android:color/white"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
-            android:text="@string/category_zombi"
-            android:textColor="@android:color/black"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
-    </FrameLayout>
-
-    <!-- Zigmund Afraid category -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/category_zigmund_afraid">
-
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.6"
-            android:contentDescription="@string/background"
-            android:scaleType="centerCrop"
-            android:src="@drawable/zigmund_afraid_cover" />
-
-        <TextView
-            android:id="@+id/zigmund_afraid"
-            style="@style/CategoryStyle"
-            android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:shadowColor="@android:color/black"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
-            android:text="@string/category_zigmund_afraid"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
-    </FrameLayout>
 </LinearLayout>

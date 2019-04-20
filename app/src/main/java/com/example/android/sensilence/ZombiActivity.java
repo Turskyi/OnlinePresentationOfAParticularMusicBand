@@ -1,6 +1,9 @@
 package com.example.android.sensilence;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -68,21 +71,27 @@ public class ZombiActivity extends AppCompatActivity {
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+                R.drawable.zombi_txt);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+//        bitmapDrawable.setAlpha(100);
         listView = findViewById(R.id.list);
+        listView.setBackground(bitmapDrawable);
+
         // Create a list of songs
-        songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.logo,
+        songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.zombi,
                 "https://cdnet2.mixmuz.ru/10ccf89fbf4c1/b66693572cab" +
                         "/b31996b77e2788855af79da85f7dc4c8-1191ff91d-11f59f66-1-137c23fe30ee" +
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
                         ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3"));
         songs.add(new Song("відчуття.тиші",
-                "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.logo,
+                "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
                 "https://cdnet2.mixmuz.ru/5a05c0594c5e/963957a4e877" +
                         "/b31996b77e2788855af79da85f7dc4c8-1aba0fc1-11f59ad8-1-737d8aef826" +
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
                         ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96%20%28aContrari%20post" +
                         "-apocalyptic%20dubstep%20mix%29.mp3"));
-        songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.logo,
+        songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
                 "https:////cdnet2.mixmuz.ru/f4ad9d36419a" +
                         "/760c1bf2a443/b31996b77e2788855af79da85f7dc4c8-4702c99-6c51394-1-17364e9156dc" +
                         "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +

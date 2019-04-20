@@ -5,7 +5,7 @@
     <string name="category_zigmund_afraid">Zigmund Afraid</string>
 
     <!-- Category name for the songs for SenseOfSilence [CHAR LIMIT=20] -->
-    <string name="category_sense_of_silence">Відчуття Тиші</string>
+    <string name="category_sense_of_silence">відчуття.тиші</string>
 
     <!-- Category name for the album songs for Zombi [CHAR LIMIT=20] -->
     <string name="category_zombi">Зомбі</string>

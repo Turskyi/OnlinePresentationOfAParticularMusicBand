@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/CategoryTheme"
             android:name=".ZombiActivity"
             android:label="@string/category_zombi"
             android:parentActivityName=".MainActivity">
@@ -29,6 +30,7 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
+            android:theme="@style/CategoryTheme"
             android:name=".CrimeActivity"
             android:label="@string/category_crime"
             android:parentActivityName=".MainActivity">
@@ -38,17 +40,9 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
+            android:theme="@style/CategoryTheme"
             android:name=".SenseOfSilenceActivity"
             android:label="@string/category_sense_of_silence"
-            android:parentActivityName=".MainActivity">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
-        <activity
-            android:name=".ZigmundAfraidActivity"
-            android:label="@string/category_zigmund_afraid"
             android:parentActivityName=".MainActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data

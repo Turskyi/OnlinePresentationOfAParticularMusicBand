@@ -1,11 +1,18 @@
 package com.example.android.sensilence;
 
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -13,8 +20,13 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class ZigmundAfraidActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ZigmundAfraidFragment extends Fragment {
+
     ImageView imageView;
     ListView listView;
     private MediaPlayer mMediaPlayer;
@@ -61,21 +73,33 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
     // Create an array of songs
     final ArrayList<Song> songs = new ArrayList<>();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_list);
-        //Create and setup the {@link AudioManager} to request audio focus
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    public ZigmundAfraidFragment() {
+        // Required empty public constructor
+    }
 
-        listView = findViewById(R.id.list);
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.song_list, container, false);
+
+        //Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) Objects.requireNonNull(getActivity()).getSystemService(Context.AUDIO_SERVICE);
+
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+                R.drawable.zigmund_afraid_cover);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+        bitmapDrawable.setAlpha(100);
+        listView = rootView.findViewById(R.id.list);
+        listView.setBackground(bitmapDrawable);
+
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
                 "https://cdnet2.mixmuz.ru/d5cc8706f161/be71e243bdb8/3df388fe97e47666a3bb6c0c565b126b-" +
                         "119197cd4-d0cbbc4-1-4dbf195e362/Zigmund%20Afraid%20%E2%80%94%20Abroad.mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
-                R.drawable.ic_za, "https://cdnet2.mixmuz.ru/572b0772ab29/cecaee037925" +
+                R.drawable.vt_dnb120, "https://cdnet2.mixmuz.ru/572b0772ab29/cecaee037925" +
                 "/3df388fe97e47666a3bb6c0c565b126b-1795a24a-11f59ad6-1-aa98b5dd3e8" +
                 "/Zigmund%20Afraid%20%E2%80%94%20Abroad%20%28Retroflex%20Encoded%29.mp3"));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
@@ -83,10 +107,12 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
                 "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136-fzDcrgHney5w0F"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
-        SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zigmund_afraid);
+        SongAdapter adapter = new SongAdapter(getActivity(), songs, R.color.category_zigmund_afraid);
         listView.setAdapter(adapter);
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
+
+        return rootView;
     }
 
     /**
@@ -171,11 +197,13 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
     };
 
 
+
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
-        //When the activity is stopped, release the media player resources because we won't
-        //be playing any more sounds.
+
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
         releaseMediaPlayer();
     }
 
@@ -195,4 +223,5 @@ public class ZigmundAfraidActivity extends AppCompatActivity {
             mMediaPlayer = null;
         }
     }
+
 }
