@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -34,7 +34,7 @@ public class CrimeActivity extends AppCompatActivity {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
                     if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                         //The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus
                         //short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means
                         //our app is allowed to continue playing sound but at a lower volume.
@@ -48,7 +48,7 @@ public class CrimeActivity extends AppCompatActivity {
                         //resume playback
                         mMediaPlayer.start();
                     } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                       //The AUDIOFOCUS_LOSS case means we've lost audio focus and
+                        //The AUDIOFOCUS_LOSS case means we've lost audio focus and
                         //stop playback and cleanup resources
                         releaseMediaPlayer();
                     }
@@ -71,8 +71,9 @@ public class CrimeActivity extends AppCompatActivity {
 
     /**
      * Scale the image preserving the ratio
-     * @param imageToScale Image to be scaled
-     * @param destinationWidth Destination width after scaling
+     *
+     * @param imageToScale      Image to be scaled
+     * @param destinationWidth  Destination width after scaling
      * @param destinationHeight Destination height after scaling
      * @return New scaled bitmap preserving the ratio
      */
@@ -87,11 +88,11 @@ public class CrimeActivity extends AppCompatActivity {
             float heightRatio = (float) destinationHeight / (float) height;
 
             //Use the ratio that will fit the image into the desired sizes
-            int finalWidth = (int)Math.floor(width * widthRatio);
-            int finalHeight = (int)Math.floor(height * widthRatio);
+            int finalWidth = (int) Math.floor(width * widthRatio);
+            int finalHeight = (int) Math.floor(height * widthRatio);
             if (finalWidth > destinationWidth || finalHeight > destinationHeight) {
-                finalWidth = (int)Math.floor(width * heightRatio);
-                finalHeight = (int)Math.floor(height * heightRatio);
+                finalWidth = (int) Math.floor(width * heightRatio);
+                finalHeight = (int) Math.floor(height * heightRatio);
             }
 
             //Scale given bitmap to fit into the desired area
@@ -108,10 +109,10 @@ public class CrimeActivity extends AppCompatActivity {
             canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
 
             //Calculate the ratios and decide which part will have empty areas (width or height)
-            float ratioBitmap = (float)finalWidth / (float)finalHeight;
+            float ratioBitmap = (float) finalWidth / (float) finalHeight;
             float destinationRatio = (float) destinationWidth / (float) destinationHeight;
-            float left = ratioBitmap >= destinationRatio ? 0 : (float)(destinationWidth - finalWidth) / 2;
-            float top = ratioBitmap < destinationRatio ? 0: (float)(destinationHeight - finalHeight) / 2;
+            float left = ratioBitmap >= destinationRatio ? 0 : (float) (destinationWidth - finalWidth) / 2;
+            float top = ratioBitmap < destinationRatio ? 0 : (float) (destinationHeight - finalHeight) / 2;
             canvas.drawBitmap(imageToScale, left, top, null);
 
             return scaledImage;
@@ -133,36 +134,25 @@ public class CrimeActivity extends AppCompatActivity {
 
 
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), scalePreserveRatio(bmp,
-                bmp.getWidth(),1500));
-        bitmapDrawable.setGravity(Gravity.NO_GRAVITY|Gravity.FILL_HORIZONTAL);
+                bmp.getWidth(), 1500));
+        bitmapDrawable.setGravity(Gravity.NO_GRAVITY | Gravity.FILL_HORIZONTAL);
         listView = findViewById(R.id.list);
         listView.setBackground(bitmapDrawable);
 
         songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,
-                "https://cdnet2.mixmuz.ru/64a95a47daa9/ead14b4c2829" +
-                        "/b31996b77e2788855af79da85f7dc4c8-28516309-11f59c6d-1-" +
-                        "15b9d922d175/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%94%D0%BE%20%D0%90%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B8.mp3"));
+                "https://storage.mp3cc.biz/listen/57951497/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SSswaDJkZGVteXUweW1NSnhSdWdETGRTN3R3M1hLRFVTcGRQZnBQRGk2OUI5ZGQ3MHNwcTU0WWp0ZkZ1eDBQQXFnMGw4Z1ZDVjd2NnRLeDh4SytsMGU/v-dchuttya.tish-do-astarti_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
-                "https://cs1.mp3ix.net/download/106038282" +
-                        "/QU8zeGtCNUsyRTRQZmZ5TUd6bnJDTHVKRnlQV3pjdU1TazhjUndnTmpNR1BmQTZCNDYzOVE1a2k2TGd2MHhUNmhLdC9uZTdjZzkxSEU3WFk3RlZzdjV5YmZpK0dMRHgxS2dUK2drNUtQUXlsN3dweFBSMndvQ1BYUE5uWmNGa3c" +
-                        "/Vdchuttya_Tish_angelscream_(mp3ix.net).mp3"));
+                "https://storage.mp3cc.biz/listen/57951496/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6THRFSVdzTVg5SWRuSkU4a2tZRTVIdEZDZmQxUEx0STJ5dnpCRTkxMEpSc2FEVEdPYVNzNG5NclR6Qi8rREs1bURLSkdtNjEwMng1ZXFVVVpjNm5qbFo/v-dchuttya.tish-angelscream_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)", R.drawable.crime,
-                "https://cdnet2.mixmuz.ru/10ccf89fbf4c1/b66693572cab" +
-                        "/b31996b77e2788855af79da85f7dc4c8-1191ff91d-11f59f66-1-137c23fe30ee" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3"));
+                "https://storage.mp3cc.biz/listen/57951494/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S25WWnIrZlZ6L3YyRFpvaXFTdkRaTHF4aU10MkJ6NksweDdqTjk5KzRiQkVtQjlwQmtBM0pNVmFtbTZsWDZha1drYTNWMHA5MzlsellsNTlrenhka3Q/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.crime,
-                "https://cs1.djbag.net/download/36310917" +
-                        "/YmNlUVJZS1lnK0Y2eGo4Y1phejZaK2pJcTBlZWNGbERTZUJLOEFCZHYrdjRQbzczOTVFR0p1ci9CUXZDejB1YnMwR1RXRmpndDZzNEhrbER0TU51UWxJS3RBYUJCNTV1QXBHSUxhRHFBNTQ5bXdWTzlGZExoSTB1WVpWcGxpRjk" +
-                        "/Vdchuttya_Tish_Ne_khotv_(djbag.net).mp3"));
+                "https://storage.mp3cc.biz/listen/57951495/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TExBblkrdXlYVFFTaFkzY0l3c3FBZGZmd3Z2NitDUWtSbmFnSSsyS21rRkdBWlVCdUJTdzIyKzV3MmhTYWcraVphZmdRQ0ZpUUowYlpOYW1kenBGU1g/v-dchuttya.tish-ne-hot-v_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.crime,
-                "https://cdnet2.mixmuz.ru/4012d24567f2/5ffd9e61bbb4" +
-                        "/b31996b77e2788855af79da85f7dc4c8-11923422d-11f59e62-1-c07ced7e512" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BB%D0%BE%D1%87%D0%B8%D0%BD.mp3"));
+                "https://storage.mp3cc.biz/listen/43467448/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1ExYTYrYnZDQUlTZGlDSnFESG9VMXYvOWc5VVlueWE5M1duOEZGcHJZV1ViS1Z2dVA0TFpVVHdBUEYvdEs2c1BNOEVhYk5WVTR4Zm9UZjJwb1gyMmc/v-dchuttya.tish-zlochin_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere (Culturno rmx)", R.drawable.vt_dnb120,
-                "https://storage.mp3cc.biz/download/37750705/YVRmaVJ1UUczUEV0V0UybmdzVHFMd2NENllFT3kydlVORUNwWjErRFEzODllRXhkM2JLN2NUSXVhMUdMckNXbnpTa1NVTVR5V0xoUHM3eUxkT2dFUm1yODRXWVdsMks4bU15OVhGbTNGWlBuUVZqbGxPUlZ2SnlQOThIOHhObmU/v-dchuttya.tish-noli-respicere-culturno-rmx-dub-step-ukraine_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/download/37750705" +
+                        "/YVRmaVJ1UUczUEV0V0UybmdzVHFMd2NENllFT3kydlVORUNwWjErRFEzODllRXhkM2JLN2NUSXVhMUdMckNXbnpTa1NVTVR5V0xoUHM3eUxkT2dFUm1yODRXWVdsMks4bU15OVhGbTNGWlBuUVZqbGxPUlZ2SnlQOThIOHhObmU" +
+                        "/v-dchuttya.tish-noli-respicere-culturno-rmx-dub-step-ukraine_(mp3CC.biz).mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);

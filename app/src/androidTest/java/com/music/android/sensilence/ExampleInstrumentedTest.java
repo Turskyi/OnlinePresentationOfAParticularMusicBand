@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.android.sensilence", appContext.getPackageName());
+        assertEquals("com.music.android.sensilence", appContext.getPackageName());
     }
 }

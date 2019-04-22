@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 
 import android.content.Context;
@@ -95,13 +95,10 @@ public class ZigmundAfraidFragment extends Fragment {
 
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
-                "https://cdnet2.mixmuz.ru/d5cc8706f161/be71e243bdb8/3df388fe97e47666a3bb6c0c565b126b-" +
-                        "119197cd4-d0cbbc4-1-4dbf195e362/Zigmund%20Afraid%20%E2%80%94%20Abroad.mp3");
+                "https://storage.mp3cc.biz/listen/40272180/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SkhvM3Y2R1hDbldlQ0RpL3EwWDNwSC80RHNCU2tsMlhIYUNTZWMxR3hkTldYcUI0SnQrVFA5dVM4UEVMV24vdlpMcEY0eFZQcTc4Z2tJdElneXRzSGU/zigmund-afraid-abroad_(mp3CC.biz).mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
-                R.drawable.vt_dnb120, "https://cdnet2.mixmuz.ru/572b0772ab29/cecaee037925" +
-                "/3df388fe97e47666a3bb6c0c565b126b-1795a24a-11f59ad6-1-aa98b5dd3e8" +
-                "/Zigmund%20Afraid%20%E2%80%94%20Abroad%20%28Retroflex%20Encoded%29.mp3"));
+                R.drawable.vt_dnb120, "https://storage.mp3cc.biz/listen/14483725/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S3MwNTRmSFBEQjh1VVM2SWRWSGRhUFcxbzEvUXNmS0pJdmdPL21qTUxqcnRDNklCQ1pNL3NVR1BqdE1FQUkwbGZVOTFJSTFndUxXNTJUSmxrMTRXa0Q/zigmund-afraid-abroad-retroflex-encoded_(mp3CC.biz).mp3"));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
                 R.drawable.ic_za, "https://api.soundcloud.com/tracks/335521943" +
                 "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136-fzDcrgHney5w0F"));
@@ -197,7 +194,6 @@ public class ZigmundAfraidFragment extends Fragment {
     };
 
 
-
     @Override
     public void onStop() {
         super.onStop();
@@ -223,5 +219,4 @@ public class ZigmundAfraidFragment extends Fragment {
             mMediaPlayer = null;
         }
     }
-
 }

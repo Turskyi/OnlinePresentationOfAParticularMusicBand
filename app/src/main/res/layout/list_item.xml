@@ -57,9 +57,10 @@
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_play_arrow"
         android:contentDescription="@string/play_button" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/selectableItemBackground"/>
+        android:background="?android:attr/selectableItemBackground" />
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -80,22 +80,12 @@ public class ZombiActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.zombi,
-                "https://cdnet2.mixmuz.ru/10ccf89fbf4c1/b66693572cab" +
-                        "/b31996b77e2788855af79da85f7dc4c8-1191ff91d-11f59f66-1-137c23fe30ee" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96.mp3"));
+                "https://storage.mp3cc.biz/listen/57951498/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SU51a2I0SEluUUhGUzNKNDQxM2xLbm14cUF4cmNYaXlTYnNCa3o3VnNYd1F4SjN4Y3ZEb3JCSTJFWUowYkRjY3J4K0tGM2F4dkRZb1FvYklvRzFqZEk/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші",
                 "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
-                "https://cdnet2.mixmuz.ru/5a05c0594c5e/963957a4e877" +
-                        "/b31996b77e2788855af79da85f7dc4c8-1aba0fc1-11f59ad8-1-737d8aef826" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BE%D0%BC%D0%B1%D1%96%20%28aContrari%20post" +
-                        "-apocalyptic%20dubstep%20mix%29.mp3"));
+                "https://storage.mp3cc.biz/listen/17574914/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFBhQmFNaDlqSGFYZDVqZEZRMWErS0xWeVJQamJwTlpKK3hMQUxqV2NDUkZ0Zkp4a0hTek5za0hYN1JvWjFmTUw0RmFwMVdGWGZGbkI1VXVmYWFMU0w/v-dchuttya.tish-zomb-acontrari-post-apocalyptic-dubstep-mix_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
-                "https:////cdnet2.mixmuz.ru/f4ad9d36419a" +
-                        "/760c1bf2a443/b31996b77e2788855af79da85f7dc4c8-4702c99-6c51394-1-17364e9156dc" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%E3%82%BE%E3%83%B3%E3%83%93.mp3"));
+                "https://storage.mp3cc.biz/listen/57951499/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFlKWUs5aW0raFZ3MmlJMFpiS3E1NVRYSUw2andvQS9QaHk4ZUVQVklkdjZYbFgzekYyTnlNL0lHY3BJdzFrRDFjbHVSZ3I1S1lGdHE2Z0R4NkRKRzk/v-dchuttya.tish-_(mp3CC.biz).mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zombi);

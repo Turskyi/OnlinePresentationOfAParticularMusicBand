@@ -1,6 +1,7 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,9 @@ public class SongAdapter extends ArrayAdapter<Song> {
         mColorResourceId = colorResourceId;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
         if (listItemView == null) {

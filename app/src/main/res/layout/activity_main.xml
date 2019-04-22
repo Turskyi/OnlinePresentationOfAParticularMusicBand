@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="com.example.android.sensilence.MainActivity">
+    tools:context="com.music.android.sensilence.MainActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
@@ -16,6 +16,6 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

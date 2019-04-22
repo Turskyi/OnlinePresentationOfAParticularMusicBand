@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

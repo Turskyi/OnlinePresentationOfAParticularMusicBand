@@ -1,11 +1,10 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 /**
  * {@link Song} represents a album song that the user wants to listen.
  * It contains a default Name of the album and a  song for that album.
  */
 
-@SuppressWarnings("DanglingJavadoc")
 class Song {
     /**
      * Default song for the album
@@ -31,15 +30,16 @@ class Song {
 
     /**
      * Create a new Song object.
-     *  @param nameOfTheBand is the name of the band
-     * @param defaultSong is the song that the user is already familiar with
+     *
+     * @param nameOfTheBand   is the name of the band
+     * @param defaultSong     is the song that the user is already familiar with
      * @param audioResourceId is the resource ID for the audio file associated with word.
      */
     Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
         mDefaultSong = defaultSong;
         mNameOfTheBand = nameOfTheBand;
         mAudioResourceId = audioResourceId;
-       mImageResourceID = imageResourceId;
+        mImageResourceID = imageResourceId;
     }
 
     /**

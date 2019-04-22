@@ -1,4 +1,4 @@
-package com.example.android.sensilence;
+package com.music.android.sensilence;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -85,68 +85,31 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зима", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/a8e8422f5eee/b1786b39cb82/b31996b77e2788855af79da85f7dc4c8-" +
-                        "90db721-a4c6465-1-18bed7fb3df5/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%B8%D0%BC%D0%B0.mp3"));
+                "https://storage.mp3cc.biz/listen/99041062/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1doVTYwQS85NmJJU3hKcUdQUTN6RXJTazNrYnkyS3FhVm1pY09OZzRST09KS1FIaW5IeTRFOW1BOEZRb1NTcW9pZ0ROYkdpZnJnTHAxRE9zRzIyQlM/v-dchuttya-tish-zima_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/fc341055a001/94aac43d5085" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-582213b-0-2e6b4558d07" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2002%20-%20Noli%20Respicere.mp3"));
+                "https://storage.mp3cc.biz/listen/99041071/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SWhvMGtNSTk2dXoxc0VvUVNzdXk3OUdIQncxUzhDdVNCVEtDWGV1UjFZdHUyeGZGOENWRzF5TFUyS25JdWFRT2diNm52VG9JL2VYRzNNQlVNZUpVZVk/v-dchuttya.tish-02-noli-respicere_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/12e48eb2f3794/652e3465b630" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-58221ce-0-f97b37b3511" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2003%20" +
-                        "-%20%D0%92%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%94.mp3"));
+                "https://storage.mp3cc.biz/listen/99041067/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1pBNmNEYUdXVUw5QXU4UDdtMmpzMWxITTlvMkFteVlISG1HMUxiT1NUUWxvT1gzR0hjc3o5S2VEbElKYXZCajZoT3BpZ0p5Vmp1TFdZUitHSE5rbmw/v-dchuttya.tish-03-vostann_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Смак Мого Забуття", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/555a06228488/2a46c0ebc197" +
-                        "/b31996b77e2788855af79da85f7dc4c8-3b9bd20-e2feb3b-1-1ef1ab43a46" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%A1%D0%BC%D0%B0%D0%BA%20%D0%9C%D0%BE%D0%B3%D0%BE%20%D0%97%D0%B0%D0%B1%D1%83%D1%82%D1%82%D1%8F.mp3"));
+                "https://storage.mp3cc.biz/listen/99041073/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S21adnV1WjR0V1NrWVNuQnBuRlpxVEVRUjJ1TjczQ3grUTh3Q3NiV3J3MTNRb0dXRTgrZlpuU3hxT054Y0x0aDBlNWw0V3pBMVc1UXZKVGRTRUlFVWs/v-dchuttya.tish-04-smak-mogo-zabuttya_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Промені", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/f5f9c2b74039/bfbe07c4bc57" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-58222b3-0-f18e1abb344" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2005%20-" +
-                        "%20%D0%9F%D1%80%D0%BE%D0%BC%D0%B5%D0%BD%D1%96.mp3"));
+                "https://storage.mp3cc.biz/listen/99041075/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFFnWWhTWlZXeWtKdkFEYm53eGo5QWFUN1NNelhCVmtaU1JPWm1CbmdTU0w4enBuZk4wV2dDb0s1a3gzUFN5SUpNM0doSjZSRDlONkJxeWVqYXozSnM/v-dchuttya.tish-05-promen_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/d58a191e62b2/339e35595143" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-5822358-0-" +
-                        "1705fea3d014/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2006%20-%20%D0%91%D0%B5%D0%B7%D0%BE%D0%B4%D0%BD%D1%8F.mp3"));
+                "https://storage.mp3cc.biz/listen/137055067/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SjI3cW1WdDRoaUtUMUZxVUtNTVdIaDRxRkRvV2lvbzNnLzJFc0FsTVNJVit3V2ZuRHpxWkhTUitCQjRaWEJqU1N5em9jRTR4V3dMdm51akNFb3JpVDk/v-dchuttya.tish-bezodnya_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/1354a82816355/b7704af191f7/b31996b77e2788855af79da85f7dc4c8-" +
-                        "2934b1b-58223c1-0-1168b4c96656/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2007%20-%20%D0%9D%D0%B5%20%D0%BA%D1%80%D0%B0%D0%B9.mp3"));
+                "https://storage.mp3cc.biz/listen/57951507/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6STRsbHNENDFVQ21Ea1lpU09LR05pbWVqaFdWMU9ZaDZNc3JLUmZQZ1BSMXA0L05Sdm9PYmk4eERoWGNzV0tzZlJFTnFXWkJiUFB4N2hLL05aMzJkcW0/v-dchuttya.tish-ne-kraj_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Знову Страх", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/a5bf4cf6dd5/6466eab1ea37/b31996b77e2788855af79da85f7dc4c8-" +
-                        "119233a73-11f59f26-1-7eb9411691/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%97%D0%BD%D0%BE%D0%B2%D1%83%20%D0%A1%D1%82%D1%80%D0%B0%D1%85.mp3"));
+                "https://storage.mp3cc.biz/listen/99041069/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TEo3MXRxVGdSejVIYjVjLzQwWGo1bmpBdmd5Zm5CTFpPaDZtUEVFVHR6aUlRd0FlMUV2VHZoOUZiaXpTbldLaHFISXM1K0M5aU1zNlA4S0RXTkYrWS8/v-dchuttya.tish-08-znovu-strah_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Навпіл", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/e87b6fe01b5d/f428bfb9b7d5" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-582246c-0-84190495d72" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2009%20-%20%D0%9D%D0%B0%D0%B2%D0%BF%D1%96%D0%BB.mp3"));
+                "https://storage.mp3cc.biz/listen/99041064/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SytFbDJqMkg2OWFTUjljRnlVR3lpbDg0ZER3cUptbHByOExuR3ByOUUrWlRPeFVTWHhQNVBKeU14YVFEbEhVOWw1UndkL1FvYmMrMDAxNVFYSEdvYmw/v-dchuttya.tish-09-navp-l_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Зап'ястя", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/60827bde4579/1224d4260e70" +
-                        "/b31996b77e2788855af79da85f7dc4c8-2934b1b-58224b7-0-c686eb2f2a2" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%2010%20" +
-                        "-%20%D0%97%D0%B0%D0%BF%27%D1%8F%D1%81%D1%82%D1%8F.mp3"));
+                "https://storage.mp3cc.biz/listen/99041078/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SWtLRVZSMU9UT0RJNTFNaHl0cXl1UDYvUmVORm8veUFlRU02SnZyNlA5Vit6Nm9rdlNiaVkweHFWbmpiR05lODJhcjA5b25oZkYzZm93YTF5SitUd00/v-dchuttya.tish-10-zap-yastya_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Падаю", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/6ae3a7e63a71/101a71290dcb1" +
-                        "/b31996b77e2788855af79da85f7dc4c8-119175e15-11f59g27-1-1870561942f0" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%9F%D0%B0%D0%B4%D0%B0%D1%8E.mp3"));
+                "https://storage.mp3cc.biz/listen/53515677/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TDJBd2Nab2pQNUREbGI4eTNoRWNVUWZlS1RHemNBMlk4bFNudFY0RkZrY0NaQzlrdUFKSU5YRzFHL05EdzdHOTQ1LzlxTFdtWHhtMUVGanJtUTdQWGg/v-dchuttya.tish-padayu_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Навесні", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/b45325d1b932/62110d96864c" +
-                        "/b31996b77e2788855af79da85f7dc4c8-10d54a22-eb5d236-1-f12d7ae026b" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%9D%D0%B0%D0%B2%D0%B5%D1%81%D0%BD%D1%96.mp3"));
+                "https://storage.mp3cc.biz/listen/99041070/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TGhueFo0NWVqaVY3SlZCWk4yYmNCWHFYSVVVOFlUS3JTNWIrenlON1BwemdBNFRDeFliVVF5VmtDZXhTUGoxRG9nVkQ3RkUvQmdEc2x5N2k1eDhxM0I/v-dchuttya.tish-12-navesn_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Алєся", R.drawable.logo_black,
-                "https://cdnet2.mixmuz.ru/10ccf89fbf4c1/506bdc55cc40" +
-                        "/b31996b77e2788855af79da85f7dc4c8-1f6002b2-d9gdb5b-1-188e880db72d" +
-                        "/%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96%20%E2%80%94%20%D0%90%D0%BB%D0%B5%D1%81%D1%8F.mp3"));
+                "https://storage.mp3cc.biz/listen/19493397/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SktVbkJVUDB6VXpleU9OWUJzKzZpTkJnTGhka1owRUZDWGNhT1BEVWN0UVNLQlZBRGdGdWoyVUxZM3BaeVRJQ1V3KytyMXpMNUg4dFg4QWZ5VmhTcDg/v-dchuttya.tish-alesya_(mp3CC.biz).mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
@@ -172,6 +135,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         }
         return false;
     }
+
     final AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
