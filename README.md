@@ -1,5 +1,5 @@
 # Online_music_player_for_particular_music_band
-Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano), with opportunity to listen all their songs online.
+Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano), with an opportunity to listen to all their songs online.
 
                    PROJECT SPECIFICATION
 
