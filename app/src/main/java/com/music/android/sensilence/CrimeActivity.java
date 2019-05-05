@@ -140,15 +140,25 @@ public class CrimeActivity extends AppCompatActivity {
         listView.setBackground(bitmapDrawable);
 
         songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951497/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SSswaDJkZGVteXUweW1NSnhSdWdETGRTN3R3M1hLRFVTcGRQZnBQRGk2OUI5ZGQ3MHNwcTU0WWp0ZkZ1eDBQQXFnMGw4Z1ZDVjd2NnRLeDh4SytsMGU/v-dchuttya.tish-do-astarti_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/listen/57951497" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SSswaDJkZGVteXUweW1NSnhSdWdETGRTN3R3M1hLRFVTcGRQZnBQRGk2OUI5ZGQ3MHNwcTU0WWp0ZkZ1eDBQQXFnMGw4Z1ZDVjd2NnRLeDh4SytsMGU" +
+                        "/v-dchuttya.tish-do-astarti_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951496/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6THRFSVdzTVg5SWRuSkU4a2tZRTVIdEZDZmQxUEx0STJ5dnpCRTkxMEpSc2FEVEdPYVNzNG5NclR6Qi8rREs1bURLSkdtNjEwMng1ZXFVVVpjNm5qbFo/v-dchuttya.tish-angelscream_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/listen/57951496" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6THRFSVdzTVg5SWRuSkU4a2tZRTVIdEZDZmQxUEx0STJ5dnpCRTkxMEpSc2FEVEdPYVNzNG5NclR6Qi8rREs1bURLSkdtNjEwMng1ZXFVVVpjNm5qbFo" +
+                        "/v-dchuttya.tish-angelscream_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951494/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S25WWnIrZlZ6L3YyRFpvaXFTdkRaTHF4aU10MkJ6NksweDdqTjk5KzRiQkVtQjlwQmtBM0pNVmFtbTZsWDZha1drYTNWMHA5MzlsellsNTlrenhka3Q/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/listen/57951494" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S25WWnIrZlZ6L3YyRFpvaXFTdkRaTHF4aU10MkJ6NksweDdqTjk5KzRiQkVtQjlwQmtBM0pNVmFtbTZsWDZha1drYTNWMHA5MzlsellsNTlrenhka3Q" +
+                        "/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951495/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TExBblkrdXlYVFFTaFkzY0l3c3FBZGZmd3Z2NitDUWtSbmFnSSsyS21rRkdBWlVCdUJTdzIyKzV3MmhTYWcraVphZmdRQ0ZpUUowYlpOYW1kenBGU1g/v-dchuttya.tish-ne-hot-v_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/listen/57951495" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TExBblkrdXlYVFFTaFkzY0l3c3FBZGZmd3Z2NitDUWtSbmFnSSsyS21rRkdBWlVCdUJTdzIyKzV3MmhTYWcraVphZmdRQ0ZpUUowYlpOYW1kenBGU1g" +
+                        "/v-dchuttya.tish-ne-hot-v_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/43467448/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1ExYTYrYnZDQUlTZGlDSnFESG9VMXYvOWc5VVlueWE5M1duOEZGcHJZV1ViS1Z2dVA0TFpVVHdBUEYvdEs2c1BNOEVhYk5WVTR4Zm9UZjJwb1gyMmc/v-dchuttya.tish-zlochin_(mp3CC.biz).mp3"));
+                "https://storage.mp3cc.biz/listen/43467448" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1ExYTYrYnZDQUlTZGlDSnFESG9VMXYvOWc5VVlueWE5M1duOEZGcHJZV1ViS1Z2dVA0TFpVVHdBUEYvdEs2c1BNOEVhYk5WVTR4Zm9UZjJwb1gyMmc" +
+                        "/v-dchuttya.tish-zlochin_(mp3CC.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere (Culturno rmx)", R.drawable.vt_dnb120,
                 "https://storage.mp3cc.biz/download/37750705" +
                         "/YVRmaVJ1UUczUEV0V0UybmdzVHFMd2NENllFT3kydlVORUNwWjErRFEzODllRXhkM2JLN2NUSXVhMUdMckNXbnpTa1NVTVR5V0xoUHM3eUxkT2dFUm1yODRXWVdsMks4bU15OVhGbTNGWlBuUVZqbGxPUlZ2SnlQOThIOHhObmU" +

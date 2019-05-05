@@ -95,13 +95,18 @@ public class ZigmundAfraidFragment extends Fragment {
 
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
-                "https://storage.mp3cc.biz/listen/40272180/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SkhvM3Y2R1hDbldlQ0RpL3EwWDNwSC80RHNCU2tsMlhIYUNTZWMxR3hkTldYcUI0SnQrVFA5dVM4UEVMV24vdlpMcEY0eFZQcTc4Z2tJdElneXRzSGU/zigmund-afraid-abroad_(mp3CC.biz).mp3");
+                "https://storage.mp3cc.biz/listen/40272180" +
+                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SkhvM3Y2R1hDbldlQ0RpL3EwWDNwSC80RHNCU2tsMlhIYUNTZWMxR3hkTldYcUI0SnQrVFA5dVM4UEVMV24vdlpMcEY0eFZQcTc4Z2tJdElneXRzSGU" +
+                        "/zigmund-afraid-abroad_(mp3CC.biz).mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
-                R.drawable.vt_dnb120, "https://storage.mp3cc.biz/listen/14483725/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S3MwNTRmSFBEQjh1VVM2SWRWSGRhUFcxbzEvUXNmS0pJdmdPL21qTUxqcnRDNklCQ1pNL3NVR1BqdE1FQUkwbGZVOTFJSTFndUxXNTJUSmxrMTRXa0Q/zigmund-afraid-abroad-retroflex-encoded_(mp3CC.biz).mp3"));
+                R.drawable.vt_dnb120, "https://storage.mp3cc.biz/listen/14483725" +
+                "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S3MwNTRmSFBEQjh1VVM2SWRWSGRhUFcxbzEvUXNmS0pJdmdPL21qTUxqcnRDNklCQ1pNL3NVR1BqdE1FQUkwbGZVOTFJSTFndUxXNTJUSmxrMTRXa0Q" +
+                "/zigmund-afraid-abroad-retroflex-encoded_(mp3CC.biz).mp3"));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
                 R.drawable.ic_za, "https://api.soundcloud.com/tracks/335521943" +
-                "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136-fzDcrgHney5w0F"));
+                "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136" +
+                "-fzDcrgHney5w0F"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(getActivity(), songs, R.color.category_zigmund_afraid);
