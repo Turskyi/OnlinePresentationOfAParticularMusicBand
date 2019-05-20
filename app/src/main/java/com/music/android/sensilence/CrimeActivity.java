@@ -1,6 +1,8 @@
 package com.music.android.sensilence;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,7 +11,9 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -96,10 +100,12 @@ public class CrimeActivity extends AppCompatActivity {
             }
 
             //Scale given bitmap to fit into the desired area
-            imageToScale = Bitmap.createScaledBitmap(imageToScale, finalWidth, finalHeight, true);
+            imageToScale = Bitmap
+                    .createScaledBitmap(imageToScale, finalWidth, finalHeight, true);
 
             //Created a bitmap with desired sizes
-            Bitmap scaledImage = Bitmap.createBitmap(destinationWidth, destinationHeight, Bitmap.Config.ARGB_8888);
+            Bitmap scaledImage = Bitmap
+                    .createBitmap(destinationWidth, destinationHeight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(scaledImage);
 
             //Draw background color
@@ -140,29 +146,17 @@ public class CrimeActivity extends AppCompatActivity {
         listView.setBackground(bitmapDrawable);
 
         songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951497" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SSswaDJkZGVteXUweW1NSnhSdWdETGRTN3R3M1hLRFVTcGRQZnBQRGk2OUI5ZGQ3MHNwcTU0WWp0ZkZ1eDBQQXFnMGw4Z1ZDVjd2NnRLeDh4SytsMGU" +
-                        "/v-dchuttya.tish-do-astarti_(mp3CC.biz).mp3"));
+                "https://mp3-tut.com/musictutplay?id=317906193_456239502&hash=8bdc55622c5d183fa40397e070f84ace2b5a224f7e90d439cf1458ec8520306d&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=%D0%94%D0%BE+%D0%90%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B8&download=1"));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951496" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6THRFSVdzTVg5SWRuSkU4a2tZRTVIdEZDZmQxUEx0STJ5dnpCRTkxMEpSc2FEVEdPYVNzNG5NclR6Qi8rREs1bURLSkdtNjEwMng1ZXFVVVpjNm5qbFo" +
-                        "/v-dchuttya.tish-angelscream_(mp3CC.biz).mp3"));
+                "https://mp3-tut.com/musictutplay?id=2000207615_456240114&hash=dd3cb727e366661f9b5b6f5874062839dc47153054185e91b467fd92e068bf6e&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=angelscream&download=1"));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951494" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S25WWnIrZlZ6L3YyRFpvaXFTdkRaTHF4aU10MkJ6NksweDdqTjk5KzRiQkVtQjlwQmtBM0pNVmFtbTZsWDZha1drYTNWMHA5MzlsellsNTlrenhka3Q" +
-                        "/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/36310910/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cjdBc2pwKzBhZHNiK3QyMGgyb3M1Y0JYdTRPNzdFMzYrZmlyZGQ0YXpETmRmTG1hVHZzM2p0MjBKUndDY0tvdjlrai9HOFY1cVRjNXM4cnZRcUdRV1E/Vdchuttya_Tish_Zomb_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/57951495" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TExBblkrdXlYVFFTaFkzY0l3c3FBZGZmd3Z2NitDUWtSbmFnSSsyS21rRkdBWlVCdUJTdzIyKzV3MmhTYWcraVphZmdRQ0ZpUUowYlpOYW1kenBGU1g" +
-                        "/v-dchuttya.tish-ne-hot-v_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/36310917/cEFrVDk4NDZyRndpU2xhY3VKRWJ5NzVYSTlUZ3psQjZDTlFtaEFsVXhuc2I4dFI2dVJka3JPWGVLbE9YUk5SaEMyYmkzT1RwSUp5b3NUeUh5WmNNd2IyZnZzWm1ZTFlsNEd1TmlYLytGSUoxQW8yQ1Z0SzBIc2xRN1JQcTN5MU8/Vdchuttya_Tish_Ne_khotv_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.crime,
-                "https://storage.mp3cc.biz/listen/43467448" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1ExYTYrYnZDQUlTZGlDSnFESG9VMXYvOWc5VVlueWE5M1duOEZGcHJZV1ViS1Z2dVA0TFpVVHdBUEYvdEs2c1BNOEVhYk5WVTR4Zm9UZjJwb1gyMmc" +
-                        "/v-dchuttya.tish-zlochin_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/36310919/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cmdwQ1lTdUdFT3l1aVVhNXR5c2hCNEJXNjRlcm4vazk2L1k5MHh3NWFUM3pDaGR5K0ZhR2txTTVQanlOcUNtUlRCMlZEZVNiS1RGZjhkMDF6ZDlyeTc/Vdchuttya_Tish_Zlochin_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere (Culturno rmx)", R.drawable.vt_dnb120,
-                "https://storage.mp3cc.biz/download/37750705" +
-                        "/YVRmaVJ1UUczUEV0V0UybmdzVHFMd2NENllFT3kydlVORUNwWjErRFEzODllRXhkM2JLN2NUSXVhMUdMckNXbnpTa1NVTVR5V0xoUHM3eUxkT2dFUm1yODRXWVdsMks4bU15OVhGbTNGWlBuUVZqbGxPUlZ2SnlQOThIOHhObmU" +
-                        "/v-dchuttya.tish-noli-respicere-culturno-rmx-dub-step-ukraine_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/36310915/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00bzZLYXNQaUNjUmRBTzh0akk0ekJIdjhxNDMzRDJrMyt4N1JpeGNORVUvMjJjd3NXS285OHZuRGhjcyt4TGE4ZlkxVXNSZWlRSGNVaXJQZmk2cXBwaFU/Vdchuttya_Tish_Noli_Respicere_Culturno_rmx_Dub_step_Ukraine_(djbag.biz).mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
@@ -190,17 +184,14 @@ public class CrimeActivity extends AppCompatActivity {
 
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
             if (isOnline()) {
 
                 //Get the {@link Song} object at the given position the user clicked on
-                Song song = songs.get(position);
+                final Song song = songs.get(position);
 
                 //Release the media player if it currently exists.
                 releaseMediaPlayer();
-
-                imageView = view.findViewById(R.id.btn_image);
-                imageView.setImageResource(R.drawable.ic_pause);
 
                 //Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
@@ -213,7 +204,7 @@ public class CrimeActivity extends AppCompatActivity {
 
 //                Create and setup the {@link MedeaPlayer} for the audio resource associated
 //                with the current song
-                    String url = song.getmAudioResourceId(); // your URL here
+                    String url = song.getmAudioResourceId(); // my URL here
                     mMediaPlayer = new MediaPlayer();
                     mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     try {
@@ -226,9 +217,38 @@ public class CrimeActivity extends AppCompatActivity {
                         mMediaPlayer.prepare(); // might take long! (for buffering, etc)
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Intent lastIntent = new Intent(CrimeActivity.this,
+                                MyService.class);
+                        startService(lastIntent);
+                        stopService(lastIntent);
+                        AlertDialog lastDialog =
+                                new AlertDialog.Builder(CrimeActivity.this).setTitle(
+                                        "Трапилось щось страшне!").setMessage("Хочете написати розробнику?")
+                                        .setCancelable(false).setPositiveButton("Так",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                                        "mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                intent.putExtra(Intent.EXTRA_SUBJECT, "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(CrimeActivity.this,
+                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
+                                }).create();
+                        lastDialog.show();
                     }
                     //                Start the audio file
                     mMediaPlayer.start();
+
+                    imageView = view.findViewById(R.id.btn_image);
+                    imageView.setImageResource(R.drawable.ic_pause);
 
                     //Setup a listener on the media player, so that we can stop and release the
                     //media player once the sounds has finished

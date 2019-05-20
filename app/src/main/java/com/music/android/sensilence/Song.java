@@ -57,7 +57,7 @@ class Song {
     }
 
     /**
-     * Return the image resource ID of the word.
+     * Return the image resource ID of the song.
      */
     int getImageResourceId() {
         return mImageResourceID;

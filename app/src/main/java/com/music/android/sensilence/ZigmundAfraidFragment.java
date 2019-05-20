@@ -2,14 +2,18 @@ package com.music.android.sensilence;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +88,8 @@ public class ZigmundAfraidFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.song_list, container, false);
 
         //Create and setup the {@link AudioManager} to request audio focus
-        mAudioManager = (AudioManager) Objects.requireNonNull(getActivity()).getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) Objects.requireNonNull(getActivity())
+                .getSystemService(Context.AUDIO_SERVICE);
 
         Bitmap bmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.zigmund_afraid_cover);
@@ -95,16 +100,12 @@ public class ZigmundAfraidFragment extends Fragment {
 
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
-                "https://storage.mp3cc.biz/listen/40272180" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SkhvM3Y2R1hDbldlQ0RpL3EwWDNwSC80RHNCU2tsMlhIYUNTZWMxR3hkTldYcUI0SnQrVFA5dVM4UEVMV24vdlpMcEY0eFZQcTc4Z2tJdElneXRzSGU" +
-                        "/zigmund-afraid-abroad_(mp3CC.biz).mp3");
+                "https://cs1.djbag.biz/download/55367092/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00bzJtZkRCdWlxV0lMcFd0eUl2R2tVcmtCb3V1V21zRkg4Z3Vzci9lWS83ZGtrcXBadThXdUxFeUJ6SkRWakFVbnhDVzhyQWZwWWVTRUp1ZGtCa3hHeEs/Zigmund_Afraid_Abroad_(djbag.biz).mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
-                R.drawable.vt_dnb120, "https://storage.mp3cc.biz/listen/14483725" +
-                "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S3MwNTRmSFBEQjh1VVM2SWRWSGRhUFcxbzEvUXNmS0pJdmdPL21qTUxqcnRDNklCQ1pNL3NVR1BqdE1FQUkwbGZVOTFJSTFndUxXNTJUSmxrMTRXa0Q" +
-                "/zigmund-afraid-abroad-retroflex-encoded_(mp3CC.biz).mp3"));
+                R.drawable.vt_dnb120, "https://cs1.djbag.biz/download/32561854/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cEVNcHJyWGFyZUNpbTVoNXl3OGZuVmQrQ2FXS1hkNlpuYjF4OHJkeVpoSk1yQzl3QkJMUkZNM2hYdU1DaWJ1WFRRUDZ4N1FtVUFpM3VIRmdBTmZVREU/Zigmund_Afraid_Abroad_Retroflex_Encoded_(djbag.biz).mp3"));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
-                R.drawable.ic_za, "https://api.soundcloud.com/tracks/335521943" +
+                R.drawable.pwm, "https://api.soundcloud.com/tracks/335521943" +
                 "/download?client_id=xIa292zocJP1G1huxplgJKVnK0V3Ni9D&oauth_token=2-290076-327486136" +
                 "-fzDcrgHney5w0F"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
@@ -140,7 +141,7 @@ public class ZigmundAfraidFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (isOnline()) {
                 //Get the {@link Word} object at the given position the user clicked on
-                Song song = songs.get(position);
+                final Song song = songs.get(position);
 
                 //Release the media player if it currently exists because we are about to
                 //play a different sound file.
@@ -173,6 +174,35 @@ public class ZigmundAfraidFragment extends Fragment {
                         mMediaPlayer.prepare(); // might take long! (for buffering, etc)
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Intent lastIntent = new Intent(getActivity(),
+                                MyService.class);
+                        Objects.requireNonNull(getActivity()).startService(lastIntent);
+                        getActivity().stopService(lastIntent);
+                        AlertDialog lastDialog =
+                                new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
+                                        .setTitle("Something terrible happened!")
+                                        .setMessage("Would you like to write to the developer?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
+                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                intent.putExtra(Intent
+                                                                .EXTRA_SUBJECT,
+                                                        "The horrible story that happened to the song " + song.getDefaultSong());
+                                                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }).setNegativeButton("Nope", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(getActivity(),
+                                                "Then come back tomorrow ;)", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
+                                }).create();
+                        lastDialog.show();
                     }
                     //                Start the audio file
                     mMediaPlayer.start();

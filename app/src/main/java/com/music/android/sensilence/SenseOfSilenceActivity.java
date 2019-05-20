@@ -1,12 +1,16 @@
 package com.music.android.sensilence;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -85,57 +89,31 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зима", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041062" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1doVTYwQS85NmJJU3hKcUdQUTN6RXJTazNrYnkyS3FhVm1pY09OZzRST09KS1FIaW5IeTRFOW1BOEZRb1NTcW9pZ0ROYkdpZnJnTHAxRE9zRzIyQlM" +
-                        "/v-dchuttya-tish-zima_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938060118364889/80cce9ff959ad65f5eb38281595d5dcd/6413410"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041071" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SWhvMGtNSTk2dXoxc0VvUVNzdXk3OUdIQncxUzhDdVNCVEtDWGV1UjFZdHUyeGZGOENWRzF5TFUyS25JdWFRT2diNm52VG9JL2VYRzNNQlVNZUpVZVk" +
-                        "/v-dchuttya.tish-02-noli-respicere_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938061760121514/d30c9918af8c3332311e4aa70eeca592/6413411"));
         songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041067" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S1pBNmNEYUdXVUw5QXU4UDdtMmpzMWxITTlvMkFteVlISG1HMUxiT1NUUWxvT1gzR0hjc3o5S2VEbElKYXZCajZoT3BpZ0p5Vmp1TFdZUitHSE5rbmw" +
-                        "/v-dchuttya.tish-03-vostann_(mp3CC.biz).mp3"));
+                "https://mp3-tut.com/musictutplay?id=-22431441_132224076&hash=b27d97dfec746e70466bfbb112e3192559263fc27a4d1fa91c311b7ff82722db&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=03+-+%D0%92%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%94&download=1"));
         songs.add(new Song("відчуття.тиші", "Смак Мого Забуття", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041073" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6S21adnV1WjR0V1NrWVNuQnBuRlpxVEVRUjJ1TjczQ3grUTh3Q3NiV3J3MTNRb0dXRTgrZlpuU3hxT054Y0x0aDBlNWw0V3pBMVc1UXZKVGRTRUlFVWs" +
-                        "/v-dchuttya.tish-04-smak-mogo-zabuttya_(mp3CC.biz).mp3"));
+                "https://done.7cord.com/proxy?data=Y1I3RUczR0pVTE1WVklqSTB4VGdVOEViYjlZT0pPaFZaZ0FuVTNBbzlwalRLMWIybVA0ZlpOVTAyakJXV2MycisxZGxweGFRRVp2Q2xNSDM4RSs1cVNNOGZaSlFYVXFrR1k3d09YTzM1SEkwNVZSc2J5Q0pUeHg0TmQ3LzhhdUN1R090aFFJemVBMjRicHZsMTdsTEhrbkNTY21Qa2ZPMHFIK3g2S0QwY24rcnFOS3NoYXdTRURvaHZkRnpkZC9nMzdueDJ6MURaWmtGbSs0dlhFR1dTcGIwaWJwTWF1cnovdHlpS2NFTWlJUjhUSXBENVRyc0tNQnFlR1RlNW9qbk10Ylcwa1NsVXhVSGR5TWZFUGZBajVqK1lQY3hyUDFBT2c2UWlxRGNIeEFkblVmSWRxYnV5ZHF2TjgwU2Z6ZkxjZDMwRFJ1V3hwTndRSjZGczFkWGgvQThUUUUrT1F6UWVhK3R6MjRzZy90djNWYzh6Wndncm04YmVtTnJveXNwWG5CcW9haHBrSzJUNmhJZDQwWHRmRTFWdHlJWHVIUXoxbGVrYmU1a2VVbDZnSmtGR09rQ3I0ajlhMnQzSFJ6NlpITllsRG9BdVlKbjNYaVAvOEtoaXJ3aElySmFYM3dncGNaM0R0RDFvWHNjUGdXODkza2g0eWJQN2kxUWt2NWk"));
         songs.add(new Song("відчуття.тиші", "Промені", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041075" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFFnWWhTWlZXeWtKdkFEYm53eGo5QWFUN1NNelhCVmtaU1JPWm1CbmdTU0w4enBuZk4wV2dDb0s1a3gzUFN5SUpNM0doSjZSRDlONkJxeWVqYXozSnM" +
-                        "/v-dchuttya.tish-05-promen_(mp3CC.biz).mp3"));
+                "https://mp3-tut.com/musictutplay?id=55436575_159116004&hash=d19d4733acac5e0cd42d095104bc9169b02101e0eff2f243dad0aeb2f28b134d&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=%D0%9F%D1%80%D0%BE%D0%BC%D0%B5%D0%BD%D1%96&download=1"));
         songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/137055067" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SjI3cW1WdDRoaUtUMUZxVUtNTVdIaDRxRkRvV2lvbzNnLzJFc0FsTVNJVit3V2ZuRHpxWkhTUitCQjRaWEJqU1N5em9jRTR4V3dMdm51akNFb3JpVDk" +
-                        "/v-dchuttya.tish-bezodnya_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938100351166801/4e828bc44d7cdbdaf623018c6249336f/6413415"));
         songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/57951507" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6STRsbHNENDFVQ21Ea1lpU09LR05pbWVqaFdWMU9ZaDZNc3JLUmZQZ1BSMXA0L05Sdm9PYmk4eERoWGNzV0tzZlJFTnFXWkJiUFB4N2hLL05aMzJkcW0" +
-                        "/v-dchuttya.tish-ne-kraj_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938102340900143/dcdfc4e69c228cd796b3527148015e99/6413416"));
         songs.add(new Song("відчуття.тиші", "Знову Страх", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041069" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TEo3MXRxVGdSejVIYjVjLzQwWGo1bmpBdmd5Zm5CTFpPaDZtUEVFVHR6aUlRd0FlMUV2VHZoOUZiaXpTbldLaHFISXM1K0M5aU1zNlA4S0RXTkYrWS8" +
-                        "/v-dchuttya.tish-08-znovu-strah_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938103582647501/e3e276e8b5fdac0def96a3c1f2e255f0/6413417"));
         songs.add(new Song("відчуття.тиші", "Навпіл", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041064" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SytFbDJqMkg2OWFTUjljRnlVR3lpbDg0ZER3cUptbHByOExuR3ByOUUrWlRPeFVTWHhQNVBKeU14YVFEbEhVOWw1UndkL1FvYmMrMDAxNVFYSEdvYmw" +
-                        "/v-dchuttya.tish-09-navp-l_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938104901896641/22c5eadf4bd91b4d0b9aeca9c7bd1978/6413420"));
         songs.add(new Song("відчуття.тиші", "Зап'ястя", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041078" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SWtLRVZSMU9UT0RJNTFNaHl0cXl1UDYvUmVORm8veUFlRU02SnZyNlA5Vit6Nm9rdlNiaVkweHFWbmpiR05lODJhcjA5b25oZkYzZm93YTF5SitUd00" +
-                        "/v-dchuttya.tish-10-zap-yastya_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938106468026480/fca32c2835df7b659b58d87b13a3fa8e/6413421"));
         songs.add(new Song("відчуття.тиші", "Падаю", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/53515677" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TDJBd2Nab2pQNUREbGI4eTNoRWNVUWZlS1RHemNBMlk4bFNudFY0RkZrY0NaQzlrdUFKSU5YRzFHL05EdzdHOTQ1LzlxTFdtWHhtMUVGanJtUTdQWGg" +
-                        "/v-dchuttya.tish-padayu_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938106819753325/8f394b9cf4e6bb55af41270847ecac24/6413422"));
         songs.add(new Song("відчуття.тиші", "Навесні", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/99041070" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TGhueFo0NWVqaVY3SlZCWk4yYmNCWHFYSVVVOFlUS3JTNWIrenlON1BwemdBNFRDeFliVVF5VmtDZXhTUGoxRG9nVkQ3RkUvQmdEc2x5N2k1eDhxM0I" +
-                        "/v-dchuttya.tish-12-navesn_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938107170073931/20dec9fe780d0be5ad1b29ad51bbf9f0/6413423"));
         songs.add(new Song("відчуття.тиші", "Алєся", R.drawable.logo_black,
-                "https://storage.mp3cc.biz/listen/19493397" +
-                        "/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SktVbkJVUDB6VXpleU9OWUJzKzZpTkJnTGhka1owRUZDWGNhT1BEVWN0UVNLQlZBRGdGdWoyVUxZM3BaeVRJQ1V3KytyMXpMNUg4dFg4QWZ5VmhTcDg" +
-                        "/v-dchuttya.tish-alesya_(mp3CC.biz).mp3"));
+                "https://myzcloud.pro/song/dl/636938107439923878/0aa41f5eeae4e6e951b5aab5f798bf28/6413424"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
@@ -167,7 +145,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (isOnline()) {
                 //Get the {@link Word} object at the given position the user clicked on
-                Song song = songs.get(position);
+                final Song song = songs.get(position);
 
                 //Release the media player if it currently exists because we are about to
                 //play a different sound file.
@@ -199,6 +177,35 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
                         mMediaPlayer.prepare(); // might take long! (for buffering, etc)
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Intent lastIntent = new Intent(SenseOfSilenceActivity.this,
+                                MyService.class);
+                        startService(lastIntent);
+                        stopService(lastIntent);
+                        AlertDialog lastDialog =
+                                new AlertDialog.Builder(SenseOfSilenceActivity.this)
+                                        .setTitle("Трапилось щось страшне!")
+                                        .setMessage("Хочете написати розробнику?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
+                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                intent.putExtra(Intent
+                                                                .EXTRA_SUBJECT,
+                                                        "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(SenseOfSilenceActivity.this,
+                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
+                                }).create();
+                        lastDialog.show();
                     }
                     //                Start the audio file
                     mMediaPlayer.start();
@@ -210,7 +217,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
                     listView.setOnItemClickListener(secondClickListener);
                 } else {
                     Toast.makeText(view.getContext(),
-                            "No internet", Toast.LENGTH_SHORT).show();
+                            "Немає інтернету", Toast.LENGTH_SHORT).show();
                 }
             }
         }

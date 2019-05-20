@@ -1,12 +1,16 @@
 package com.music.android.sensilence;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -74,18 +78,17 @@ public class ZombiActivity extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.zombi_txt);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-//        bitmapDrawable.setAlpha(100);
         listView = findViewById(R.id.list);
         listView.setBackground(bitmapDrawable);
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.zombi,
-                "https://storage.mp3cc.biz/listen/57951498/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6SU51a2I0SEluUUhGUzNKNDQxM2xLbm14cUF4cmNYaXlTYnNCa3o3VnNYd1F4SjN4Y3ZEb3JCSTJFWUowYkRjY3J4K0tGM2F4dkRZb1FvYklvRzFqZEk/v-dchuttya.tish-zomb_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/36310921/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00ckQvcVNJbC8wd2trUHgxVDExb1d5bEN5N0hlRjhEK2pVLzRhU3hxZXhHajdZS2dpT1psMEtFRTVub1VlUjVXeFc3YWRIMzl3TXFlbjMybU55ZGdMVjA/Vdchuttya_Tish_Zomb_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші",
                 "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
-                "https://storage.mp3cc.biz/listen/17574914/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFBhQmFNaDlqSGFYZDVqZEZRMWErS0xWeVJQamJwTlpKK3hMQUxqV2NDUkZ0Zkp4a0hTek5za0hYN1JvWjFmTUw0RmFwMVdGWGZGbkI1VXVmYWFMU0w/v-dchuttya.tish-zomb-acontrari-post-apocalyptic-dubstep-mix_(mp3CC.biz).mp3"));
+                "https://cs1.djbag.biz/download/23875604/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cVRJVlRBK2ZFbzhwQ0orbWdRdmpFOWN5TFB2NnpsVSsvZ2xDRUdDam0rSThSTEJvYkxrL09jUFpWSTkxN21qTlEycFcwaE81aTc0d29iZ3RQditCTkI/Vdchuttya_Tish_Zomb_aContrari_post_apocalyptic_dubstep_mix_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
-                "https://storage.mp3cc.biz/listen/57951499/ZHJMMXFDNzVSOTd6Zm5CK2lTckJ2cTQ1WlcxWUpET2phbW11Z2JuNVd6TFlKWUs5aW0raFZ3MmlJMFpiS3E1NVRYSUw2andvQS9QaHk4ZUVQVklkdjZYbFgzekYyTnlNL0lHY3BJdzFrRDFjbHVSZ3I1S1lGdHE2Z0R4NkRKRzk/v-dchuttya.tish-_(mp3CC.biz).mp3"));
+                "https://done.7cord.com/proxy?data=VEV3VVJFbG1tSitadVk5REpFbGN1dzY0ak5qbUxDNjZ2cU9Zcm9EcWwrblFsaFdVNFlteVRtTXdRditUdjdhMjZ1S2N1NXFBSE1lUzhtOUREU3QzTW5yeVpta09KcGMrRmp5UHBnUFFrbG51QkVlVVgxWUxvbS90ZWUyQklvSHVuOWZNNnpUQUdYR25PYzk3cU1yeXA0WDB6aUk0OE1aL2xkc25WU05nSzhHdExPQTJTZ2MvMTl0cFR1Q1BBRE9kZXI3UlBZS0JCeFhBVndEWkVzU0pDNW44MzdvYU85dHBOYWhJYTN0TDhLTWJWd0lQdFRYNHZYSitobXRFQmJZV2lHY2FBaHFqRU1TaWJ2NkdnVlE1eU1TQWttdjhHQWNTK1F1M0I1VWZNTmQzQWt5ZmFYaCthalVueUNtOENRZ2o3Qy8xLzlQNE9taU9GMFM5MVpZQ2c2V001V2RNSmlibjdnNnZYb0IwQjJKZ2JaOEtyY0RWZVJUYlNpZUdIM0tkTWMxQWdkMTNMazE5bkRMN25idXJxYmx5L3F1bHg1V3hDUmxtSkk0MWYyeldZRlUyMFdwc2M5RWlnSXlyK1lTbXp0bHo4T29RY0hVN2JNY3V5MkcvYmc9PQ"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zombi);
@@ -117,7 +120,7 @@ public class ZombiActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (isOnline()) {
                 //Get the {@link Word} object at the given position the user clicked on
-                Song song = songs.get(position);
+                final Song song = songs.get(position);
 
                 //Release the media player if it currently exists because we are about to
                 //play a different sound file.
@@ -149,6 +152,35 @@ public class ZombiActivity extends AppCompatActivity {
                         mMediaPlayer.prepare(); // might take long! (for buffering, etc)
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Intent lastIntent = new Intent(ZombiActivity.this,
+                                MyService.class);
+                        startService(lastIntent);
+                        stopService(lastIntent);
+                        AlertDialog lastDialog =
+                                new AlertDialog.Builder(ZombiActivity.this)
+                                        .setTitle("Трапилось щось страшне!")
+                                        .setMessage("Хочете написати розробнику?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
+                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                intent.putExtra(Intent
+                                                                .EXTRA_SUBJECT,
+                                                        "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                                    startActivity(intent);
+                                                }
+                                            }
+                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(ZombiActivity.this,
+                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
+                                }).create();
+                        lastDialog.show();
                     }
                     //                Start the audio file
                     mMediaPlayer.start();

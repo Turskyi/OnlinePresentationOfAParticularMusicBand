@@ -19,7 +19,8 @@ public class VidchuttiaTyshiFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_vidchuttia_tyshi, container, false);
+        View rootView = inflater
+                .inflate(R.layout.activity_vidchuttia_tyshi, container, false);
 
         // Find the View that shows the zombi category
         TextView zombi = rootView.findViewById(R.id.zombi);
