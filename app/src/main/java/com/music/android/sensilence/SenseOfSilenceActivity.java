@@ -17,12 +17,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class SenseOfSilenceActivity extends AppCompatActivity {
+    ProgressBar progressBar;
     ImageView imageView;
     ListView listView;
     private MediaPlayer mMediaPlayer;
@@ -89,9 +91,9 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зима", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938060118364889/80cce9ff959ad65f5eb38281595d5dcd/6413410"));
+                "https://m.z1.fm/download/5669117?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938061760121514/d30c9918af8c3332311e4aa70eeca592/6413411"));
+                "https://m.z1.fm/download/6565442?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
                 "https://mp3-tut.com/musictutplay?id=-22431441_132224076&hash=b27d97dfec746e70466bfbb112e3192559263fc27a4d1fa91c311b7ff82722db&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=03+-+%D0%92%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%94&download=1"));
         songs.add(new Song("відчуття.тиші", "Смак Мого Забуття", R.drawable.logo_black,
@@ -99,21 +101,21 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(new Song("відчуття.тиші", "Промені", R.drawable.logo_black,
                 "https://mp3-tut.com/musictutplay?id=55436575_159116004&hash=d19d4733acac5e0cd42d095104bc9169b02101e0eff2f243dad0aeb2f28b134d&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=%D0%9F%D1%80%D0%BE%D0%BC%D0%B5%D0%BD%D1%96&download=1"));
         songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938100351166801/4e828bc44d7cdbdaf623018c6249336f/6413415"));
+                "https://m.z1.fm/download/5587229?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938102340900143/dcdfc4e69c228cd796b3527148015e99/6413416"));
+                "https://m.z1.fm/download/5831897?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Знову Страх", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938103582647501/e3e276e8b5fdac0def96a3c1f2e255f0/6413417"));
+                "https://m.z1.fm/download/5575558?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Навпіл", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938104901896641/22c5eadf4bd91b4d0b9aeca9c7bd1978/6413420"));
+                "https://m.z1.fm/download/5826157?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Зап'ястя", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938106468026480/fca32c2835df7b659b58d87b13a3fa8e/6413421"));
+                "https://m.z1.fm/download/5831553?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Падаю", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938106819753325/8f394b9cf4e6bb55af41270847ecac24/6413422"));
+                "https://m.z1.fm/download/5853470?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Навесні", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938107170073931/20dec9fe780d0be5ad1b29ad51bbf9f0/6413423"));
+                "https://m.z1.fm/download/5826346?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Алєся", R.drawable.logo_black,
-                "https://myzcloud.pro/song/dl/636938107439923878/0aa41f5eeae4e6e951b5aab5f798bf28/6413424"));
+                "https://m.z1.fm/download/5441247?dwn=1&download=force"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
@@ -142,84 +144,102 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
     final AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (isOnline()) {
-                //Get the {@link Word} object at the given position the user clicked on
-                final Song song = songs.get(position);
+        public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+            progressBar = view.findViewById(R.id.loading_spinner);
+            progressBar.setVisibility(View.VISIBLE);
+            new Thread(new Runnable() {
+                public void run() {
+                    //do time consuming operations
+                    if (isOnline()) {
+                        //Get the {@link Word} object at the given position the user clicked on
+                        final Song song = songs.get(position);
 
-                //Release the media player if it currently exists because we are about to
-                //play a different sound file.
-                releaseMediaPlayer();
+                        //Release the media player if it currently exists because we are about to
+                        //play a different sound file.
+                        releaseMediaPlayer();
 
-                imageView = view.findViewById(R.id.btn_image);
-                imageView.setImageResource(R.drawable.ic_pause);
-                //Request audio focus for playback
-                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                        //Use the music stream.
-                        AudioManager.STREAM_MUSIC,
-                        //Request permanent focus.
-                        AudioManager.AUDIOFOCUS_GAIN);
-                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    //We have an audio focus now.
+                        //Request audio focus for playback
+                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                                //Use the music stream.
+                                AudioManager.STREAM_MUSIC,
+                                //Request permanent focus.
+                                AudioManager.AUDIOFOCUS_GAIN);
+                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                            //We have an audio focus now.
 
 //                Create and setup the {@link MedeaPlayer} for the audio resource associated
 //                with the current song
-                    String url = song.getmAudioResourceId();// your URL here
-                    mMediaPlayer = new MediaPlayer();
-                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    try {
-                        mMediaPlayer.setDataSource(url);
+                            String url = song.getmAudioResourceId();// your URL here
+                            mMediaPlayer = new MediaPlayer();
+                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                            try {
+                                mMediaPlayer.setDataSource(url);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Intent lastIntent = new Intent(SenseOfSilenceActivity.this,
-                                MyService.class);
-                        startService(lastIntent);
-                        stopService(lastIntent);
-                        AlertDialog lastDialog =
-                                new AlertDialog.Builder(SenseOfSilenceActivity.this)
-                                        .setTitle("Трапилось щось страшне!")
-                                        .setMessage("Хочете написати розробнику?")
-                                        .setCancelable(false)
-                                        .setPositiveButton("Так", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
-                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
-                                                intent.putExtra(Intent
-                                                                .EXTRA_SUBJECT,
-                                                        "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
-                                                if (intent.resolveActivity(getPackageManager()) != null) {
-                                                    startActivity(intent);
-                                                }
-                                            }
-                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Toast.makeText(SenseOfSilenceActivity.this,
-                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
-                                        dialog.cancel();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Intent lastIntent = new Intent(SenseOfSilenceActivity.this,
+                                                MyService.class);
+                                        startService(lastIntent);
+                                        stopService(lastIntent);
+                                        AlertDialog lastDialog =
+                                                new AlertDialog.Builder(SenseOfSilenceActivity.this)
+                                                        .setTitle("Трапилось щось страшне!")
+                                                        .setMessage("Хочете написати розробнику?")
+                                                        .setCancelable(false)
+                                                        .setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
+                                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                                intent.putExtra(Intent
+                                                                                .EXTRA_SUBJECT,
+                                                                        "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                                                    startActivity(intent);
+                                                                }
+                                                            }
+                                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        Toast.makeText(SenseOfSilenceActivity.this,
+                                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
+                                                        dialog.cancel();
+                                                    }
+                                                }).create();
+                                        lastDialog.show();
                                     }
-                                }).create();
-                        lastDialog.show();
+                                });
+
+                            }
+                            //                Start the audio file
+                            mMediaPlayer.start();
+                            progressBar.setVisibility(View.INVISIBLE);
+                            imageView = view.findViewById(R.id.btn_image);
+                            imageView.setImageResource(R.drawable.ic_pause);
+
+                            //Setup a listener on the media player, so that we can stop and release the
+                            //media player once the sounds has finished
+                            mMediaPlayer.setOnCompletionListener(mCompletionListener);
+
+                            listView.setOnItemClickListener(secondClickListener);
+                        }
+                    } else {
+                        SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SenseOfSilenceActivity.this,
+                                        "Немає інтернету", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
-                    //                Start the audio file
-                    mMediaPlayer.start();
-
-                    //Setup a listener on the media player, so that we can stop and release the
-                    //media player once the sounds has finished
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
-
-                    listView.setOnItemClickListener(secondClickListener);
-                } else {
-                    Toast.makeText(view.getContext(),
-                            "Немає інтернету", Toast.LENGTH_SHORT).show();
                 }
-            }
+            }).start();
         }
     };
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
