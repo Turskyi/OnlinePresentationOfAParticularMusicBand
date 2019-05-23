@@ -48,7 +48,7 @@ public class CrimeActivity extends AppCompatActivity {
                         //Pause playback and reset player to the start of the file. That way, when
                         //play the song from the beginning when we resume playback.
                         mMediaPlayer.pause();
-                        mMediaPlayer.seekTo(0);
+                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition());
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                         //The AUDIOFOCUS_GAIN case means we have regained focus and can
                         //resume playback
@@ -187,6 +187,9 @@ public class CrimeActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+            if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+                play(view);
+            } else {
             progressBar = view.findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.VISIBLE);
             new Thread(new Runnable() {
@@ -255,16 +258,7 @@ public class CrimeActivity extends AppCompatActivity {
                                 });
                             }
                             //                Start the audio file
-                            mMediaPlayer.start();
-                            progressBar.setVisibility(View.INVISIBLE);
-                            imageView = view.findViewById(R.id.btn_image);
-                            imageView.setImageResource(R.drawable.ic_pause);
-
-                            //Setup a listener on the media player, so that we can stop and release the
-                            //media player once the sounds has finished
-                            mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                            listView.setOnItemClickListener(secondClickListener);
-
+                            play(view);
                         }
                     } else {
                         CrimeActivity.this.runOnUiThread(new Runnable() {
@@ -278,6 +272,7 @@ public class CrimeActivity extends AppCompatActivity {
                 }
             }).start();
         }
+        }
     };
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -287,6 +282,17 @@ public class CrimeActivity extends AppCompatActivity {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
+
+    private void play(View view) {
+        mMediaPlayer.start();
+        progressBar.setVisibility(View.INVISIBLE);
+        imageView = view.findViewById(R.id.btn_image);
+        imageView.setImageResource(R.drawable.ic_pause);
+        //Setup a listener on the media player, so that we can stop and release the
+        //media player once the sounds has finished
+        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+        listView.setOnItemClickListener(secondClickListener);
+    }
 
     @Override
     protected void onStop() {

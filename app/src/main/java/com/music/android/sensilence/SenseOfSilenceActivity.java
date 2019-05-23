@@ -43,9 +43,9 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
                         //our app is allowed to continue playing sound but at a lower volume.
 
                         //Pause playback and reset player to the start of the file. That way, when
-                        //play the word from the beginning when we resume playback.
+                        //play the song from the beginning when we resume playback.
                         mMediaPlayer.pause();
-                        mMediaPlayer.seekTo(0);
+                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition());
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                         //The AUDIOFOCUS_GAIN case means we have regained focus and can
                         //resume playback
@@ -145,101 +145,96 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     final AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            progressBar = view.findViewById(R.id.loading_spinner);
-            progressBar.setVisibility(View.VISIBLE);
-            new Thread(new Runnable() {
-                public void run() {
-                    //do time consuming operations
-                    if (isOnline()) {
-                        //Get the {@link Word} object at the given position the user clicked on
-                        final Song song = songs.get(position);
+            if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+                play(view);
+            } else {
+                progressBar = view.findViewById(R.id.loading_spinner);
+                progressBar.setVisibility(View.VISIBLE);
+                new Thread(new Runnable() {
+                    public void run() {
+                        //do time consuming operations
+                        if (isOnline()) {
+                            //Get the {@link Word} object at the given position the user clicked on
+                            final Song song = songs.get(position);
 
-                        //Release the media player if it currently exists because we are about to
-                        //play a different sound file.
-                        releaseMediaPlayer();
+                            //Release the media player if it currently exists because we are about to
+                            //play a different sound file.
+                            releaseMediaPlayer();
 
-                        //Request audio focus for playback
-                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                                //Use the music stream.
-                                AudioManager.STREAM_MUSIC,
-                                //Request permanent focus.
-                                AudioManager.AUDIOFOCUS_GAIN);
-                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                            //We have an audio focus now.
+                            //Request audio focus for playback
+                            int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                                    //Use the music stream.
+                                    AudioManager.STREAM_MUSIC,
+                                    //Request permanent focus.
+                                    AudioManager.AUDIOFOCUS_GAIN);
+                            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                                //We have an audio focus now.
 
 //                Create and setup the {@link MedeaPlayer} for the audio resource associated
 //                with the current song
-                            String url = song.getmAudioResourceId();// your URL here
-                            mMediaPlayer = new MediaPlayer();
-                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                            try {
-                                mMediaPlayer.setDataSource(url);
+                                String url = song.getmAudioResourceId();// your URL here
+                                mMediaPlayer = new MediaPlayer();
+                                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                try {
+                                    mMediaPlayer.setDataSource(url);
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        Intent lastIntent = new Intent(SenseOfSilenceActivity.this,
-                                                MyService.class);
-                                        startService(lastIntent);
-                                        stopService(lastIntent);
-                                        AlertDialog lastDialog =
-                                                new AlertDialog.Builder(SenseOfSilenceActivity.this)
-                                                        .setTitle("Трапилось щось страшне!")
-                                                        .setMessage("Хочете написати розробнику?")
-                                                        .setCancelable(false)
-                                                        .setPositiveButton("Так", new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                Intent intent = new Intent(Intent.ACTION_SENDTO,
-                                                                        Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
-                                                                intent.putExtra(Intent
-                                                                                .EXTRA_SUBJECT,
-                                                                        "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
-                                                                if (intent.resolveActivity(getPackageManager()) != null) {
-                                                                    startActivity(intent);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                    SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
+                                        public void run() {
+                                            Intent lastIntent = new Intent(SenseOfSilenceActivity.this,
+                                                    MyService.class);
+                                            startService(lastIntent);
+                                            stopService(lastIntent);
+                                            AlertDialog lastDialog =
+                                                    new AlertDialog.Builder(SenseOfSilenceActivity.this)
+                                                            .setTitle("Трапилось щось страшне!")
+                                                            .setMessage("Хочете написати розробнику?")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("Так", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    Intent intent = new Intent(Intent.ACTION_SENDTO,
+                                                                            Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                                    intent.putExtra(Intent
+                                                                                    .EXTRA_SUBJECT,
+                                                                            "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                                    if (intent.resolveActivity(getPackageManager()) != null) {
+                                                                        startActivity(intent);
+                                                                    }
                                                                 }
-                                                            }
-                                                        }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        Toast.makeText(SenseOfSilenceActivity.this,
-                                                                "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
-                                                        dialog.cancel();
-                                                    }
-                                                }).create();
-                                        lastDialog.show();
-                                    }
-                                });
+                                                            }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            Toast.makeText(SenseOfSilenceActivity.this,
+                                                                    "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
+                                                            dialog.cancel();
+                                                        }
+                                                    }).create();
+                                            lastDialog.show();
+                                        }
+                                    });
 
+                                }
+                                //                Start the audio file
+                                play(view);
                             }
-                            //                Start the audio file
-                            mMediaPlayer.start();
-                            progressBar.setVisibility(View.INVISIBLE);
-                            imageView = view.findViewById(R.id.btn_image);
-                            imageView.setImageResource(R.drawable.ic_pause);
-
-                            //Setup a listener on the media player, so that we can stop and release the
-                            //media player once the sounds has finished
-                            mMediaPlayer.setOnCompletionListener(mCompletionListener);
-
-                            listView.setOnItemClickListener(secondClickListener);
+                        } else {
+                            SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(SenseOfSilenceActivity.this,
+                                            "Немає інтернету", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
+                            });
                         }
-                    } else {
-                        SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast.makeText(SenseOfSilenceActivity.this,
-                                        "Немає інтернету", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.INVISIBLE);
-                            }
-                        });
                     }
-                }
-            }).start();
+                }).start();
+            }
         }
     };
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
@@ -250,6 +245,17 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
+
+    private void play(View view) {
+        mMediaPlayer.start();
+        progressBar.setVisibility(View.INVISIBLE);
+        imageView = view.findViewById(R.id.btn_image);
+        imageView.setImageResource(R.drawable.ic_pause);
+        //Setup a listener on the media player, so that we can stop and release the
+        //media player once the sounds has finished
+        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+        listView.setOnItemClickListener(secondClickListener);
+    }
 
     @Override
     protected void onStop() {

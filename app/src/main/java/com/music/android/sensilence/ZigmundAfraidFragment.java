@@ -54,7 +54,7 @@ public class ZigmundAfraidFragment extends Fragment {
                         //Pause playback and reset player to the start of the file. That way, when
                         //play the song from the beginning when we resume playback.
                         mMediaPlayer.pause();
-                        mMediaPlayer.seekTo(0);
+                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition());
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                         //The AUDIOFOCUS_GAIN case means we have regained focus and can
                         //resume playback
@@ -142,6 +142,9 @@ public class ZigmundAfraidFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+            if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+                play(view);
+            } else {
             progressBar = view.findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.VISIBLE);
             new Thread(new Runnable() {
@@ -212,16 +215,8 @@ public class ZigmundAfraidFragment extends Fragment {
                                     }
                                 });
                             }
-                            //                Start the audio file
-                            mMediaPlayer.start();
-                            progressBar.setVisibility(View.INVISIBLE);
-                            imageView = view.findViewById(R.id.btn_image);
-                            imageView.setImageResource(R.drawable.ic_pause);
-
-                            //Setup a listener on the media player, so that we can stop and release the
-                            //media player once the sounds has finished
-                            mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                            listView.setOnItemClickListener(secondClickListener);
+                             //  Start the audio file
+                            play(view);
                         }
                     } else {
                         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
@@ -235,8 +230,8 @@ public class ZigmundAfraidFragment extends Fragment {
                 }
             }).start();
         }
+        }
     };
-
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -245,6 +240,17 @@ public class ZigmundAfraidFragment extends Fragment {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
+
+    private void play(View view) {
+        mMediaPlayer.start();
+        progressBar.setVisibility(View.INVISIBLE);
+        imageView = view.findViewById(R.id.btn_image);
+        imageView.setImageResource(R.drawable.ic_pause);
+        //Setup a listener on the media player, so that we can stop and release the
+        //media player once the sounds has finished
+        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+        listView.setOnItemClickListener(secondClickListener);
+    }
 
     @Override
     public void onStop() {
