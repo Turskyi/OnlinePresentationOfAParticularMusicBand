@@ -55,7 +55,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list);
-      musicAlbum = new MusicAlbum(mMediaPlayer);
+      musicAlbum = new MusicAlbum();
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -106,7 +106,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
             if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
             } else {
                 progressBar = view.findViewById(R.id.loading_spinner);
                 progressBar.setVisibility(View.VISIBLE);
@@ -148,7 +148,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
                                     musicAlbum.errorAlert( song, SenseOfSilenceActivity.this);
                                 }
                                 //  Start the audio file
-                                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                                musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
                             }
                         } else {
                             SenseOfSilenceActivity.this.runOnUiThread(new Runnable() {

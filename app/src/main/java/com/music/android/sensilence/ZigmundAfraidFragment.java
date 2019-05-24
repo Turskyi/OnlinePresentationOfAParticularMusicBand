@@ -29,6 +29,7 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class ZigmundAfraidFragment extends Fragment {
+    View rootView;
     MusicAlbum musicAlbum;
     ProgressBar progressBar;
     ImageView imageView;
@@ -43,25 +44,6 @@ public class ZigmundAfraidFragment extends Fragment {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
                     musicAlbum.onFocusChange(focusChange,mMediaPlayer);
-//                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-//                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-//                        //The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus
-//                        //short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means
-//                        //our app is allowed to continue playing sound but at a lower volume.
-//
-//                        //Pause playback and reset player to the start of the file. That way, when
-//                        //play the song from the beginning when we resume playback.
-//                        mMediaPlayer.pause();
-//                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition());
-//                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-//                        //The AUDIOFOCUS_GAIN case means we have regained focus and can
-//                        //resume playback
-//                        mMediaPlayer.start();
-//                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-//                        //The AUDIOFOCUS_LOSS case means we've lost audio focus and
-//                        //stop playback and cleanup resources
-//                        releaseMediaPlayer();
-//                    }
                 }
             };
 
@@ -85,8 +67,8 @@ public class ZigmundAfraidFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.song_list, container, false);
-        musicAlbum = new MusicAlbum(mMediaPlayer);
+        rootView = inflater.inflate(R.layout.song_list, container, false);
+        musicAlbum = new MusicAlbum();
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) Objects.requireNonNull(getActivity())
                 .getSystemService(Context.AUDIO_SERVICE);
@@ -100,7 +82,7 @@ public class ZigmundAfraidFragment extends Fragment {
 
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
-                "1https://cs1.djbag.biz/download/55367092/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00bzJtZkRCdWlxV0lMcFd0eUl2R2tVcmtCb3V1V21zRkg4Z3Vzci9lWS83ZGtrcXBadThXdUxFeUJ6SkRWakFVbnhDVzhyQWZwWWVTRUp1ZGtCa3hHeEs/Zigmund_Afraid_Abroad_(djbag.biz).mp3");
+                "https://cs1.djbag.biz/download/55367092/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00bzJtZkRCdWlxV0lMcFd0eUl2R2tVcmtCb3V1V21zRkg4Z3Vzci9lWS83ZGtrcXBadThXdUxFeUJ6SkRWakFVbnhDVzhyQWZwWWVTRUp1ZGtCa3hHeEs/Zigmund_Afraid_Abroad_(djbag.biz).mp3");
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
                 R.drawable.vt_dnb120, "https://cs1.djbag.biz/download/32561854/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cEVNcHJyWGFyZUNpbTVoNXl3OGZuVmQrQ2FXS1hkNlpuYjF4OHJkeVpoSk1yQzl3QkJMUkZNM2hYdU1DaWJ1WFRRUDZ4N1FtVUFpM3VIRmdBTmZVREU/Zigmund_Afraid_Abroad_Retroflex_Encoded_(djbag.biz).mp3"));
@@ -123,7 +105,7 @@ public class ZigmundAfraidFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
             if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                musicAlbum. play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener, listView);
             } else {
             progressBar = view.findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.VISIBLE);
@@ -164,7 +146,7 @@ public class ZigmundAfraidFragment extends Fragment {
                                 musicAlbum.errorAlert(song, getActivity());
                             }
                              //  Start the audio file
-                           musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                           musicAlbum. play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener, listView);
 //                            listView.setOnItemClickListener(secondClickListener);
                         }
                     } else {
@@ -181,6 +163,7 @@ public class ZigmundAfraidFragment extends Fragment {
         }
         }
     };
+
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -190,40 +173,4 @@ public class ZigmundAfraidFragment extends Fragment {
             listView.setOnItemClickListener(firstClickListener);
         }
     };
-
-//    private void play(View view) {
-//        mMediaPlayer.start();
-//        progressBar.setVisibility(View.INVISIBLE);
-//        imageView = view.findViewById(R.id.btn_image);
-//        imageView.setImageResource(R.drawable.ic_pause);
-//        //Setup a listener on the media player, so that we can stop and release the
-//        //media player once the sounds has finished
-//        mMediaPlayer.setOnCompletionListener(mCompletionListener);
-//    }
-
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//
-//        // When the activity is stopped, release the media player resources because we won't
-//        // be playing any more sounds.
-//        musicAlbum.releaseMediaPlayer(mMediaPlayer);
-//    }
-
-//    /**
-//     * Clean up the media player by releasing its resources.
-//     */
-//    private void releaseMediaPlayer() {
-//        // If the media player is not null, then it may be currently playing a sound.
-//        if (mMediaPlayer != null) {
-//            // Regardless of the current state of the media player, release its resources
-//            // because we no longer need it.
-//            mMediaPlayer.release();
-//
-//            // Set the media player back to null. For our code, we've decided that
-//            // setting the media player to null is an easy way to tell that the media player
-//            // is not configured to play an audio file at the moment.
-//            mMediaPlayer = null;
-//        }
-//    }
 }

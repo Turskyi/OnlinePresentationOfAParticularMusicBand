@@ -21,10 +21,94 @@ import java.io.IOException;
 class MusicAlbum extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
+//    private View rootView;
 
-    MusicAlbum(MediaPlayer mMediaPlayer) {
-        this.mMediaPlayer = mMediaPlayer;
+//    private ProgressBar progressBar;
+    private ImageView imageView;
+//    private MediaPlayer.OnCompletionListener mCompletionListener;
+//    private ListView listView;
+//    private ArrayList<Song> songs;
+//    private AudioManager mAudioManager;
+
+//    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+//            new AudioManager.OnAudioFocusChangeListener() {
+//                @Override
+//                public void onAudioFocusChange(int focusChange) {
+//                    onFocusChange(focusChange,mMediaPlayer);
+//                }
+//            };
+
+//    protected MusicAlbum(View rootView) {
+//        this.rootView = rootView;
+//    }
+
+    protected MusicAlbum() {
     }
+
+//    protected void onFirstClick() {
+//        if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+//            play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener);
+//        } else {
+//            progressBar = view.findViewById(R.id.loading_spinner);
+//            progressBar.setVisibility(View.VISIBLE);
+//            new Thread(new Runnable() {
+//                public void run() {
+//                    //do time consuming operations
+//                    if (isOnline()) {
+//                        //Get the {@link Song} object at the given position the user clicked on
+//                        final Song song = songs.get(position);
+//
+//                        //Release the media player if it currently exists because we are about to
+//                        //play a different sound file.
+//                        releaseMediaPlayer();
+//                        //Request audio focus for playback
+//                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+//                                //Use the music stream.
+//                                AudioManager.STREAM_MUSIC,
+//                                //Request permanent focus.
+//                                AudioManager.AUDIOFOCUS_GAIN);
+//                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+//                            //We have an audio focus now.
+//
+////                Create and setup the {@link MedeaPlayer} for the audio resource associated
+////                with the current word
+//                            String url = song.getmAudioResourceId(); // your URL here
+//                            mMediaPlayer = new MediaPlayer();
+//                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                            try {
+//                                mMediaPlayer.setDataSource(url);
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            try {
+//                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                                errorAlert( song, activity);
+//                            }
+//                            // Start the audio file
+//                            play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener);
+//                        }
+//                    } else {
+//                        activity.runOnUiThread(new Runnable() {
+//                            public void run() {
+//                                Toast.makeText(activity,
+//                                        "Немає інтернету", Toast.LENGTH_LONG).show();
+//                                progressBar.setVisibility(View.INVISIBLE);
+//                            }
+//                        });
+//                    }
+//                }
+//            }).start();
+//        }
+//    }
+
+//    protected void onSecondClick(View view, android.widget.AdapterView.OnItemClickListener firstClickListener, AdapterView listView, MediaPlayer mMediaPlayer) {
+//        mMediaPlayer.pause();
+//        imageView = view.findViewById(R.id.btn_image);
+//        imageView.setImageResource(R.drawable.ic_play_arrow);
+//        listView.setOnItemClickListener( firstClickListener);
+//    }
 
     /**
      * Clean up the media player by releasing its resources.
@@ -43,16 +127,18 @@ class MusicAlbum extends AppCompatActivity {
         }
     }
 
+    //do not remove media player from parameters
     void play(View view, ProgressBar progressBar, MediaPlayer mMediaPlayer, MediaPlayer.OnCompletionListener mCompletionListener, Object secondClickListener, AdapterView listView) {
         mMediaPlayer.start();
         progressBar.setVisibility(View.INVISIBLE);
-        ImageView imageView = view.findViewById(R.id.btn_image);
+      imageView = view.findViewById(R.id.btn_image);
         imageView.setImageResource(R.drawable.ic_pause);
         //Setup a listener on the media player, so that we can stop and release the
         //media player once the sounds has finished
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
     }
+
     void onFocusChange(int focusChange, MediaPlayer mMediaPlayer) {
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                 focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {

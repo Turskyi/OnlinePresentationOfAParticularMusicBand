@@ -57,7 +57,7 @@ public class ZombiActivity extends AppCompatActivity {
         setContentView(R.layout.song_list);
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        musicAlbum = new MusicAlbum(mMediaPlayer);
+        musicAlbum = new MusicAlbum();
         Bitmap bmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.zombi_txt);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
@@ -83,71 +83,81 @@ public class ZombiActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
-            } else {
-                progressBar = view.findViewById(R.id.loading_spinner);
-                progressBar.setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    public void run() {
-                        //do time consuming operations
-                        if (musicAlbum.isOnline()) {
-                            //Get the {@link Song} object at the given position the user clicked on
-                            final Song song = songs.get(position);
+//            musicAlbum.
+                    onFirstClick(view, position, mOnAudioFocusChangeListener);
+        }
+    };
 
-                            //Release the media player if it currently exists because we are about to
-                            //play a different sound file.
-                      musicAlbum.releaseMediaPlayer();
-                            //Request audio focus for playback
-                            int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                                    //Use the music stream.
-                                    AudioManager.STREAM_MUSIC,
-                                    //Request permanent focus.
-                                    AudioManager.AUDIOFOCUS_GAIN);
-                            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                                //We have an audio focus now.
+    private void onFirstClick(final View view, final int position, final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener) {
+        if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
+        } else {
+            progressBar = view.findViewById(R.id.loading_spinner);
+            progressBar.setVisibility(View.VISIBLE);
+            new Thread(new Runnable() {
+                public void run() {
+                    //do time consuming operations
+                    if (musicAlbum.isOnline()) {
+                        //Get the {@link Song} object at the given position the user clicked on
+                        final Song song = songs.get(position);
+
+                        //Release the media player if it currently exists because we are about to
+                        //play a different sound file.
+                        musicAlbum.releaseMediaPlayer();
+                        //Request audio focus for playback
+                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                                //Use the music stream.
+                                AudioManager.STREAM_MUSIC,
+                                //Request permanent focus.
+                                AudioManager.AUDIOFOCUS_GAIN);
+                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                            //We have an audio focus now.
 
 //                Create and setup the {@link MedeaPlayer} for the audio resource associated
 //                with the current word
-                                String url = song.getmAudioResourceId(); // your URL here
-                                mMediaPlayer = new MediaPlayer();
-                                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                                try {
-                                    mMediaPlayer.setDataSource(url);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                try {
-                                    mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    musicAlbum.errorAlert( song, ZombiActivity.this);
-                                }
-                                // Start the audio file
-                                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                            String url = song.getmAudioResourceId(); // your URL here
+                            mMediaPlayer = new MediaPlayer();
+                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                            try {
+                                mMediaPlayer.setDataSource(url);
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                        } else {
-                            ZombiActivity.this.runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(ZombiActivity.this,
-                                            "Немає інтернету", Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-                            });
+                            try {
+                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                musicAlbum.errorAlert( song, ZombiActivity.this);
+                            }
+                            // Start the audio file
+                            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
                         }
+                    } else {
+                        ZombiActivity.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(ZombiActivity.this,
+                                        "Немає інтернету", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
-                }).start();
-            }
+                }
+            }).start();
         }
-    };
+    }
 
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            mMediaPlayer.pause();
-            imageView = view.findViewById(R.id.btn_image);
-            imageView.setImageResource(R.drawable.ic_play_arrow);
-            listView.setOnItemClickListener(firstClickListener);
+//            musicAlbum.onSecondClick(view,firstClickListener,listView,mMediaPlayer);
+                    onSecondClick(view);
         }
     };
+
+    private void onSecondClick(View view) {
+        mMediaPlayer.pause();
+        imageView = view.findViewById(R.id.btn_image);
+        imageView.setImageResource(R.drawable.ic_play_arrow);
+        listView.setOnItemClickListener(firstClickListener);
+    }
 }

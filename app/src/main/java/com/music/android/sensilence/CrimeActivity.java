@@ -112,7 +112,7 @@ public class CrimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list);
-        musicAlbum = new MusicAlbum(mMediaPlayer);
+        musicAlbum = new MusicAlbum();
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -150,7 +150,7 @@ public class CrimeActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
             if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener, listView);
             } else {
             progressBar = view.findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.VISIBLE);
@@ -191,7 +191,7 @@ public class CrimeActivity extends AppCompatActivity {
                                 musicAlbum.errorAlert( song, CrimeActivity.this);
                             }
                             //                Start the audio file
-                            musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener,listView);
+                            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
                         }
                     } else {
                         CrimeActivity.this.runOnUiThread(new Runnable() {
