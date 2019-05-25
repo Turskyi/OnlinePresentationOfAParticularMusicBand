@@ -12,103 +12,86 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @SuppressLint("Registered")
 class MusicAlbum extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
-//    private View rootView;
-
-//    private ProgressBar progressBar;
     private ImageView imageView;
-//    private MediaPlayer.OnCompletionListener mCompletionListener;
-//    private ListView listView;
-//    private ArrayList<Song> songs;
-//    private AudioManager mAudioManager;
-
-//    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
-//            new AudioManager.OnAudioFocusChangeListener() {
-//                @Override
-//                public void onAudioFocusChange(int focusChange) {
-//                    onFocusChange(focusChange,mMediaPlayer);
-//                }
-//            };
-
-//    protected MusicAlbum(View rootView) {
-//        this.rootView = rootView;
-//    }
+    private ProgressBar progressBar;
 
     protected MusicAlbum() {
     }
 
-//    protected void onFirstClick() {
-//        if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-//            play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener);
-//        } else {
-//            progressBar = view.findViewById(R.id.loading_spinner);
-//            progressBar.setVisibility(View.VISIBLE);
-//            new Thread(new Runnable() {
-//                public void run() {
-//                    //do time consuming operations
-//                    if (isOnline()) {
-//                        //Get the {@link Song} object at the given position the user clicked on
-//                        final Song song = songs.get(position);
-//
-//                        //Release the media player if it currently exists because we are about to
-//                        //play a different sound file.
-//                        releaseMediaPlayer();
-//                        //Request audio focus for playback
-//                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-//                                //Use the music stream.
-//                                AudioManager.STREAM_MUSIC,
-//                                //Request permanent focus.
-//                                AudioManager.AUDIOFOCUS_GAIN);
-//                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-//                            //We have an audio focus now.
-//
-////                Create and setup the {@link MedeaPlayer} for the audio resource associated
-////                with the current word
-//                            String url = song.getmAudioResourceId(); // your URL here
-//                            mMediaPlayer = new MediaPlayer();
-//                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                            try {
-//                                mMediaPlayer.setDataSource(url);
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                            try {
-//                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                                errorAlert( song, activity);
-//                            }
-//                            // Start the audio file
-//                            play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener);
-//                        }
-//                    } else {
-//                        activity.runOnUiThread(new Runnable() {
-//                            public void run() {
-//                                Toast.makeText(activity,
-//                                        "Немає інтернету", Toast.LENGTH_LONG).show();
-//                                progressBar.setVisibility(View.INVISIBLE);
-//                            }
-//                        });
-//                    }
-//                }
-//            }).start();
-//        }
-//    }
+    protected void onFirstClick(final View view, final int position, final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener, final MediaPlayer.OnCompletionListener mCompletionListener, final AdapterView.OnItemClickListener secondClickListener, final ListView listView, final ArrayList<Song> songs, final AudioManager mAudioManager, final Activity activity) {
+        if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+            play(view, progressBar, mMediaPlayer, mCompletionListener, secondClickListener, listView);
+        } else {
+            progressBar = view.findViewById(R.id.loading_spinner);
+            progressBar.setVisibility(View.VISIBLE);
+            new Thread(new Runnable() {
+                public void run() {
+                    //do time consuming operations
+                    if (isOnline()) {
+                        //Get the {@link Song} object at the given position the user clicked on
+                        final Song song = songs.get(position);
 
-//    protected void onSecondClick(View view, android.widget.AdapterView.OnItemClickListener firstClickListener, AdapterView listView, MediaPlayer mMediaPlayer) {
-//        mMediaPlayer.pause();
-//        imageView = view.findViewById(R.id.btn_image);
-//        imageView.setImageResource(R.drawable.ic_play_arrow);
-//        listView.setOnItemClickListener( firstClickListener);
-//    }
+                        //Release the media player if it currently exists because we are about to
+                        //play a different sound file.
+                        releaseMediaPlayer();
+                        //Request audio focus for playback
+                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                                //Use the music stream.
+                                AudioManager.STREAM_MUSIC,
+                                //Request permanent focus.
+                                AudioManager.AUDIOFOCUS_GAIN);
+                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                            //We have an audio focus now.
+
+//                Create and setup the {@link MedeaPlayer} for the audio resource associated
+//                with the current word
+                            String url = song.getmAudioResourceId(); // your URL here
+                            mMediaPlayer = new MediaPlayer();
+                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                            try {
+                                mMediaPlayer.setDataSource(url);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                errorAlert(song, activity);
+                            }
+                            // Start the audio file
+                            play(view, progressBar, mMediaPlayer, mCompletionListener, secondClickListener, listView);
+                        }
+                    } else {
+                        activity.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(activity,
+                                        "Немає інтернету", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                }
+            }).start();
+        }
+    }
+
+    protected void onSecondClick( android.widget.AdapterView.OnItemClickListener firstClickListener, ListView listView) {
+        mMediaPlayer.pause();
+        imageView.setImageResource(R.drawable.ic_play_arrow);
+        listView.setOnItemClickListener(firstClickListener);
+    }
 
     /**
      * Clean up the media player by releasing its resources.
@@ -131,7 +114,7 @@ class MusicAlbum extends AppCompatActivity {
     void play(View view, ProgressBar progressBar, MediaPlayer mMediaPlayer, MediaPlayer.OnCompletionListener mCompletionListener, Object secondClickListener, AdapterView listView) {
         mMediaPlayer.start();
         progressBar.setVisibility(View.INVISIBLE);
-      imageView = view.findViewById(R.id.btn_image);
+        imageView = view.findViewById(R.id.btn_image);
         imageView.setImageResource(R.drawable.ic_pause);
         //Setup a listener on the media player, so that we can stop and release the
         //media player once the sounds has finished
@@ -186,7 +169,7 @@ class MusicAlbum extends AppCompatActivity {
                 activity.startService(lastIntent);
                 activity.stopService(lastIntent);
                 AlertDialog lastDialog =
-                        new AlertDialog.Builder(  activity)
+                        new AlertDialog.Builder(activity)
                                 .setTitle("Трапилось щось страшне!")
                                 .setMessage("Хочете написати розробнику?")
                                 .setCancelable(false)
@@ -204,7 +187,7 @@ class MusicAlbum extends AppCompatActivity {
                                     }
                                 }).setNegativeButton("Ні", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                Toast.makeText( activity,
+                                Toast.makeText(activity,
                                         "Тоді спробуйте завтра ;)", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                                 Intent newIntent = new Intent(
@@ -224,6 +207,6 @@ class MusicAlbum extends AppCompatActivity {
 
         // When the activity is stopped, release the media player resources because we won't
         // be playing any more sounds.
-     releaseMediaPlayer();
+        releaseMediaPlayer();
     }
 }

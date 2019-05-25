@@ -10,20 +10,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ZombiActivity extends AppCompatActivity {
     MusicAlbum musicAlbum;
-    ProgressBar progressBar;
-   ImageView imageView;
     ListView listView;
-    private MediaPlayer mMediaPlayer;
+    protected MediaPlayer mMediaPlayer;
 
     /*Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
@@ -46,7 +40,6 @@ public class ZombiActivity extends AppCompatActivity {
     musicAlbum.releaseMediaPlayer();
         }
     };
-
 
     // Create an array of songs
     final ArrayList<Song> songs = new ArrayList<>();
@@ -71,7 +64,7 @@ public class ZombiActivity extends AppCompatActivity {
                 "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
                 "https://cs1.djbag.biz/download/23875604/bXBhNTVGU1RONXozNnlSZFM3MmFKRHJNaFRDdTdObFF4UHBkL3lIdW00cVRJVlRBK2ZFbzhwQ0orbWdRdmpFOWN5TFB2NnpsVSsvZ2xDRUdDam0rSThSTEJvYkxrL09jUFpWSTkxN21qTlEycFcwaE81aTc0d29iZ3RQditCTkI/Vdchuttya_Tish_Zomb_aContrari_post_apocalyptic_dubstep_mix_(djbag.biz).mp3"));
         songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
-                "https://done.7cord.com/proxy?data=VEV3VVJFbG1tSitadVk5REpFbGN1dzY0ak5qbUxDNjZ2cU9Zcm9EcWwrblFsaFdVNFlteVRtTXdRditUdjdhMjZ1S2N1NXFBSE1lUzhtOUREU3QzTW5yeVpta09KcGMrRmp5UHBnUFFrbG51QkVlVVgxWUxvbS90ZWUyQklvSHVuOWZNNnpUQUdYR25PYzk3cU1yeXA0WDB6aUk0OE1aL2xkc25WU05nSzhHdExPQTJTZ2MvMTl0cFR1Q1BBRE9kZXI3UlBZS0JCeFhBVndEWkVzU0pDNW44MzdvYU85dHBOYWhJYTN0TDhLTWJWd0lQdFRYNHZYSitobXRFQmJZV2lHY2FBaHFqRU1TaWJ2NkdnVlE1eU1TQWttdjhHQWNTK1F1M0I1VWZNTmQzQWt5ZmFYaCthalVueUNtOENRZ2o3Qy8xLzlQNE9taU9GMFM5MVpZQ2c2V001V2RNSmlibjdnNnZYb0IwQjJKZ2JaOEtyY0RWZVJUYlNpZUdIM0tkTWMxQWdkMTNMazE5bkRMN25idXJxYmx5L3F1bHg1V3hDUmxtSkk0MWYyeldZRlUyMFdwc2M5RWlnSXlyK1lTbXp0bHo4T29RY0hVN2JNY3V5MkcvYmc9PQ"));
+                "https://cs1.mp3ix.net/download/106038284/UkdTdnp6ditxVXdEU0FqbUt1eFo2T21kN0lFWlQzbjNZcGRuaEpoMXU2a0JVdEp3dmdwUGtIMGN0UFl2YlVQa0phVVBDZ1NSc21YeWZrSStZdG00MURLUWNDS2N3V2hOUytYeEtXUkNiSmFJRmhVNE9TN1UyTXlrVjJ1T1pNbkg/Vdchuttya_Tish_(mp3ix.net).mp3"));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zombi);
@@ -83,81 +76,14 @@ public class ZombiActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-//            musicAlbum.
-                    onFirstClick(view, position, mOnAudioFocusChangeListener);
+            musicAlbum.onFirstClick( view, position, mOnAudioFocusChangeListener, mCompletionListener, secondClickListener, listView, songs, mAudioManager,ZombiActivity.this);
         }
     };
-
-    private void onFirstClick(final View view, final int position, final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener) {
-        if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
-        } else {
-            progressBar = view.findViewById(R.id.loading_spinner);
-            progressBar.setVisibility(View.VISIBLE);
-            new Thread(new Runnable() {
-                public void run() {
-                    //do time consuming operations
-                    if (musicAlbum.isOnline()) {
-                        //Get the {@link Song} object at the given position the user clicked on
-                        final Song song = songs.get(position);
-
-                        //Release the media player if it currently exists because we are about to
-                        //play a different sound file.
-                        musicAlbum.releaseMediaPlayer();
-                        //Request audio focus for playback
-                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                                //Use the music stream.
-                                AudioManager.STREAM_MUSIC,
-                                //Request permanent focus.
-                                AudioManager.AUDIOFOCUS_GAIN);
-                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                            //We have an audio focus now.
-
-//                Create and setup the {@link MedeaPlayer} for the audio resource associated
-//                with the current word
-                            String url = song.getmAudioResourceId(); // your URL here
-                            mMediaPlayer = new MediaPlayer();
-                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                            try {
-                                mMediaPlayer.setDataSource(url);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                musicAlbum.errorAlert( song, ZombiActivity.this);
-                            }
-                            // Start the audio file
-                            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
-                        }
-                    } else {
-                        ZombiActivity.this.runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast.makeText(ZombiActivity.this,
-                                        "Немає інтернету", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-                }
-            }).start();
-        }
-    }
 
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            musicAlbum.onSecondClick(view,firstClickListener,listView,mMediaPlayer);
-                    onSecondClick(view);
+            musicAlbum.onSecondClick(firstClickListener,listView);
         }
     };
-
-    private void onSecondClick(View view) {
-        mMediaPlayer.pause();
-        imageView = view.findViewById(R.id.btn_image);
-        imageView.setImageResource(R.drawable.ic_play_arrow);
-        listView.setOnItemClickListener(firstClickListener);
-    }
 }

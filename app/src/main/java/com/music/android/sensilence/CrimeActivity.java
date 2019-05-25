@@ -14,20 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CrimeActivity extends AppCompatActivity {
     MusicAlbum musicAlbum;
-    ProgressBar progressBar;
-    ImageView imageView;
     ListView listView;
-    private MediaPlayer mMediaPlayer;
+    protected MediaPlayer mMediaPlayer;
 
     /*Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
@@ -36,7 +30,7 @@ public class CrimeActivity extends AppCompatActivity {
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicAlbum.onFocusChange(focusChange,mMediaPlayer);
+                    musicAlbum.onFocusChange(focusChange, mMediaPlayer);
                 }
             };
 
@@ -149,71 +143,14 @@ public class CrimeActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
-                musicAlbum.play(view,progressBar,mMediaPlayer,mCompletionListener,secondClickListener, listView);
-            } else {
-            progressBar = view.findViewById(R.id.loading_spinner);
-            progressBar.setVisibility(View.VISIBLE);
-            new Thread(new Runnable() {
-                public void run() {
-                    //do time consuming operations
-                    if (musicAlbum.isOnline()) {
-                        //Get the {@link Song} object at the given position the user clicked on
-                        final Song song = songs.get(position);
-
-                        //Release the media player if it currently exists.
-                        musicAlbum.releaseMediaPlayer();
-
-                        //Request audio focus for playback
-                        int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                                //Use the music stream.
-                                AudioManager.STREAM_MUSIC,
-                                //Request permanent focus.
-                                AudioManager.AUDIOFOCUS_GAIN);
-                        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                            //We have an audio focus now.
-
-//                Create and setup the {@link MedeaPlayer} for the audio resource associated
-//                with the current song
-                            String url = song.getmAudioResourceId(); // my URL here
-                            mMediaPlayer = new MediaPlayer();
-                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                            try {
-
-                                mMediaPlayer.setDataSource(url);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                mMediaPlayer.prepare(); // might take long! (for buffering, etc)
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                                musicAlbum.errorAlert( song, CrimeActivity.this);
-                            }
-                            //                Start the audio file
-                            musicAlbum.play( view, progressBar,  mMediaPlayer, mCompletionListener, secondClickListener, listView);
-                        }
-                    } else {
-                        CrimeActivity.this.runOnUiThread(new Runnable() {
-                            public void run() {
-                                Toast.makeText(CrimeActivity.this,
-                                        "Немає інтернету", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-                }
-            }).start();
-        }
+            musicAlbum.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener, secondClickListener, listView, songs, mAudioManager, CrimeActivity.this);
         }
     };
+
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            mMediaPlayer.pause();
-            imageView = view.findViewById(R.id.btn_image);
-            imageView.setImageResource(R.drawable.ic_play_arrow);
-            listView.setOnItemClickListener(firstClickListener);
+            musicAlbum.onSecondClick(firstClickListener, listView);
         }
     };
 }
