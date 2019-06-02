@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,13 +31,19 @@ class MusicAlbum extends AppCompatActivity {
     protected MusicAlbum() {
     }
 
-    protected void onFirstClick(final View view, final int position, final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener, final MediaPlayer.OnCompletionListener mCompletionListener, final AdapterView.OnItemClickListener secondClickListener, final ListView listView, final ArrayList<Song> songs, final AudioManager mAudioManager, final Activity activity) {
+    protected void onFirstClick(final View view, final int position,
+                                final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener,
+                                final MediaPlayer.OnCompletionListener mCompletionListener,
+                                final AdapterView.OnItemClickListener secondClickListener,
+                                final ListView listView, final ArrayList<Song> songs,
+                                final AudioManager mAudioManager, final Activity activity) {
         if (mMediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
             play(view, progressBar, mMediaPlayer, mCompletionListener, secondClickListener, listView);
         } else {
             progressBar = view.findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.VISIBLE);
             new Thread(new Runnable() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 public void run() {
                     //do time consuming operations
                     if (isOnline()) {
@@ -55,23 +63,30 @@ class MusicAlbum extends AppCompatActivity {
                             //We have an audio focus now.
 
 //                Create and setup the {@link MedeaPlayer} for the audio resource associated
-//                with the current word
-                            String url = song.getmAudioResourceId(); // your URL here
+//                with the current song
+                            String url;
+                            url = song.getmAudioResourceId(); // your URL here
                             mMediaPlayer = new MediaPlayer();
                             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                             try {
                                 mMediaPlayer.setDataSource(url);
+                            } catch (NullPointerException e) {
+                    mMediaPlayer = MediaPlayer.create(activity,song.getmMp3ResourceId());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             try {
                                 mMediaPlayer.prepare(); // might take long! (for buffering, etc)
+                            } catch (IllegalStateException e) {
+                                play(view, progressBar, mMediaPlayer, mCompletionListener,
+                                        secondClickListener, listView);
                             } catch (IOException e) {
                                 e.printStackTrace();
                                 errorAlert(song, activity);
                             }
                             // Start the audio file
-                            play(view, progressBar, mMediaPlayer, mCompletionListener, secondClickListener, listView);
+                            play(view, progressBar, mMediaPlayer, mCompletionListener,
+                                    secondClickListener, listView);
                         }
                     } else {
                         activity.runOnUiThread(new Runnable() {
@@ -87,13 +102,15 @@ class MusicAlbum extends AppCompatActivity {
         }
     }
 
-    protected void onSecondClick( android.widget.AdapterView.OnItemClickListener firstClickListener, ListView listView) {
+    protected void onSecondClick(android.widget.AdapterView.OnItemClickListener firstClickListener,
+                                 ListView listView) {
         mMediaPlayer.pause();
         imageView.setImageResource(R.drawable.ic_play_arrow);
         listView.setOnItemClickListener(firstClickListener);
     }
 
     /**
+     * z
      * Clean up the media player by releasing its resources.
      */
     void releaseMediaPlayer() {
@@ -111,7 +128,9 @@ class MusicAlbum extends AppCompatActivity {
     }
 
     //do not remove media player from parameters
-    void play(View view, ProgressBar progressBar, MediaPlayer mMediaPlayer, MediaPlayer.OnCompletionListener mCompletionListener, Object secondClickListener, AdapterView listView) {
+    void play(View view, ProgressBar progressBar, MediaPlayer mMediaPlayer,
+              MediaPlayer.OnCompletionListener mCompletionListener, Object secondClickListener,
+              AdapterView listView) {
         mMediaPlayer.start();
         progressBar.setVisibility(View.INVISIBLE);
         imageView = view.findViewById(R.id.btn_image);
@@ -177,10 +196,12 @@ class MusicAlbum extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(Intent.ACTION_SENDTO,
-                                                Uri.fromParts("mailto", "dmitriy.turskiy@gmail.com", ""));
+                                                Uri.fromParts("mailto",
+                                                        "dmitriy.turskiy@gmail.com", ""));
                                         intent.putExtra(Intent
                                                         .EXTRA_SUBJECT,
-                                                "Страшна історія яка трапилася з піснею " + song.getDefaultSong());
+                                                "Страшна історія яка трапилася з піснею "
+                                                        + song.getDefaultSong());
                                         if (intent.resolveActivity(activity.getPackageManager()) != null) {
                                             activity.startActivity(intent);
                                         }

@@ -24,21 +24,29 @@ class Song {
     private static final int NO_IMAGE_PROVIDED = -1;
 
     /**
-     * Audio resource ID for the word
+     * Audio resource ID for the song
      */
     private String mAudioResourceId;
+    private int mMp3ResourceId;
 
     /**
      * Create a new Song object.
      *
      * @param nameOfTheBand   is the name of the band
      * @param defaultSong     is the song that the user is already familiar with
-     * @param audioResourceId is the resource ID for the audio file associated with word.
+     * @param audioResourceId is the resource ID for the audio file associated with song.
      */
     Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
         mDefaultSong = defaultSong;
         mNameOfTheBand = nameOfTheBand;
         mAudioResourceId = audioResourceId;
+        mImageResourceID = imageResourceId;
+    }
+
+    Song(String nameOfTheBand, String defaultSong, int imageResourceId, int audioResourceId) {
+        mDefaultSong = defaultSong;
+        mNameOfTheBand = nameOfTheBand;
+        mMp3ResourceId = audioResourceId;
         mImageResourceID = imageResourceId;
     }
 
@@ -75,5 +83,8 @@ class Song {
      */
     String getmAudioResourceId() {
         return mAudioResourceId;
+    }
+    int getmMp3ResourceId() {
+        return mMp3ResourceId;
     }
 }
