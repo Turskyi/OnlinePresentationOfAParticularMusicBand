@@ -120,7 +120,8 @@ public class CrimeActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         listView.setBackground(bitmapDrawable);
 
-        songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,R.raw.vіdchuttya_tishі_do_astarti));
+        songs.add(new Song("відчуття.тиші", "До Астарти",
+                R.drawable.crime,R.raw.vdchuttya_tsh_do_astart));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
                 R.raw.v_dchuttya_tish_angelscream));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)",

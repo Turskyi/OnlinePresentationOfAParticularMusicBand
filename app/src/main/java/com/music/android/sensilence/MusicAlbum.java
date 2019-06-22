@@ -71,7 +71,7 @@ class MusicAlbum extends AppCompatActivity {
                             try {
                                 mMediaPlayer.setDataSource(url);
                             } catch (NullPointerException e) {
-                    mMediaPlayer = MediaPlayer.create(activity,song.getmMp3ResourceId());
+                                mMediaPlayer = MediaPlayer.create(activity, song.getmMp3ResourceId());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
