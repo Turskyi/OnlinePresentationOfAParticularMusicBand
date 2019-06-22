@@ -74,10 +74,10 @@ public class ZigmundAfraidFragment extends Fragment {
 
         // Create a list of songs
         Song song = new Song("Zigmund Afraid", "Abroad", R.drawable.ic_za,
-                "https://rildi.sunproxy.net/file/c3Z3TXhVSndLUzFEcXV0VkxZeFhlUWtQZ0FNbEVua3hURVNzbFFtOE85TnV3dmVmWENHKzVQZjZwOWo1b2xzdlJNbmZwOWJuQVI1bzlSVmdvd2p3dVhpb3R6Ky9vY2VGaTJLUkZXQXdmWFk9/Zigmund_Afraid_-_Abroad_(hydro.fm).mp3");
+                R.raw.zigmund_afraid_abroad);
         songs.add(song);
         songs.add(new Song("Zigmund Afraid", "Abroad (Retroflex Encoded)",
-                R.drawable.vt_dnb120, "https://rildi.sunproxy.net/file/c3Z3TXhVSndLUzFEcXV0VkxZeFhlUWtQZ0FNbEVua3hURVNzbFFtOE85TnV3dmVmWENHKzVQZjZwOWo1b2xzdk5qcW5ubm9id3hlMVduc3F4K2ZkK1lTTHM0UDVsZEgvaGx5cnY1VnIrTHM9/Zigmund_Afraid_-_Abroad_Retroflex_Encoded_(hydro.fm).mp3"));
+                R.drawable.vt_dnb120, R.raw.zigmund_afraid_abroad_retroflex_encoded));
         songs.add(new Song("Zigmund Afraid", "Pleasure was mine (∞)",
                 R.drawable.pwm, R.raw.zigmund_afraid_pleasure_was_mine));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The

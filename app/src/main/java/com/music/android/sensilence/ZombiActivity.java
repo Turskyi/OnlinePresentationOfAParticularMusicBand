@@ -59,10 +59,10 @@ public class ZombiActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.zombi,
-                "https://cs1.mp3ix.net/download/106038285/OGlDUkhyY0MzaXlqNS84bGlRVHJGNS8zbDFLSktBVUFGU1NtR3RBbDBtd1pOa255OERoQkpDcTY1QlFCQ2hUcDltYTdhbXgzNm12MUI4WkkvS1VNQ1VhQVJmVlhsMnFOZ3o0WTFYTjJHUHptUlVHemZUbjRCS1JtWlhMZmNpKys/Vdchuttya_Tish_Zomb_(mp3ix.net).mp3"));
+                R.raw.vdchuttya_tish_zomb));
         songs.add(new Song("відчуття.тиші",
                 "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
-                "https://cs1.mp3ix.net/download/78249166/OGlDUkhyY0MzaXlqNS84bGlRVHJGNS8zbDFLSktBVUFGU1NtR3RBbDBteklXMTJWVGVVWE93dWFPaW5GL2JiaTJZSENyK0o2MFZJbDBIbmNIWWRlUzg0YUF5WDl6dWROa1FCanIveUxnVEZvYS9JQnVCbjdaNzlPeXhMWVNqMnk/Vdchuttya_Tish_Zomb_aContrari_post_apocalyptic_dubstep_mix_(mp3ix.net).mp3"));
+                R.raw.vdchuttya_tish_zomb_acontrari_post_apocalyptic_dubstep_mix));
         songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
                 R.raw.vidchuttia_tyshi_zombi_jap));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The

@@ -120,20 +120,19 @@ public class CrimeActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         listView.setBackground(bitmapDrawable);
 
-        songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,
-                "https://mp3-tut.com/musictutplay?id=317906193_456239502&hash=8bdc55622c5d183fa40397e070f84ace2b5a224f7e90d439cf1458ec8520306d&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=%D0%94%D0%BE+%D0%90%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B8&download=1"));
+        songs.add(new Song("відчуття.тиші", "До Астарти", R.drawable.crime,R.raw.vіdchuttya_tishі_do_astarti));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
-                "https://mp3-tut.com/musictutplay?id=2000207615_456240114&hash=dd3cb727e366661f9b5b6f5874062839dc47153054185e91b467fd92e068bf6e&artist=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title=angelscream&download=1"));
+                R.raw.v_dchuttya_tish_angelscream));
         songs.add(new Song("відчуття.тиші", "Зомбі (album version)",
                 R.drawable.crime,
-                "https://cs1.mp3ix.net/download/106038285/OGlDUkhyY0MzaXlqNS84bGlRVHJGNS8zbDFLSktBVUFGU1NtR3RBbDBtd1pOa255OERoQkpDcTY1QlFCQ2hUcDltYTdhbXgzNm12MUI4WkkvS1VNQ1VhQVJmVlhsMnFOZ3o0WTFYTjJHUHptUlVHemZUbjRCS1JtWlhMZmNpKys/Vdchuttya_Tish_Zomb_(mp3ix.net).mp3"));
+                R.raw.vdchuttya_tish_zomb));
         songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.crime,
-                "https://cs1.mp3ix.net/download/106038281/OGlDUkhyY0MzaXlqNS84bGlRVHJGNS8zbDFLSktBVUFGU1NtR3RBbDBtd1pOa255OERoQkpDcTY1QlFCQ2hUcE93cW83N1pGTnVLekFoakZTSXB1Sk1nYVRCMW5SZFJrVEpiUGF5NzUzQXFGNEgvazYyWkpvcHN1REhiRGFnYUw/Vdchuttya_Tish_Ne_khotv_(mp3ix.net).mp3"));
+                R.raw.vdchuttya_tish_ne_khotv));
         songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.crime,
-                "https://cs1.mp3ix.net/download/106038280/OGlDUkhyY0MzaXlqNS84bGlRVHJGNS8zbDFLSktBVUFGU1NtR3RBbDBtd1pOa255OERoQkpDcTY1QlFCQ2hUcFUzODFrTzN5cmp4eGhBYndTU054cjNXTHZjS1pJUjIwbEloeVJDQnhpV3BrOGNCdGRYeDFuZzlRWjgzbmI0TU0/Vdchuttya_Tish_Zlochin_(mp3ix.net).mp3"));
+                R.raw.vdchuttya_tish_zlochin));
         songs.add(new Song("відчуття.тиші", "Noli Respicere (Culturno rmx)",
                 R.drawable.vt_dnb120,
-                "https://done.7cord.com/proxy?data=OFB0TW9wSjRtL3VGV0l3T2FUNTNwYlpNOC9HWk9uYTRPWG1EVGpPYnRNck9NNVlQME1IL3BycHMzZ0dWcGRKU1dPZHlTeHFUSGdxUjU0K21kR2VJTUJYejhnYUdXWWlOTnhGeWE5RXNtTXhzOEk4L0JKMkxodmE3NCtiOW5LN0N2ZU1uRDlRcEFXeHNDU05tSndHRWo4TithOC9LLy94ejd2U2Y0bmtjSXZPaS9ydU40ZEhUTDRtTG82ODBlUC9qck5mQUdJNzRlUnFxODcvNjVZb3k2ckgzWmFQUXd0NWtmRk1jQmh3ZGlpWmVmN094b21VeUpUeEtBK2FHamp2YTJOOUM2MERxVHJWOU5LSkZTc2I4amxBNXpYNjJaREdRbVhMcFhPbDBUWjNBcUlHdW9KdlZpZm9YUDExRzRBcEtweUFrL1JEWWdvV1Q4Sk1FMXBXd3Y2NlZaelUvK0VZLzdLdFVDRDhHVkpwWFZWaDhJYytNYlI5TU5hcm5HdGZPdUNlODZZT2c5UlBsY0Ura1BjUHVsekcyRUVHZ1JES3ZLNXR2Q015bFoxQU9NdGxhZVpTcXZUUFR2V2J2S1oxK1JqUzJndzhmOEkrY1EzNjNzQWtNT3pyZm40QkNqOCtmUW5iUzFhOHlUaHcvYXJIK25VaGNTSVJ1eFBXRXJPQmdpdTNWYllKajJzWjR1TWxKdXNUc2tRPT0"));
+                R.raw.v_dchuttya_tish_noli_respicere_culturno_rmx_dub_step_ukraine));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);

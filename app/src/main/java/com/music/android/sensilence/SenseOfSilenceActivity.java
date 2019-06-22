@@ -67,19 +67,13 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
                 "https://m.z1.fm/download/6565442?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
-                "https://mp3-tut.com/musictutplay?id=-22431441_132224076&hash" +
-                        "=b27d97dfec746e70466bfbb112e3192559263fc27a4d1fa91c311b7ff82722db&artist" +
-                        "=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F.%D0%A2%D0%B8%D1%88%D1%96&title" +
-                        "=03+-+%D0%92%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BD%D1%94&download=1"));
+                "https://m.z1.fm/download/5663956?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Смак Мого Забуття",
                 R.drawable.logo_black,
                 "https://m.z1.fm/download/5836923?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Промені",
                 R.drawable.logo_black,
-                "https://mp3-tut.com/musictutplay?id=55436575_159116004&hash" +
-                        "=d19d4733acac5e0cd42d095104bc9169b02101e0eff2f243dad0aeb2f28b134d&artist" +
-                        "=%D0%92%D1%96%D0%B4%D1%87%D1%83%D1%82%D1%82%D1%8F" +
-                        ".%D0%A2%D0%B8%D1%88%D1%96&title=%D0%9F%D1%80%D0%BE%D0%BC%D0%B5%D0%BD%D1%96&download=1"));
+                "https://m.z1.fm/download/5674456?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
                 "https://m.z1.fm/download/5587229?dwn=1&download=force"));
         songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
