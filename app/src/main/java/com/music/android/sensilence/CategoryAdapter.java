@@ -15,17 +15,17 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     /**
      * Context of the app
      */
-    private Context mContext;
+    private Context aContext;
 
     /**
      * Create a new {@link CategoryAdapter} object.
      *
-     * @param fm is the fragment manager that will keep each fragment's state in the adapter
+     * @param fragmentManager is the fragment manager that will keep each fragment's state in the adapter
      *           across swipes.
      */
-    CategoryAdapter(Context context, FragmentManager fm) {
-        super(fm);
-        mContext = context;
+    CategoryAdapter(Context context, FragmentManager fragmentManager) {
+        super(fragmentManager);
+        aContext = context;
     }
 
     /**
@@ -52,9 +52,9 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0) {
-            return mContext.getString(R.string.category_sense_of_silence);
+            return aContext.getString(R.string.category_sense_of_silence);
         } else {
-            return mContext.getString(R.string.category_zigmund_afraid);
+            return aContext.getString(R.string.category_zigmund_afraid);
         }
     }
 }

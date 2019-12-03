@@ -23,7 +23,7 @@ public class CrimeActivity extends AppCompatActivity {
     ListView listView;
     protected MediaPlayer mMediaPlayer;
 
-    /*Handles audio focus when playing a sound file */
+    /* Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
 
     AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =

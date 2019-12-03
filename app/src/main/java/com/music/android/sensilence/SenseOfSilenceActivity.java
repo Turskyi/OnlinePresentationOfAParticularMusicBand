@@ -50,7 +50,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list);
         musicAlbum = new MusicAlbum();
-        //Create and setup the {@link AudioManager} to request audio focus
+        /* Create and setup the {@link AudioManager} to request audio focus */
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         listView = findViewById(R.id.list);
