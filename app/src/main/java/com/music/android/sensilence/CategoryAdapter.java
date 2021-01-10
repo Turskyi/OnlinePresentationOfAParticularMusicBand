@@ -1,10 +1,12 @@
 package com.music.android.sensilence;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * {@link CategoryAdapter} is a {@link FragmentPagerAdapter} that can provide the layout for
@@ -24,13 +26,14 @@ public class CategoryAdapter extends FragmentPagerAdapter {
      *           across swipes.
      */
     CategoryAdapter(Context context, FragmentManager fragmentManager) {
-        super(fragmentManager);
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         aContext = context;
     }
 
     /**
      * Return the {@link Fragment} that should be displayed for the given page number.
      */
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {

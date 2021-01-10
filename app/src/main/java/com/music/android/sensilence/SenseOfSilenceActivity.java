@@ -7,11 +7,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -63,33 +64,33 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
         // Create a list of songs
         songs.add(new Song("відчуття.тиші", "Зима", R.drawable.logo_black,
-                "https://m.z1.fm/download/5669117?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_zima));
         songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
-                "https://m.z1.fm/download/6565442?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_noli_respicere));
         songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
-                "https://m.z1.fm/download/5663956?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_vostann));
         songs.add(new Song("відчуття.тиші", "Смак Мого Забуття",
                 R.drawable.logo_black,
-                "https://m.z1.fm/download/5836923?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_smak_mogo_zabuttya));
         songs.add(new Song("відчуття.тиші", "Промені",
                 R.drawable.logo_black,
-                "https://m.z1.fm/download/5674456?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_promen));
         songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
-                "https://m.z1.fm/download/5587229?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_bezodnya));
         songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
-                "https://m.z1.fm/download/5831897?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_ne_kraj));
         songs.add(new Song("відчуття.тиші", "Знову Страх", R.drawable.logo_black,
-                "https://m.z1.fm/download/5575558?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_znovu_strah));
         songs.add(new Song("відчуття.тиші", "Навпіл", R.drawable.logo_black,
-                "https://m.z1.fm/download/5826157?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_navpil));
         songs.add(new Song("відчуття.тиші", "Зап'ястя", R.drawable.logo_black,
-                "https://m.z1.fm/download/5831553?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_zapyastya));
         songs.add(new Song("відчуття.тиші", "Падаю", R.drawable.logo_black,
-                "https://m.z1.fm/download/5853470?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_padaju));
         songs.add(new Song("відчуття.тиші", "Навесні", R.drawable.logo_black,
-                "https://m.z1.fm/download/5826346?dwn=1&download=force"));
+                R.raw.vidchuttjatishi_navesni));
         songs.add(new Song("відчуття.тиші", "Алєся", R.drawable.logo_black,
-                "https://m.z1.fm/download/5441247?dwn=1&download=force"));
+                R.raw.v_dchuttya_tish_alesya));
         // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
         // adapter knows how to create list items for each item in the list.
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);

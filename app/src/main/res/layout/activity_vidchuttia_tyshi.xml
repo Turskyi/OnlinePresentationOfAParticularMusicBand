@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="250dp"
-            android:alpha="0.7"
+            android:alpha="@dimen/alpha"
             android:contentDescription="@string/background"
             android:scaleType="fitXY"
             android:src="@drawable/white_and_black" />

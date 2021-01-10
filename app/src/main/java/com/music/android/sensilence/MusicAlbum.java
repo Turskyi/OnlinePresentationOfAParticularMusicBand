@@ -1,5 +1,6 @@
 package com.music.android.sensilence;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,15 +8,16 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,7 +130,7 @@ class MusicAlbum extends AppCompatActivity {
     //do not remove media player from parameters
     void play(View view, ProgressBar progressBar, MediaPlayer mMediaPlayer,
               MediaPlayer.OnCompletionListener mCompletionListener, Object secondClickListener,
-              AdapterView listView) {
+              AdapterView<?> listView) {
         mMediaPlayer.start();
         progressBar.setVisibility(View.INVISIBLE);
         imageView = view.findViewById(R.id.btn_image);
@@ -176,6 +178,7 @@ class MusicAlbum extends AppCompatActivity {
         return false;
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     void errorAlert(final Song song, final Activity activity) {
         activity.runOnUiThread(new Runnable() {
             public void run() {
