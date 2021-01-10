@@ -14,3 +14,4 @@
 .idea
 /app/release/
 app/release
+app/debug
