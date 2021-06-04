@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.music.android.sensilence.MainActivity">
+        <activity android:name="com.music.android.sensilence.presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -22,36 +22,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.music.android.sensilence.ZombiActivity"
+            android:name=".presentation.vidchuttiatyshi.zombi.ZombiActivity"
             android:label="@string/category_zombi"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
+            android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.music.android.sensilence.MainActivity" />
+                android:value="com.music.android.sensilence.presentation.MainActivity" />
         </activity>
         <activity
-            android:name="com.music.android.sensilence.CrimeActivity"
+            android:name=".presentation.vidchuttiatyshi.crime.CrimeActivity"
             android:label="@string/category_crime"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
+            android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.music.android.sensilence.MainActivity" />
+                android:value="com.music.android.sensilence.presentation.MainActivity" />
         </activity>
         <activity
-            android:name="com.music.android.sensilence.SenseOfSilenceActivity"
+            android:name=".presentation.vidchuttiatyshi.sensofsilence.SenseOfSilenceActivity"
             android:label="@string/category_sense_of_silence"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
+            android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.music.android.sensilence.MainActivity" />
+                android:value="com.music.android.sensilence.presentation.MainActivity" />
         </activity>
-        <activity android:name="MusicAlbum"/>
+        <activity android:name=".service.MusicPlayer"/>
     </application>
 
 </manifest>

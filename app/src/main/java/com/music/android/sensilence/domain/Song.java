@@ -1,25 +1,24 @@
-package com.music.android.sensilence;
+package com.music.android.sensilence.domain;
 
 /**
- * {@link Song} represents a album song that the user wants to listen.
+ * {@link Song} represents an album song that the user wants to listen.
  * It contains a default Name of the album and a  song for that album.
  */
-
-class Song {
+public class Song {
     /**
-     * Default song for the album
+     * Name of the music band
      */
-    private String mDefaultSong;
+    private final String mNameOfTheBand;
 
     /**
-     * Name of the album
+     * name of the song from the album
      */
-    private String mNameOfTheBand;
+    private final String songName;
 
     /**
      * Image resource ID for the song
      */
-    private int mImageResourceID;
+    private final int mImageResourceID;
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
@@ -36,15 +35,15 @@ class Song {
      * @param defaultSong     is the song that the user is already familiar with
      * @param audioResourceId is the resource ID for the audio file associated with song.
      */
-    Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
-        mDefaultSong = defaultSong;
+    public Song(String nameOfTheBand, String defaultSong, int imageResourceId, String audioResourceId) {
+        songName = defaultSong;
         mNameOfTheBand = nameOfTheBand;
         mAudioResourceId = audioResourceId;
         mImageResourceID = imageResourceId;
     }
 
-    Song(String nameOfTheBand, String defaultSong, int imageResourceId, int audioResourceId) {
-        mDefaultSong = defaultSong;
+    public Song(String nameOfTheBand, String defaultSong, int imageResourceId, int audioResourceId) {
+        songName = defaultSong;
         mNameOfTheBand = nameOfTheBand;
         mMp3ResourceId = audioResourceId;
         mImageResourceID = imageResourceId;
@@ -53,38 +52,38 @@ class Song {
     /**
      * Get the default song of the band.
      */
-    String getDefaultSong() {
-        return mDefaultSong;
+    public String getDefaultSong() {
+        return songName;
     }
 
     /**
      * Get the name of the band.
      */
-    String getNameOfTheBand() {
+    public String getNameOfTheBand() {
         return mNameOfTheBand;
     }
 
     /**
      * Return the image resource ID of the song.
      */
-    int getImageResourceId() {
+    public int getImageResourceId() {
         return mImageResourceID;
     }
 
     /**
      * Returns whether or not there is an image for this song.
      */
-    boolean hasImage() {
+    public boolean hasImage() {
         return mImageResourceID != NO_IMAGE_PROVIDED;
     }
 
     /**
      * Return the audio resource ID of the song.
      */
-    String getmAudioResourceId() {
+    public String getAudioResourceId() {
         return mAudioResourceId;
     }
-    int getmMp3ResourceId() {
+    public int getMp3ResourceId() {
         return mMp3ResourceId;
     }
 }

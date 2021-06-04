@@ -1,4 +1,4 @@
-package com.music.android.sensilence;
+package com.music.android.sensilence.presentation.adapters;
 
 import android.content.Context;
 
@@ -8,24 +8,28 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.music.android.sensilence.R;
+import com.music.android.sensilence.presentation.vidchuttiatyshi.VidchuttiaTyshiFragment;
+import com.music.android.sensilence.presentation.zigmundafraid.ZigmundAfraidFragment;
+
 /**
- * {@link CategoryAdapter} is a {@link FragmentPagerAdapter} that can provide the layout for
- * each list item based on a data source which is a list of {@link Song} objects.
+ * {@link MusicBandPageAdapter} is a {@link FragmentPagerAdapter} that can provide the layout for
+ * each list item based on a data source which is a list of { Song} objects.
  */
-public class CategoryAdapter extends FragmentPagerAdapter {
+public class MusicBandPageAdapter extends FragmentPagerAdapter {
 
     /**
      * Context of the app
      */
-    private Context aContext;
+    private final Context aContext;
 
     /**
-     * Create a new {@link CategoryAdapter} object.
+     * Create a new {@link MusicBandPageAdapter} object.
      *
      * @param fragmentManager is the fragment manager that will keep each fragment's state in the adapter
-     *           across swipes.
+     *                        across swipes.
      */
-    CategoryAdapter(Context context, FragmentManager fragmentManager) {
+    public MusicBandPageAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         aContext = context;
     }
@@ -44,7 +48,7 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     }
 
     /**
-     * Return the total number of pages.
+     * Returns the total number of pages.
      */
     @Override
     public int getCount() {

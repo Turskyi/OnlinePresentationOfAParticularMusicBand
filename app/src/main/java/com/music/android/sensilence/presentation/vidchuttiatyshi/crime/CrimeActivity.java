@@ -1,4 +1,4 @@
-package com.music.android.sensilence;
+package com.music.android.sensilence.presentation.vidchuttiatyshi.crime;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,21 +17,26 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.music.android.sensilence.service.MusicPlayer;
+import com.music.android.sensilence.R;
+import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.presentation.adapters.SongAdapter;
+
 import java.util.ArrayList;
 
 public class CrimeActivity extends AppCompatActivity {
-    MusicAlbum musicAlbum;
+    MusicPlayer musicPlayer;
     ListView listView;
     protected MediaPlayer mMediaPlayer;
 
-    /* Handles audio focus when playing a sound file */
+    /** Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
 
     AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicAlbum.onFocusChange(focusChange, mMediaPlayer);
+                    musicPlayer.onFocusChange(focusChange, mMediaPlayer);
                 }
             };
 
@@ -39,10 +44,10 @@ public class CrimeActivity extends AppCompatActivity {
      * This listener gets triggered when the {@link MediaPlayer} has completed
      * playing the audio file.
      */
-    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+    private final MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            musicAlbum.releaseMediaPlayer();
+            musicPlayer.releaseMediaPlayer();
         }
     };
 
@@ -107,7 +112,7 @@ public class CrimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime);
-        musicAlbum = new MusicAlbum();
+        musicPlayer = new MusicPlayer();
         //Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -120,7 +125,7 @@ public class CrimeActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         listView.setBackground(bitmapDrawable);
 
-        songs.add(new Song("відчуття.тиші", "До Астарти",
+        songs.add(new Song(getString(R.string.sense_of_silence), "До Астарти",
                 R.drawable.crime,R.raw.vdchuttya_tsh_do_astart));
         songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
                 R.raw.v_dchuttya_tish_angelscream));
@@ -145,7 +150,7 @@ public class CrimeActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            musicAlbum.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
+            musicPlayer.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
                     secondClickListener, listView, songs, mAudioManager, CrimeActivity.this);
         }
     };
@@ -153,7 +158,7 @@ public class CrimeActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicAlbum.onSecondClick(firstClickListener, listView);
+            musicPlayer.onSecondClick(firstClickListener, listView);
         }
     };
 }

@@ -15,4 +15,11 @@
     <string name="picture_of_the_song">picture of the song</string>
     <string name="play_button">play button</string>
     <string name="background">background</string>
+    <string name="sensilence_zombi_songs">Пісні з альбому Зомбі</string>
+    <string name="sensilence_crime_songs">Пісні з альбому Злочин</string>
+    <string name="sensilence_sense_of_silence_songs">Пісні з альбому Відчуття Тиші</string>
+    <string name="sense_of_silence">відчуття.тиші</string>
+    <string name="band_zigmund_afraid">Zigmund Afraid</string>
+    <string name="song_abroad">Abroad</string>
+    <string name="audio_abroad">https://dl.dropboxusercontent.com/s/bx0vcz2ph8ntngu/zigmund_afraid_abroad.mp3?dl=1</string>
 </resources>

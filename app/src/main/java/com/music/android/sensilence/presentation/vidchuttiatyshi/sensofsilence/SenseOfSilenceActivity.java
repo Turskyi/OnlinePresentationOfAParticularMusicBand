@@ -1,4 +1,4 @@
-package com.music.android.sensilence;
+package com.music.android.sensilence.presentation.vidchuttiatyshi.sensofsilence;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,10 +14,15 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.music.android.sensilence.service.MusicPlayer;
+import com.music.android.sensilence.R;
+import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.presentation.adapters.SongAdapter;
+
 import java.util.ArrayList;
 
 public class SenseOfSilenceActivity extends AppCompatActivity {
-    MusicAlbum musicAlbum;
+    MusicPlayer musicPlayer;
     ListView listView;
     protected MediaPlayer mMediaPlayer;
 
@@ -28,7 +33,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicAlbum.onFocusChange(focusChange, mMediaPlayer);
+                    musicPlayer.onFocusChange(focusChange, mMediaPlayer);
                 }
             };
 
@@ -39,7 +44,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            musicAlbum.releaseMediaPlayer();
+            musicPlayer.releaseMediaPlayer();
         }
     };
 
@@ -50,7 +55,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list);
-        musicAlbum = new MusicAlbum();
+        musicPlayer = new MusicPlayer();
         /* Create and setup the {@link AudioManager} to request audio focus */
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -102,7 +107,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            musicAlbum.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
+            musicPlayer.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
                     secondClickListener, listView, songs, mAudioManager,
                     SenseOfSilenceActivity.this);
         }
@@ -111,7 +116,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicAlbum.onSecondClick(firstClickListener, listView);
+            musicPlayer.onSecondClick(firstClickListener, listView);
         }
     };
 }
