@@ -1,4 +1,4 @@
-package com.music.android.sensilence.service;
+package com.music.android.sensilence.presentation.common;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,13 +21,13 @@ import com.music.android.sensilence.domain.Song;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MusicAlbum extends AppCompatActivity {
+public class MusicPlayerActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
     private ImageView imageView;
     private ProgressBar progressBar;
 
-    public MusicAlbum() {
+    public MusicPlayerActivity() {
     }
 
     public void onFirstClick(

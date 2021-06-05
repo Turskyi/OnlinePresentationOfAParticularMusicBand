@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".presentation.vidchuttiatyshi.zombi.ZombiActivity"
-            android:label="@string/category_zombi"
+            android:label="@string/album_zombi"
             android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".presentation.vidchuttiatyshi.crime.CrimeActivity"
-            android:label="@string/category_crime"
+            android:label="@string/album_crime"
             android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name=".presentation.vidchuttiatyshi.sensofsilence.SenseOfSilenceActivity"
-            android:label="@string/category_sense_of_silence"
+            android:label="@string/band_sense_of_silence"
             android:parentActivityName="com.music.android.sensilence.presentation.MainActivity"
             android:theme="@style/CategoryTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -51,7 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.music.android.sensilence.presentation.MainActivity" />
         </activity>
-        <activity android:name=".service.MusicAlbum"/>
+        <activity android:name=".presentation.common.MusicPlayerActivity"/>
     </application>
 
 </manifest>

@@ -17,15 +17,15 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.music.android.sensilence.service.MusicAlbum;
+import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.Song;
-import com.music.android.sensilence.presentation.adapters.SongAdapter;
+import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
 
 public class CrimeActivity extends AppCompatActivity {
-    private MusicAlbum musicAlbum;
+    private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
     protected MediaPlayer mediaPlayer;
 
@@ -43,7 +43,7 @@ public class CrimeActivity extends AppCompatActivity {
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicAlbum.onFocusChange(focusChange, mediaPlayer);
+                    musicPlayerActivity.onFocusChange(focusChange, mediaPlayer);
                 }
             };
 
@@ -55,7 +55,7 @@ public class CrimeActivity extends AppCompatActivity {
             new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    musicAlbum.releaseMediaPlayer();
+                    musicPlayerActivity.releaseMediaPlayer();
                 }
             };
 
@@ -67,7 +67,7 @@ public class CrimeActivity extends AppCompatActivity {
                 final int position,
                 long id
         ) {
-            musicAlbum.onFirstClick(
+            musicPlayerActivity.onFirstClick(
                     view,
                     position,
                     onAudioFocusChangeListener,
@@ -84,7 +84,7 @@ public class CrimeActivity extends AppCompatActivity {
     private final AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicAlbum.onSecondClick(firstClickListener, listView);
+            musicPlayerActivity.onSecondClick(firstClickListener, listView);
         }
     };
 
@@ -92,7 +92,7 @@ public class CrimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime);
-        musicAlbum = new MusicAlbum();
+        musicPlayerActivity = new MusicPlayerActivity();
         //Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 

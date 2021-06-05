@@ -16,10 +16,10 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.music.android.sensilence.service.MusicAlbum;
+import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.Song;
-import com.music.android.sensilence.presentation.adapters.SongAdapter;
+import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class ZigmundAfraidFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private MusicAlbum musicAlbum;
+    private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
     protected MediaPlayer mediaPlayer;
 
@@ -47,7 +47,7 @@ public class ZigmundAfraidFragment extends Fragment {
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicAlbum.onFocusChange(focusChange, mediaPlayer);
+                    musicPlayerActivity.onFocusChange(focusChange, mediaPlayer);
                 }
             };
 
@@ -59,7 +59,7 @@ public class ZigmundAfraidFragment extends Fragment {
             new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    musicAlbum.releaseMediaPlayer();
+                    musicPlayerActivity.releaseMediaPlayer();
                 }
             };
 
@@ -73,7 +73,7 @@ public class ZigmundAfraidFragment extends Fragment {
                         final int position,
                         long id
                 ) {
-                    musicAlbum.onFirstClick(
+                    musicPlayerActivity.onFirstClick(
                             view,
                             position,
                             onAudioFocusChangeListener,
@@ -91,7 +91,7 @@ public class ZigmundAfraidFragment extends Fragment {
             new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    musicAlbum.onSecondClick(firstClickListener, listView);
+                    musicPlayerActivity.onSecondClick(firstClickListener, listView);
                 }
             };
 
@@ -99,7 +99,7 @@ public class ZigmundAfraidFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_song_list, container, false);
-        musicAlbum = new MusicAlbum();
+        musicPlayerActivity = new MusicPlayerActivity();
 
         //Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);

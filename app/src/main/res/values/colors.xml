@@ -16,7 +16,7 @@
     <color name="album_crime_color">#7C000700</color>
 
     <!-- Background color for the colors category -->
-    <color name="category_sense_of_silence">#F6F6F8</color>
+    <color name="color_sense_of_silence">#F6F6F8</color>
 
     <!-- Background color for the phrases category -->
     <color name="category_zigmund_afraid">#4F7206EE</color>

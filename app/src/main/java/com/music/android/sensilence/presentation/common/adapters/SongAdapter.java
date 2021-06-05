@@ -1,4 +1,4 @@
-package com.music.android.sensilence.presentation.adapters;
+package com.music.android.sensilence.presentation.common.adapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.list_item, parent, false);
+                    .inflate(R.layout.item_list, parent, false);
         }
         // Get the {@link Song} object located at this position in the list
         Song currentSong = getItem(position);

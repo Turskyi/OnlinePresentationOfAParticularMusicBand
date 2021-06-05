@@ -6,12 +6,12 @@
     android:background="@color/tan_background"
     android:orientation="vertical"
     tools:context="com.music.android.sensilence.presentation.MainActivity">
-    <!-- відчуття.тиші category -->
+    <!-- відчуття.тиші album -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/category_sense_of_silence">
+        android:background="@color/color_sense_of_silence">
 
         <ImageView
             android:layout_width="fill_parent"
@@ -31,13 +31,12 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:text="@string/category_sense_of_silence"
+            android:text="@string/band_sense_of_silence"
             android:textColor="@android:color/black"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
+            android:textSize="32sp"/>
     </FrameLayout>
 
-    <!-- Злочин category -->
+    <!-- "Crime" album -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -62,16 +61,16 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:text="@string/category_crime"
+            android:text="@string/album_crime"
             android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
-    <!-- Zombi category -->
+    <!-- Zombi album -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/category_sense_of_silence">
+        android:background="@color/color_sense_of_silence">
 
         <ImageView
             android:layout_width="fill_parent"
@@ -91,7 +90,7 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:text="@string/category_zombi"
+            android:text="@string/album_zombi"
             android:textColor="@android:color/black"
             android:textSize="32sp"
             tools:ignore="ObsoleteLayoutParam" />

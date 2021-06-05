@@ -4,20 +4,18 @@
     <!-- Category name for Zigmund Afraid [CHAR LIMIT=20] -->
     <string name="category_zigmund_afraid">Zigmund Afraid</string>
 
-    <!-- Category name for the songs for SenseOfSilence [CHAR LIMIT=20] -->
-    <string name="category_sense_of_silence">відчуття.тиші</string>
-
-    <!-- Category name for the album songs for Zombi [CHAR LIMIT=20] -->
-    <string name="category_zombi">Зомбі</string>
+    <!-- Album name [CHAR LIMIT=20] -->
+    <string name="album_zombi">Зомбі</string>
 
     <!-- Category name for the songs for Crime album[CHAR LIMIT=20] -->
-    <string name="category_crime">Злочин</string>
+    <string name="album_crime">Злочин</string>
     <string name="picture_of_the_song">picture of the song</string>
     <string name="play_button">play button</string>
     <string name="background">background</string>
     <string name="sensilence_zombi_songs">Пісні з альбому Зомбі</string>
     <string name="sensilence_crime_songs">Пісні з альбому Злочин</string>
     <string name="sensilence_sense_of_silence_songs">Пісні з альбому Відчуття Тиші</string>
+    <!-- Category name for the songs for SenseOfSilence [CHAR LIMIT=20] -->
     <string name="band_sense_of_silence">відчуття.тиші</string>
     <string name="band_zigmund_afraid">Zigmund Afraid</string>
     <string name="song_name_abroad">Abroad</string>
