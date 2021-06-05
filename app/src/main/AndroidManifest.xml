@@ -51,7 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.music.android.sensilence.presentation.MainActivity" />
         </activity>
-        <activity android:name=".service.MusicPlayer"/>
+        <activity android:name=".service.MusicAlbum"/>
     </application>
 
 </manifest>

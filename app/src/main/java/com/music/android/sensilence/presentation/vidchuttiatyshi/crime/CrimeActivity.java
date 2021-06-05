@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.music.android.sensilence.service.MusicPlayer;
+import com.music.android.sensilence.service.MusicAlbum;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.Song;
 import com.music.android.sensilence.presentation.adapters.SongAdapter;
@@ -25,18 +25,25 @@ import com.music.android.sensilence.presentation.adapters.SongAdapter;
 import java.util.ArrayList;
 
 public class CrimeActivity extends AppCompatActivity {
-    MusicPlayer musicPlayer;
-    ListView listView;
-    protected MediaPlayer mMediaPlayer;
+    private MusicAlbum musicAlbum;
+    private ListView listView;
+    protected MediaPlayer mediaPlayer;
 
-    /** Handles audio focus when playing a sound file */
-    private AudioManager mAudioManager;
+    /**
+     * Handles audio focus when playing a sound file
+     */
+    private AudioManager audioManager;
 
-    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+    /**
+     * Creating an empty array of songs
+     */
+    private final ArrayList<Song> songs = new ArrayList<>();
+
+    private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicPlayer.onFocusChange(focusChange, mMediaPlayer);
+                    musicAlbum.onFocusChange(focusChange, mediaPlayer);
                 }
             };
 
@@ -44,32 +51,133 @@ public class CrimeActivity extends AppCompatActivity {
      * This listener gets triggered when the {@link MediaPlayer} has completed
      * playing the audio file.
      */
-    private final MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+    private final MediaPlayer.OnCompletionListener completionListener =
+            new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    musicAlbum.releaseMediaPlayer();
+                }
+            };
+
+    private final AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onCompletion(MediaPlayer mp) {
-            musicPlayer.releaseMediaPlayer();
+        public void onItemClick(
+                AdapterView<?> parent,
+                final View view,
+                final int position,
+                long id
+        ) {
+            musicAlbum.onFirstClick(
+                    view,
+                    position,
+                    onAudioFocusChangeListener,
+                    completionListener,
+                    secondClickListener,
+                    listView,
+                    songs,
+                    audioManager,
+                    CrimeActivity.this
+            );
         }
     };
 
-    // Create an array of songs
-    final ArrayList<Song> songs = new ArrayList<>();
+    private final AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            musicAlbum.onSecondClick(firstClickListener, listView);
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_crime);
+        musicAlbum = new MusicAlbum();
+        //Create and setup the {@link AudioManager} to request audio focus
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        setBackground();
+
+//        fill up album of songs
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_to_astarta),
+                        R.drawable.crime,
+                        getString(R.string.audio_to_astarta)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_angelscream),
+                        R.drawable.crime,
+                        getString(R.string.audio_angelscream)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_zombi_album),
+                        R.drawable.crime,
+                        getString(R.string.audio_zombi_album_version)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_did_not_want),
+                        R.drawable.crime,
+                        getString(R.string.audio_did_not_want)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_crime),
+                        R.drawable.crime,
+                        getString(R.string.audio_crime)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_noli_respicere_rmx),
+                        R.drawable.vt_dnb120,
+                        getString(R.string.audio_noli_respicere_rmx)
+                )
+        );
+        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+         * The adapter knows how to create list items for each item in the list. */
+        SongAdapter adapter = new SongAdapter(this, songs, R.color.album_crime_color);
+        listView.setAdapter(adapter);
+        //Set a click listener to play the audio when the list item is clicked on
+        listView.setOnItemClickListener(firstClickListener);
+    }
+
+    private void setBackground() {
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_black350);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), scalePreserveRatio(bmp, bmp.getWidth()));
+        bitmapDrawable.setGravity(Gravity.NO_GRAVITY | Gravity.FILL_HORIZONTAL);
+        listView = findViewById(R.id.list);
+        listView.setBackground(bitmapDrawable);
+    }
 
     /**
      * Scale the image preserving the ratio
      *
-     * @param imageToScale      Image to be scaled
-     * @param destinationWidth  Destination width after scaling
-     * @param destinationHeight Destination height after scaling
+     * @param imageToScale     Image to be scaled
+     * @param destinationWidth Destination width after scaling
      * @return New scaled bitmap preserving the ratio
      */
-    public static Bitmap scalePreserveRatio(Bitmap imageToScale, int destinationWidth,
-                                            int destinationHeight) {
-        if (destinationHeight > 0 && destinationWidth > 0 && imageToScale != null) {
+    private Bitmap scalePreserveRatio(Bitmap imageToScale, int destinationWidth) {
+        if (destinationWidth > 0 && imageToScale != null) {
             int width = imageToScale.getWidth();
             int height = imageToScale.getHeight();
 
             //Calculate the max changing amount and decide which dimension to use
             float widthRatio = (float) destinationWidth / (float) width;
+            int destinationHeight = 1500;
             float heightRatio = (float) destinationHeight / (float) height;
 
             //Use the ratio that will fit the image into the desired sizes
@@ -101,64 +209,9 @@ public class CrimeActivity extends AppCompatActivity {
             float left = ratioBitmap >= destinationRatio ? 0 : (float) (destinationWidth - finalWidth) / 2;
             float top = ratioBitmap < destinationRatio ? 0 : (float) (destinationHeight - finalHeight) / 2;
             canvas.drawBitmap(imageToScale, left, top, null);
-
             return scaledImage;
         } else {
             return imageToScale;
         }
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime);
-        musicPlayer = new MusicPlayer();
-        //Create and setup the {@link AudioManager} to request audio focus
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-                R.drawable.logo_black350);
-
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), scalePreserveRatio(bmp,
-                bmp.getWidth(), 1500));
-        bitmapDrawable.setGravity(Gravity.NO_GRAVITY | Gravity.FILL_HORIZONTAL);
-        listView = findViewById(R.id.list);
-        listView.setBackground(bitmapDrawable);
-
-        songs.add(new Song(getString(R.string.sense_of_silence), "До Астарти",
-                R.drawable.crime,R.raw.vdchuttya_tsh_do_astart));
-        songs.add(new Song("відчуття.тиші", "angelscream", R.drawable.crime,
-                R.raw.v_dchuttya_tish_angelscream));
-        songs.add(new Song("відчуття.тиші", "Зомбі (album version)",
-                R.drawable.crime,
-                R.raw.vdchuttya_tish_zomb));
-        songs.add(new Song("відчуття.тиші", "Не хотів ", R.drawable.crime,
-                R.raw.vdchuttya_tish_ne_khotv));
-        songs.add(new Song("відчуття.тиші", "Злочин", R.drawable.crime,
-                R.raw.vdchuttya_tish_zlochin));
-        songs.add(new Song("відчуття.тиші", "Noli Respicere (Culturno rmx)",
-                R.drawable.vt_dnb120,
-                R.raw.v_dchuttya_tish_noli_respicere_culturno_rmx_dub_step_ukraine));
-        // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
-        // adapter knows how to create list items for each item in the list.
-        SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
-        listView.setAdapter(adapter);
-        //Set a click listener to play the audio when the list item is clicked on
-        listView.setOnItemClickListener(firstClickListener);
-    }
-
-    AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            musicPlayer.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
-                    secondClickListener, listView, songs, mAudioManager, CrimeActivity.this);
-        }
-    };
-
-    AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicPlayer.onSecondClick(firstClickListener, listView);
-        }
-    };
 }

@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.music.android.sensilence.service.MusicPlayer;
+import com.music.android.sensilence.service.MusicAlbum;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.Song;
 import com.music.android.sensilence.presentation.adapters.SongAdapter;
@@ -22,18 +22,23 @@ import com.music.android.sensilence.presentation.adapters.SongAdapter;
 import java.util.ArrayList;
 
 public class SenseOfSilenceActivity extends AppCompatActivity {
-    MusicPlayer musicPlayer;
-    ListView listView;
-    protected MediaPlayer mMediaPlayer;
+    private MusicAlbum musicAlbum;
+    private ListView listView;
+    protected MediaPlayer mediaPlayer;
 
-    /*Handles audio focus when playing a sound file */
-    private AudioManager mAudioManager;
+    /**
+     * Handles audio focus when playing a sound file
+     */
+    private AudioManager audioManager;
 
-    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+    // Create an array of songs
+    private final ArrayList<Song> songs = new ArrayList<>();
+
+    private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicPlayer.onFocusChange(focusChange, mMediaPlayer);
+                    musicAlbum.onFocusChange(focusChange, mediaPlayer);
                 }
             };
 
@@ -41,82 +46,173 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
      * This listener gets triggered when the {@link MediaPlayer} has completed
      * playing the audio file.
      */
-    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            musicPlayer.releaseMediaPlayer();
-        }
-    };
+    private final MediaPlayer.OnCompletionListener completionListener =
+            new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    musicAlbum.releaseMediaPlayer();
+                }
+            };
 
-    // Create an array of songs
-    final ArrayList<Song> songs = new ArrayList<>();
+    private final AdapterView.OnItemClickListener firstClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(
+                        AdapterView<?> parent,
+                        final View view,
+                        final int position,
+                        long id
+                ) {
+                    musicAlbum.onFirstClick(
+                            view,
+                            position,
+                            onAudioFocusChangeListener,
+                            completionListener,
+                            secondClickListener,
+                            listView,
+                            songs,
+                            audioManager,
+                            SenseOfSilenceActivity.this
+                    );
+                }
+            };
+
+    private final AdapterView.OnItemClickListener secondClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    musicAlbum.onSecondClick(firstClickListener, listView);
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_list);
-        musicPlayer = new MusicPlayer();
-        /* Create and setup the {@link AudioManager} to request audio focus */
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        setContentView(R.layout.activity_song_list);
+        musicAlbum = new MusicAlbum();
+        // Create and setup the {@link AudioManager} to request audio focus
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        listView = findViewById(R.id.list);
+        setBackground();
 
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-                R.drawable.logo_white);
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        bitmapDrawable.setGravity(Gravity.NO_GRAVITY);
-        listView.setBackground(bitmapDrawable);
-
-        // Create a list of songs
-        songs.add(new Song("відчуття.тиші", "Зима", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_zima));
-        songs.add(new Song("відчуття.тиші", "Noli Respicere", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_noli_respicere));
-        songs.add(new Song("відчуття.тиші", "Востаннє", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_vostann));
-        songs.add(new Song("відчуття.тиші", "Смак Мого Забуття",
-                R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_smak_mogo_zabuttya));
-        songs.add(new Song("відчуття.тиші", "Промені",
-                R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_promen));
-        songs.add(new Song("відчуття.тиші", "Безодня", R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_bezodnya));
-        songs.add(new Song("відчуття.тиші", "Не край", R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_ne_kraj));
-        songs.add(new Song("відчуття.тиші", "Знову Страх", R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_znovu_strah));
-        songs.add(new Song("відчуття.тиші", "Навпіл", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_navpil));
-        songs.add(new Song("відчуття.тиші", "Зап'ястя", R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_zapyastya));
-        songs.add(new Song("відчуття.тиші", "Падаю", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_padaju));
-        songs.add(new Song("відчуття.тиші", "Навесні", R.drawable.logo_black,
-                R.raw.vidchuttjatishi_navesni));
-        songs.add(new Song("відчуття.тиші", "Алєся", R.drawable.logo_black,
-                R.raw.v_dchuttya_tish_alesya));
-        // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
-        // adapter knows how to create list items for each item in the list.
-        SongAdapter adapter = new SongAdapter(this, songs, R.color.category_crime);
+        // fill up a list of songs
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_winter),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_winter)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_noli_respicere),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_noli_respicere)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_last_time),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_last_time)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_taste_of_my_oblivion),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_taste_of_my_oblivion)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_rays),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_rays)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_abyss),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_abyss)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_not_the_end),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_not_the_end)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_fear_again),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_fear_again)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_in_half),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_in_half)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_wrist),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_wrist)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_falling),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_falling)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_in_the_spring),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_in_the_spring)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_alesia),
+                        R.drawable.logo_black,
+                        getString(R.string.audio_alesia)
+                )
+        );
+        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+         * The adapter knows how to create list items for each item in the list. */
+        SongAdapter adapter = new SongAdapter(this, songs, R.color.album_crime_color);
         listView.setAdapter(adapter);
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
     }
 
-    AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            musicPlayer.onFirstClick(view, position, mOnAudioFocusChangeListener, mCompletionListener,
-                    secondClickListener, listView, songs, mAudioManager,
-                    SenseOfSilenceActivity.this);
-        }
-    };
-
-    AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicPlayer.onSecondClick(firstClickListener, listView);
-        }
-    };
+    private void setBackground() {
+        listView = findViewById(R.id.list);
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_white);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+        bitmapDrawable.setGravity(Gravity.NO_GRAVITY);
+        listView.setBackground(bitmapDrawable);
+    }
 }

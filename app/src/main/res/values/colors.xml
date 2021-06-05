@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary color of the app (shown in the app bar) -->
-    <color name="colorPrimary">#F3000000</color>
+    <color name="colorPrimary">#000000</color>
     <!-- Primary dark color of the app (shown in the status bar) -->
     <color name="colorPrimaryDark">#030000</color>
     <color name="colorAccent">#D81B60</color>
@@ -13,7 +13,7 @@
     <color name="category_zombi">#61FD0909</color>
 
     <!-- Background color for the family members category -->
-    <color name="category_crime">#7C000700</color>
+    <color name="album_crime_color">#7C000700</color>
 
     <!-- Background color for the colors category -->
     <color name="category_sense_of_silence">#F6F6F8</color>

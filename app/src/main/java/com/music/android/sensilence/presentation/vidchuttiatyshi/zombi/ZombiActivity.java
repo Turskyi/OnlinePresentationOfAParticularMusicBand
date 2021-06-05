@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.music.android.sensilence.service.MusicPlayer;
+import com.music.android.sensilence.service.MusicAlbum;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.Song;
 import com.music.android.sensilence.presentation.adapters.SongAdapter;
@@ -21,18 +21,23 @@ import com.music.android.sensilence.presentation.adapters.SongAdapter;
 import java.util.ArrayList;
 
 public class ZombiActivity extends AppCompatActivity {
-    MusicPlayer musicPlayer;
-    ListView listView;
-    protected MediaPlayer mMediaPlayer;
+    private MusicAlbum musicAlbum;
+    private ListView listView;
+    protected MediaPlayer mediaPlayer;
 
-    /*Handles audio focus when playing a sound file */
-    private AudioManager mAudioManager;
+    /**
+     * Handles audio focus when playing a sound file
+     */
+    private AudioManager audioManager;
 
-    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+    // Create an array of songs
+    private final ArrayList<Song> songs = new ArrayList<>();
+
+    private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicPlayer.onFocusChange(focusChange,mMediaPlayer);
+                    musicAlbum.onFocusChange(focusChange, mediaPlayer);
                 }
             };
 
@@ -40,57 +45,93 @@ public class ZombiActivity extends AppCompatActivity {
      * This listener gets triggered when the {@link MediaPlayer} has completed
      * playing the audio file.
      */
-    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-    musicPlayer.releaseMediaPlayer();
-        }
-    };
+    private final MediaPlayer.OnCompletionListener completionListener =
+            new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    musicAlbum.releaseMediaPlayer();
+                }
+            };
 
-    // Create an array of songs
-    final ArrayList<Song> songs = new ArrayList<>();
+    private final AdapterView.OnItemClickListener firstClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(
+                        AdapterView<?> parent,
+                        final View view,
+                        final int position,
+                        long id
+                ) {
+                    musicAlbum.onFirstClick(
+                            view,
+                            position,
+                            onAudioFocusChangeListener,
+                            completionListener,
+                            secondClickListener,
+                            listView,
+                            songs,
+                            audioManager,
+                            ZombiActivity.this
+                    );
+                }
+            };
+
+    private final AdapterView.OnItemClickListener secondClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    musicAlbum.onSecondClick(firstClickListener, listView);
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_list);
+        setContentView(R.layout.activity_song_list);
         //Create and setup the {@link AudioManager} to request audio focus
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        musicPlayer = new MusicPlayer();
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-                R.drawable.zombi_txt);
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        listView = findViewById(R.id.list);
-        listView.setBackground(bitmapDrawable);
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        musicAlbum = new MusicAlbum();
 
-        // Create a list of songs
-        songs.add(new Song("відчуття.тиші", "Зомбі", R.drawable.zombi,
-                R.raw.vdchuttya_tish_zomb));
-        songs.add(new Song("відчуття.тиші",
-                "Зомбі (aContrari Post-Apocalyptic Dubstep Mix)", R.drawable.vt_dnb120,
-                R.raw.vdchuttya_tish_zomb_acontrari_post_apocalyptic_dubstep_mix));
-        songs.add(new Song("відчуття.тиші", "ゾンビ", R.drawable.zombi,
-                R.raw.vidchuttia_tyshi_zombi_jap));
-        // Create an {@link SongAdapter}, whose data source is a list of {@link Song}s. The
-        // adapter knows how to create list items for each item in the list.
+        setBackground();
+
+        // fill up an album with a list of songs
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_zombi),
+                        R.drawable.zombi,
+                        getString(R.string.audio_zombi)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_zombi_dubstep),
+                        R.drawable.vt_dnb120,
+                        getString(R.string.audio_zombi_dubster)
+                )
+        );
+        songs.add(
+                new Song(
+                        getString(R.string.band_sense_of_silence),
+                        getString(R.string.song_name_japanese_zombie),
+                        R.drawable.zombi,
+                        getString(R.string.audio_japanese_zombie)
+                )
+        );
+        /*  Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+         * The adapter knows how to create list items for each item in the list. */
         SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zombi);
         listView.setAdapter(adapter);
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
     }
 
-    AdapterView.OnItemClickListener firstClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            musicPlayer.onFirstClick( view, position, mOnAudioFocusChangeListener, mCompletionListener,
-                    secondClickListener, listView, songs, mAudioManager,ZombiActivity.this);
-        }
-    };
-
-    AdapterView.OnItemClickListener secondClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            musicPlayer.onSecondClick(firstClickListener,listView);
-        }
-    };
+    private void setBackground() {
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+                R.drawable.zombi_txt);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+        listView = findViewById(R.id.list);
+        listView.setBackground(bitmapDrawable);
+    }
 }
