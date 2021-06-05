@@ -45,7 +45,7 @@ public class VidchuttiaTyshiFragment extends Fragment {
             }
         });
         // Find the View that shows the crime album
-        TextView crime = rootView.findViewById(R.id.crime);
+        TextView crime = rootView.findViewById(R.id.title_crime);
 
         // Set a click listener on that View
         // The code in this method will be executed when the crime album is clicked on.
@@ -57,7 +57,7 @@ public class VidchuttiaTyshiFragment extends Fragment {
             startActivity(crimeIntent);
         });
         // Find the View that shows the sense of silence album
-        TextView senseOfSilence = rootView.findViewById(R.id.sense_of_silence);
+        TextView senseOfSilence = rootView.findViewById(R.id.title_sense_of_silence);
 
         // Set a click listener on that View
         // The code in this method will be executed when the sense of silence category is clicked on.

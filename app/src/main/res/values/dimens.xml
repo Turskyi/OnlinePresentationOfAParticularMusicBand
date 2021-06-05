@@ -3,5 +3,11 @@
     <!-- Height of each list item -->
     <dimen name="list_item_height">88dp</dimen>
 
-    <dimen name="alpha">0.7</dimen>
+    <dimen name="alpha_0_7">0.7</dimen>
+    <dimen name="alpha_0_8">0.8</dimen>
+    <dimen name="height_album_background">250dp</dimen>
+    <dimen name="text_size_album_name">32sp</dimen>
+    <dimen name="size_play_btn">24dp</dimen>
+    <dimen name="margin_end_play_btn">16dp</dimen>
+    <dimen name="margin_end_progress_bar">4dp</dimen>
 </resources>

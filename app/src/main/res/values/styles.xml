@@ -16,7 +16,7 @@
     </style>
 
     <!-- Style for a category of album songs -->
-    <style name="CategoryStyle">
+    <style name="AlbumStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>

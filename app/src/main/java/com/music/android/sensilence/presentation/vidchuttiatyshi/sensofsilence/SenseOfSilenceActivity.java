@@ -209,7 +209,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     }
 
     private void setBackground() {
-        listView = findViewById(R.id.list);
+        listView = findViewById(R.id.list_view);
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_white);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
         bitmapDrawable.setGravity(Gravity.NO_GRAVITY);

@@ -103,7 +103,7 @@ public class CrimeActivity extends AppCompatActivity {
                 new Song(
                         getString(R.string.band_sense_of_silence),
                         getString(R.string.song_name_to_astarta),
-                        R.drawable.crime,
+                        R.drawable.pic_crime_cover,
                         getString(R.string.audio_to_astarta)
                 )
         );
@@ -111,7 +111,7 @@ public class CrimeActivity extends AppCompatActivity {
                 new Song(
                         getString(R.string.band_sense_of_silence),
                         getString(R.string.song_name_angelscream),
-                        R.drawable.crime,
+                        R.drawable.pic_crime_cover,
                         getString(R.string.audio_angelscream)
                 )
         );
@@ -119,7 +119,7 @@ public class CrimeActivity extends AppCompatActivity {
                 new Song(
                         getString(R.string.band_sense_of_silence),
                         getString(R.string.song_name_zombi_album),
-                        R.drawable.crime,
+                        R.drawable.pic_crime_cover,
                         getString(R.string.audio_zombi_album_version)
                 )
         );
@@ -127,7 +127,7 @@ public class CrimeActivity extends AppCompatActivity {
                 new Song(
                         getString(R.string.band_sense_of_silence),
                         getString(R.string.song_name_did_not_want),
-                        R.drawable.crime,
+                        R.drawable.pic_crime_cover,
                         getString(R.string.audio_did_not_want)
                 )
         );
@@ -135,7 +135,7 @@ public class CrimeActivity extends AppCompatActivity {
                 new Song(
                         getString(R.string.band_sense_of_silence),
                         getString(R.string.song_name_crime),
-                        R.drawable.crime,
+                        R.drawable.pic_crime_cover,
                         getString(R.string.audio_crime)
                 )
         );
@@ -159,7 +159,7 @@ public class CrimeActivity extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_black350);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), scalePreserveRatio(bmp, bmp.getWidth()));
         bitmapDrawable.setGravity(Gravity.NO_GRAVITY | Gravity.FILL_HORIZONTAL);
-        listView = findViewById(R.id.list);
+        listView = findViewById(R.id.list_view);
         listView.setBackground(bitmapDrawable);
     }
 

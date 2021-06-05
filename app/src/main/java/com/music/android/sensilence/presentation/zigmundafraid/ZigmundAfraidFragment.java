@@ -143,7 +143,7 @@ public class ZigmundAfraidFragment extends Fragment {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.zigmund_afraid_cover);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
         bitmapDrawable.setAlpha(100);
-        listView = rootView.findViewById(R.id.list);
+        listView = rootView.findViewById(R.id.list_view);
         listView.setBackground(bitmapDrawable);
     }
 }

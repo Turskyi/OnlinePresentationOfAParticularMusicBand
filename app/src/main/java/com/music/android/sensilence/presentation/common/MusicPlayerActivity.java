@@ -41,7 +41,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             final AudioManager audioManager,
             final Activity activity
     ) {
-        if (mediaPlayer != null && imageView == view.findViewById(R.id.btn_image)) {
+        if (mediaPlayer != null && imageView == view.findViewById(R.id.iv_btn_play)) {
             play(view, progressBar, mediaPlayer, mCompletionListener, secondClickListener, listView);
         } else {
             progressBar = view.findViewById(R.id.loading_spinner);
@@ -172,7 +172,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         mMediaPlayer.start();
         runOnUiThread(() -> {
             progressBar.setVisibility(View.INVISIBLE);
-            imageView = view.findViewById(R.id.btn_image);
+            imageView = view.findViewById(R.id.iv_btn_play);
             imageView.setImageResource(R.drawable.ic_pause);
         });
 

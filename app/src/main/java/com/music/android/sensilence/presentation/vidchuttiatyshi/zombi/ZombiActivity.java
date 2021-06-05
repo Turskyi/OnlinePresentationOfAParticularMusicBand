@@ -131,7 +131,7 @@ public class ZombiActivity extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.zombi_txt);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        listView = findViewById(R.id.list);
+        listView = findViewById(R.id.list_view);
         listView.setBackground(bitmapDrawable);
     }
 }

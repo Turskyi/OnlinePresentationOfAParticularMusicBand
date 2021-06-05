@@ -6,7 +6,7 @@
     android:background="@color/tan_background"
     android:orientation="vertical"
     tools:context="com.music.android.sensilence.presentation.MainActivity">
-    <!-- відчуття.тиші album -->
+    <!-- "sense.of.silence" album -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,15 +15,15 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="@dimen/alpha"
+            android:layout_height="@dimen/height_album_background"
+            android:alpha="@dimen/alpha_0_7"
             android:contentDescription="@string/background"
             android:scaleType="fitXY"
             android:src="@drawable/white_and_black" />
 
         <TextView
-            android:id="@+id/sense_of_silence"
-            style="@style/CategoryStyle"
+            android:id="@+id/title_sense_of_silence"
+            style="@style/AlbumStyle"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
@@ -31,9 +31,9 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:text="@string/band_sense_of_silence"
+            android:text="@string/album_sense_of_silence"
             android:textColor="@android:color/black"
-            android:textSize="32sp"/>
+            android:textSize="@dimen/text_size_album_name"/>
     </FrameLayout>
 
     <!-- "Crime" album -->
@@ -45,15 +45,15 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.8"
+            android:layout_height="@dimen/height_album_background"
+            android:alpha="@dimen/alpha_0_8"
             android:contentDescription="@string/background"
             android:scaleType="fitXY"
-            android:src="@drawable/crime" />
+            android:src="@drawable/pic_crime_cover" />
 
         <TextView
-            android:id="@+id/crime"
-            style="@style/CategoryStyle"
+            android:id="@+id/title_crime"
+            style="@style/AlbumStyle"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
@@ -62,7 +62,7 @@
             android:shadowDy="1"
             android:shadowRadius="2"
             android:text="@string/album_crime"
-            android:textSize="32sp"
+            android:textSize="@dimen/text_size_album_name"
             tools:ignore="ObsoleteLayoutParam" />
     </FrameLayout>
     <!-- Zombi album -->
@@ -74,15 +74,15 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
-            android:alpha="0.8"
+            android:layout_height="@dimen/height_album_background"
+            android:alpha="@dimen/alpha_0_8"
             android:contentDescription="@string/background"
             android:scaleType="fitXY"
             android:src="@drawable/zombi_cover" />
 
         <TextView
             android:id="@+id/zombi"
-            style="@style/CategoryStyle"
+            style="@style/AlbumStyle"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
@@ -92,7 +92,6 @@
             android:shadowRadius="2"
             android:text="@string/album_zombi"
             android:textColor="@android:color/black"
-            android:textSize="32sp"
-            tools:ignore="ObsoleteLayoutParam" />
+            android:textSize="@dimen/text_size_album_name" />
     </FrameLayout>
 </LinearLayout>

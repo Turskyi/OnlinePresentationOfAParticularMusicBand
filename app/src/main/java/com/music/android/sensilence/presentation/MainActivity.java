@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Find the view pager that will allow the user to swipe between fragments
-        ViewPager2 viewPager = findViewById(R.id.viewpager);
+        ViewPager2 viewPager = findViewById(R.id.view_pager);
 
         // Create an adapter that knows which fragment should be shown on each page
         MusicBandPageAdapter adapter = new MusicBandPageAdapter(getSupportFragmentManager(), getLifecycle());
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         // Find the tab layout that shows the tabs
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         /* Connect the tab layout with the view pager.
          This will:

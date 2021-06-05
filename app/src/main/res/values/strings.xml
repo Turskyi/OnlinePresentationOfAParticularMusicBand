@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Title for the application. [CHAR LIMIT=12] -->
     <string name="app_name">відчуття.тиші</string>
     <!-- Category name for Zigmund Afraid [CHAR LIMIT=20] -->
@@ -10,13 +10,14 @@
     <!-- Category name for the songs for Crime album[CHAR LIMIT=20] -->
     <string name="album_crime">Злочин</string>
     <string name="picture_of_the_song">picture of the song</string>
-    <string name="play_button">play button</string>
+    <string name="content_description_play_button">play button</string>
     <string name="background">background</string>
     <string name="sensilence_zombi_songs">Пісні з альбому Зомбі</string>
     <string name="sensilence_crime_songs">Пісні з альбому Злочин</string>
     <string name="sensilence_sense_of_silence_songs">Пісні з альбому Відчуття Тиші</string>
     <!-- Category name for the songs for SenseOfSilence [CHAR LIMIT=20] -->
     <string name="band_sense_of_silence">відчуття.тиші</string>
+    <string name="album_sense_of_silence">Відчуття.Тиші LP</string>
     <string name="band_zigmund_afraid">Zigmund Afraid</string>
     <string name="song_name_abroad">Abroad</string>
     <string name="audio_abroad">https://dl.dropboxusercontent.com/s/bx0vcz2ph8ntngu/zigmund_afraid_abroad.mp3?dl=1</string>
@@ -43,7 +44,7 @@
     <string name="song_name_rays">Промені</string>
     <string name="audio_rays">https://dl.dropboxusercontent.com/s/km6ghrarkxtmh8d/v_dchuttya_tish_promen.mp3?dl=1</string>
     <string name="song_name_abyss">Безодня</string>
-    <string name="audio_abyss">https://dl.dropboxusercontent.com/s/lomxsrjdwwu9nx1/v_dchuttya_tish_bezodnya.mp3?dl=1</string>
+    <string name="audio_abyss" translatable="false" tools:ignore="Typos">https://dl.dropboxusercontent.com/s/lomxsrjdwwu9nx1/v_dchuttya_tish_bezodnya.mp3?dl=1</string>
     <string name="song_name_not_the_end">Не край</string>
     <string name="audio_not_the_end">https://dl.dropboxusercontent.com/s/9aotpzh7bih21sz/v_dchuttya_tish_ne_kraj.mp3?dl=1</string>
     <string name="song_name_fear_again">Знову Страх</string>
