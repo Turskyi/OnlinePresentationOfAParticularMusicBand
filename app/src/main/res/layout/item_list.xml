@@ -10,7 +10,7 @@
         android:id="@+id/image_view"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height"
-        android:contentDescription="@string/picture_of_the_song" />
+        android:contentDescription="@string/content_description_picture_of_the_song" />
 
     <LinearLayout
         android:id="@+id/text_container"

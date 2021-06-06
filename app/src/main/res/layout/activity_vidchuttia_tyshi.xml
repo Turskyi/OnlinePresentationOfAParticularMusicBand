@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_album_background"
             android:alpha="@dimen/alpha_0_7"
-            android:contentDescription="@string/background"
+            android:contentDescription="@string/content_description_background"
             android:scaleType="fitXY"
             android:src="@drawable/white_and_black" />
 
@@ -47,7 +47,7 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_album_background"
             android:alpha="@dimen/alpha_0_8"
-            android:contentDescription="@string/background"
+            android:contentDescription="@string/content_description_background"
             android:scaleType="fitXY"
             android:src="@drawable/pic_crime_cover" />
 
@@ -76,7 +76,7 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_album_background"
             android:alpha="@dimen/alpha_0_8"
-            android:contentDescription="@string/background"
+            android:contentDescription="@string/content_description_background"
             android:scaleType="fitXY"
             android:src="@drawable/zombi_cover" />
 

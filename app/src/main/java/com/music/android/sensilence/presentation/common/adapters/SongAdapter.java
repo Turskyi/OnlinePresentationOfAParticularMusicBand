@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.domain.pojo.Song;
 
 import java.util.ArrayList;
 

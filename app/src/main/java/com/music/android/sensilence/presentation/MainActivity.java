@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             if (position == 0) {
                 tab.setText(getString(R.string.band_sense_of_silence));
             } else {
-                tab.setText(getString(R.string.category_zigmund_afraid));
+                tab.setText(getString(R.string.band_zigmund_afraid));
             }
         }).attach();
     }

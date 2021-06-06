@@ -7,9 +7,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
-        
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
 
@@ -18,6 +19,17 @@ allprojects {
         google()
         mavenCentral()
     }
+}
+
+ext {
+    getParam = { key ->
+        def value = System.getenv(key) ?: project.findProperty("env.$key")
+        if (value) {
+            println "$key = $value"
+        }
+        return value
+    }
+    DATABASE_NAME = getParam("DATABASE_SONGS")
 }
 
 task clean(type: Delete) {

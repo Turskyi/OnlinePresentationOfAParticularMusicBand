@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.domain.pojo.Song;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
@@ -98,6 +98,7 @@ public class ZombiActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_zombi),
                         getString(R.string.song_name_zombi),
                         R.drawable.zombi,
                         getString(R.string.audio_zombi)
@@ -106,14 +107,16 @@ public class ZombiActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_zombi),
                         getString(R.string.song_name_zombi_dubstep),
                         R.drawable.vt_dnb120,
-                        getString(R.string.audio_zombi_dubster)
+                        getString(R.string.audio_zombi_dubstep)
                 )
         );
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_zombi),
                         getString(R.string.song_name_japanese_zombie),
                         R.drawable.zombi,
                         getString(R.string.audio_japanese_zombie)

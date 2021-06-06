@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.domain.pojo.Song;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
@@ -99,6 +99,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_winter),
                         R.drawable.logo_black,
                         getString(R.string.audio_winter)
@@ -107,6 +108,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_noli_respicere),
                         R.drawable.logo_black,
                         getString(R.string.audio_noli_respicere)
@@ -115,6 +117,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_last_time),
                         R.drawable.logo_black,
                         getString(R.string.audio_last_time)
@@ -123,6 +126,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_taste_of_my_oblivion),
                         R.drawable.logo_black,
                         getString(R.string.audio_taste_of_my_oblivion)
@@ -131,6 +135,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_rays),
                         R.drawable.logo_black,
                         getString(R.string.audio_rays)
@@ -139,6 +144,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_abyss),
                         R.drawable.logo_black,
                         getString(R.string.audio_abyss)
@@ -147,6 +153,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_not_the_end),
                         R.drawable.logo_black,
                         getString(R.string.audio_not_the_end)
@@ -155,6 +162,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_fear_again),
                         R.drawable.logo_black,
                         getString(R.string.audio_fear_again)
@@ -163,6 +171,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_in_half),
                         R.drawable.logo_black,
                         getString(R.string.audio_in_half)
@@ -171,6 +180,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_wrist),
                         R.drawable.logo_black,
                         getString(R.string.audio_wrist)
@@ -179,6 +189,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_falling),
                         R.drawable.logo_black,
                         getString(R.string.audio_falling)
@@ -187,6 +198,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_in_the_spring),
                         R.drawable.logo_black,
                         getString(R.string.audio_in_the_spring)
@@ -195,6 +207,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         songs.add(
                 new Song(
                         getString(R.string.band_sense_of_silence),
+                        getString(R.string.album_sense_of_silence),
                         getString(R.string.song_name_alesia),
                         R.drawable.logo_black,
                         getString(R.string.audio_alesia)

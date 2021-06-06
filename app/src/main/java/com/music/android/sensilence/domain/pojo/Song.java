@@ -1,10 +1,13 @@
-package com.music.android.sensilence.domain;
+package com.music.android.sensilence.domain.pojo;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * {@link Song} represents an album song that the user wants to listen.
  * It contains a Name of the song from the album and a  song from that album.
  */
-public class Song {
+public class Song implements Parcelable {
     /**
      * Name of the music band
      */
@@ -14,6 +17,11 @@ public class Song {
      * name of the song from the album
      */
     private final String songName;
+
+    /**
+     * name of the album
+     */
+    private final String album;
 
     /**
      * Image resource ID for the song
@@ -34,12 +42,47 @@ public class Song {
      * @param songName      is the song from the album
      * @param audioLink     is the resource link for the audio file associated with song.
      */
-    public Song(String nameOfTheBand, String songName, int imageResourceId, String audioLink) {
+    public Song(String nameOfTheBand, String album, String songName, int imageResourceId, String audioLink) {
         this.songName = songName;
         this.nameOfTheBand = nameOfTheBand;
+        this.album = album;
         this.audioLink = audioLink;
         this.imageResourceID = imageResourceId;
     }
+
+    protected Song(Parcel in) {
+        nameOfTheBand = in.readString();
+        album = in.readString();
+        songName = in.readString();
+        imageResourceID = in.readInt();
+        audioLink = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nameOfTheBand);
+        dest.writeString(album);
+        dest.writeString(songName);
+        dest.writeInt(imageResourceID);
+        dest.writeString(audioLink);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
 
     /**
      * Get the song's name from the album.
@@ -53,6 +96,13 @@ public class Song {
      */
     public String getNameOfTheBand() {
         return nameOfTheBand;
+    }
+
+    /**
+     * Get the name of the album.
+     */
+    public String getAlbum() {
+        return album;
     }
 
     /**

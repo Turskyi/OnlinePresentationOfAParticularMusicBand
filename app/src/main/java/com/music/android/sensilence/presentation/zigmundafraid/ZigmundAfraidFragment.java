@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.Song;
+import com.music.android.sensilence.domain.pojo.Song;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
@@ -109,6 +109,7 @@ public class ZigmundAfraidFragment extends Fragment {
         // fill up the album with a list of songs
         Song song = new Song(
                 getString(R.string.band_zigmund_afraid),
+                getString(R.string.band_zigmund_afraid),
                 getString(R.string.song_name_abroad),
                 R.drawable.ic_za,
                 getString(R.string.audio_abroad)
@@ -117,6 +118,7 @@ public class ZigmundAfraidFragment extends Fragment {
         songs.add(
                 new Song(
                         getString(R.string.band_zigmund_afraid),
+                        getString(R.string.band_zigmund_afraid),
                         getString(R.string.song_name_abroad_rmx),
                         R.drawable.vt_dnb120,
                         getString(R.string.audio_abroad_rmx)
@@ -124,6 +126,7 @@ public class ZigmundAfraidFragment extends Fragment {
         );
         songs.add(
                 new Song(
+                        getString(R.string.band_zigmund_afraid),
                         getString(R.string.band_zigmund_afraid),
                         getString(R.string.song_name_pleasure_was_mine),
                         R.drawable.pwm,
