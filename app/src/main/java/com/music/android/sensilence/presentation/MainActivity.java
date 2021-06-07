@@ -10,6 +10,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.presentation.common.adapters.MusicBandPageAdapter;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     @Override

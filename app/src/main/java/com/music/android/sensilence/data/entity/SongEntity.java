@@ -2,7 +2,10 @@ package com.music.android.sensilence.data.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.music.android.sensilence.domain.pojo.Song;
 
 /**
  * {@link SongEntity} represents an album song that the user wants to listen.
@@ -43,15 +46,12 @@ public class SongEntity {
     @ColumnInfo(name = COLUMN_AUDIO_LINK)
     private String audioLink;
 
-    public SongEntity(){
-    }
-
     /**
      * Create a new Song object.
      *
-     * @param bandName is the name of the band
-     * @param songName      is the song from the album
-     * @param audioLink     is the resource link for the audio file associated with song.
+     * @param bandName  is the name of the band
+     * @param songName  is the song from the album
+     * @param audioLink is the resource link for the audio file associated with song.
      */
     public SongEntity(
             String bandName,
@@ -66,7 +66,7 @@ public class SongEntity {
         this.audioLink = audioLink;
         this.imageResourceId = imageResourceId;
     }
-
+    @Ignore
     public SongEntity(
             int id,
             String bandName,
@@ -147,10 +147,20 @@ public class SongEntity {
     }
 
     public static final String TABLE_SONGS = "table_songs";
-    static final String COLUMN_ID = "id";
-    static final String COLUMN_BAND = "band";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_BAND = "band";
     public static final String COLUMN_ALBUM = "album";
-    static final String COLUMN_NAME = "name";
-    static final String COLUMN_IMAGE_RES_ID = "image_resource_id";
-    static final String COLUMN_AUDIO_LINK = "audio_link";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_IMAGE_RES_ID = "image_resource_id";
+    public static final String COLUMN_AUDIO_LINK = "audio_link";
+
+    public Song mapToDomain() {
+        return new Song(
+                this.bandName,
+                this.album,
+                this.songName,
+                this.imageResourceId,
+                this.audioLink
+        );
+    }
 }

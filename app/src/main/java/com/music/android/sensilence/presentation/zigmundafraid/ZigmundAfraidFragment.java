@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +16,29 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+@AndroidEntryPoint
 public class ZigmundAfraidFragment extends Fragment {
     public ZigmundAfraidFragment() {
         // Required empty public constructor
     }
+
+    private ZigmundAfraidViewModel viewModel;
 
     private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
@@ -41,7 +50,7 @@ public class ZigmundAfraidFragment extends Fragment {
     private AudioManager audioManager;
 
     // Create an array of songs
-    final ArrayList<Song> songs = new ArrayList<>();
+    private final ArrayList<Song> songs = new ArrayList<>();
 
     private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
@@ -96,9 +105,25 @@ public class ZigmundAfraidFragment extends Fragment {
             };
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState
+    ) {
         View rootView = inflater.inflate(R.layout.activity_song_list, container, false);
+        viewModel = new ViewModelProvider(this).get(ZigmundAfraidViewModel.class);
+        // Create the observer which updates the UI.
+        final Observer<List<Song>> songsObserver = albumSongs -> {
+            // Update the UI
+            if (albumSongs != null) {
+                Log.d("===>>>", String.valueOf(albumSongs.size()));
+            } else {
+                Log.d("===>>>", "albumSongs is null");
+            }
+
+        };
+        viewModel.getSongs().observe(getViewLifecycleOwner(), songsObserver);
+
         musicPlayerActivity = new MusicPlayerActivity();
 
         //Create and setup the {@link AudioManager} to request audio focus
@@ -140,6 +165,12 @@ public class ZigmundAfraidFragment extends Fragment {
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.getSongsFromAlbum(getString(R.string.band_zigmund_afraid));
     }
 
     private void setBackground(View rootView) {

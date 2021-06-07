@@ -18,7 +18,7 @@ import static com.music.android.sensilence.data.entity.SongEntity.TABLE_SONGS;
 public interface SongDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSong(SongEntity item);
+    void insert(SongEntity item);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllSongs(List<SongEntity> songs);
