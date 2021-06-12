@@ -24,7 +24,7 @@ public abstract class SongsDatabase extends RoomDatabase {
 
     public static class Callback extends RoomDatabase.Callback {
 
-        private Context applicationContext;
+        private final Context applicationContext;
 
         @Inject
         Callback(@ApplicationContext Context context) {
