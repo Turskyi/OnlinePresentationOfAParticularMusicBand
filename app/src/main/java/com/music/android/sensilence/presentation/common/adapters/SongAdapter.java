@@ -12,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.pojo.Song;
-
-import java.util.ArrayList;
+import com.music.android.sensilence.domain.entities.pojo.Song;
 
 public class SongAdapter extends ArrayAdapter<Song> {
     /**
@@ -22,12 +20,12 @@ public class SongAdapter extends ArrayAdapter<Song> {
      */
     private final int colorResourceId;
 
-    public SongAdapter(Activity context, ArrayList<Song> songs, int colorResourceId) {
+    public SongAdapter(Activity context, int colorResourceId) {
         /* Here, we initialize the ArrayAdapter's internal storage for the context and the list.
          * The second argument is used when the ArrayAdapter is populating a single TextView.
          * Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
          * going to use this second argument, so it can be any value. Here, we used "0". */
-        super(context, 0, songs);
+        super(context, 0);
         this.colorResourceId = colorResourceId;
     }
 

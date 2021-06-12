@@ -1,4 +1,4 @@
-package com.music.android.sensilence.domain.pojo;
+package com.music.android.sensilence.domain.entities.pojo;
 
 import android.os.Parcel;
 import android.os.Parcelable;

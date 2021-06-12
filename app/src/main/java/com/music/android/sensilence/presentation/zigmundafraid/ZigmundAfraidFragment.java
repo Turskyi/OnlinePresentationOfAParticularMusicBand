@@ -7,20 +7,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.domain.entities.pojo.Song;
 import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
@@ -34,11 +35,10 @@ import dagger.hilt.android.AndroidEntryPoint;
  */
 @AndroidEntryPoint
 public class ZigmundAfraidFragment extends Fragment {
+
     public ZigmundAfraidFragment() {
         // Required empty public constructor
     }
-
-    private ZigmundAfraidViewModel viewModel;
 
     private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
@@ -111,66 +111,50 @@ public class ZigmundAfraidFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         View rootView = inflater.inflate(R.layout.activity_song_list, container, false);
-        viewModel = new ViewModelProvider(this).get(ZigmundAfraidViewModel.class);
-        // Create the observer which updates the UI.
-        final Observer<List<Song>> songsObserver = albumSongs -> {
-            // Update the UI
-            if (albumSongs != null) {
-                Log.d("===>>>", String.valueOf(albumSongs.size()));
-            } else {
-                Log.d("===>>>", "albumSongs is null");
-            }
+        setBackground(rootView);
+        return rootView;
+    }
 
-        };
-        viewModel.getSongs().observe(getViewLifecycleOwner(), songsObserver);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ZigmundAfraidViewModel viewModel = new ViewModelProvider(this).get(ZigmundAfraidViewModel.class);
+        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+         * The adapter knows how to create list items for each item in the list. */
+        SongAdapter adapter = new SongAdapter(getActivity(), R.color.category_zigmund_afraid);
+        listView.setAdapter(adapter);
+
+        initObservers(viewModel, adapter);
+
+        //Set a click listener to play the audio when the list item is clicked on
+        listView.setOnItemClickListener(firstClickListener);
 
         musicPlayerActivity = new MusicPlayerActivity();
 
         //Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
-
-        setBackground(rootView);
-
-        // fill up the album with a list of songs
-        Song song = new Song(
-                getString(R.string.band_zigmund_afraid),
-                getString(R.string.band_zigmund_afraid),
-                getString(R.string.song_name_abroad),
-                R.drawable.ic_za,
-                getString(R.string.audio_abroad)
-        );
-        songs.add(song);
-        songs.add(
-                new Song(
-                        getString(R.string.band_zigmund_afraid),
-                        getString(R.string.band_zigmund_afraid),
-                        getString(R.string.song_name_abroad_rmx),
-                        R.drawable.vt_dnb120,
-                        getString(R.string.audio_abroad_rmx)
-                )
-        );
-        songs.add(
-                new Song(
-                        getString(R.string.band_zigmund_afraid),
-                        getString(R.string.band_zigmund_afraid),
-                        getString(R.string.song_name_pleasure_was_mine),
-                        R.drawable.pwm,
-                        getString(R.string.audio_pleasure_was_mine)
-                )
-        );
-        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
-         * The adapter knows how to create list items for each item in the list. */
-        SongAdapter adapter = new SongAdapter(getActivity(), songs, R.color.category_zigmund_afraid);
-        listView.setAdapter(adapter);
-        //Set a click listener to play the audio when the list item is clicked on
-        listView.setOnItemClickListener(firstClickListener);
-        return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        viewModel.getSongsFromAlbum(getString(R.string.band_zigmund_afraid));
+    private void initObservers(ZigmundAfraidViewModel viewModel, SongAdapter adapter) {
+        // Create the observer which updates the UI.
+        final Observer<List<Song>> songsObserver = albumSongs -> {
+            // Update the UI
+            if (songs.isEmpty()) {
+                songs.addAll(albumSongs);
+            }
+            adapter.addAll(songs);
+        };
+        viewModel.getSongs().observe(getViewLifecycleOwner(), songsObserver);
+
+        // Create the observer which updates the UI.
+        final Observer<String> errorObserver = error -> Toast.makeText(
+                getContext(),
+                error,
+                Toast.LENGTH_LONG
+        ).show();
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorObserver);
     }
 
     private void setBackground(View rootView) {

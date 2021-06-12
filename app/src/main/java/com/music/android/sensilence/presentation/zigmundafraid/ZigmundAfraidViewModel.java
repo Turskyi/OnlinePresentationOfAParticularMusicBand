@@ -1,12 +1,10 @@
 package com.music.android.sensilence.presentation.zigmundafraid;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
 
-import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.domain.entities.enums.Album;
+import com.music.android.sensilence.domain.entities.pojo.Song;
 import com.music.android.sensilence.domain.usecase.GetSongsUseCase;
 import com.music.android.sensilence.presentation.common.BaseViewModel;
 
@@ -21,30 +19,37 @@ import io.reactivex.disposables.Disposable;
 public class ZigmundAfraidViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Song>> _songs;
+
     public LiveData<List<Song>> getSongs() {
-        if(_songs == null){
+        if (_songs == null) {
             _songs = new MutableLiveData<>();
+            getSongsFromAlbum();
         }
         return _songs;
     }
 
+    private MutableLiveData<String> _errorMessage;
+    public LiveData<String> getErrorMessage() {
+        if (_errorMessage == null) {
+            _errorMessage = new MutableLiveData<>();
+        }
+        return _errorMessage;
+    }
+
     private final GetSongsUseCase useCase;
-    private final SavedStateHandle state;
 
     @Inject
-    ZigmundAfraidViewModel(GetSongsUseCase useCase, SavedStateHandle state) {
+    ZigmundAfraidViewModel(GetSongsUseCase useCase) {
         this.useCase = useCase;
-        this.state = state;
     }
 
-    void getSongsFromAlbum(String album) {
-        Disposable disposable = useCase.getDisposableSongs(album, (List<Song> albumSongs) -> {
-            _songs.postValue(albumSongs);
-        }, (String error) -> {
-            Log.d("===>>>", error);
-        });
+    private void getSongsFromAlbum() {
+        Disposable disposable = useCase.getDisposableSongs(
+                Album.ZIGMUND_AFRAID.name,
+                (List<Song> albumSongs) -> _songs.postValue(albumSongs),
+                (String error) -> _errorMessage.postValue(error)
+        );
         compositeDisposable.add(disposable);
     }
-
 
 }

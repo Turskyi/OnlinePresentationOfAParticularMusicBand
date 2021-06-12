@@ -41,8 +41,12 @@ public abstract class SongsDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             db.query("PRAGMA journal_mode = MEMORY");
+            // fill up albums with a lists of songs
 
-//            insert Zigmund Afraid Songs
+            fillZigmundAfraidAlbum(db);
+        }
+
+        private void fillZigmundAfraidAlbum(SupportSQLiteDatabase db) {
             String zigmundAfraidBandName = applicationContext.getString(R.string.band_zigmund_afraid);
 
             ContentValues abroadContentValues = new ContentValues();

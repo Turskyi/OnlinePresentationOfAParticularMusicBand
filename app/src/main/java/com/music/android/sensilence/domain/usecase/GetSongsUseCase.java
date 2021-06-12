@@ -1,6 +1,6 @@
 package com.music.android.sensilence.domain.usecase;
 
-import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.domain.entities.pojo.Song;
 
 import java.util.List;
 

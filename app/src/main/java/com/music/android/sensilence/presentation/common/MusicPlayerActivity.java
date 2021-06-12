@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.domain.entities.pojo.Song;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -13,9 +13,9 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.R;
-import com.music.android.sensilence.domain.pojo.Song;
+import com.music.android.sensilence.domain.entities.pojo.Song;
+import com.music.android.sensilence.presentation.common.MusicPlayerActivity;
 import com.music.android.sensilence.presentation.common.adapters.SongAdapter;
 
 import java.util.ArrayList;
@@ -124,8 +124,10 @@ public class ZombiActivity extends AppCompatActivity {
         );
         /*  Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
          * The adapter knows how to create list items for each item in the list. */
-        SongAdapter adapter = new SongAdapter(this, songs, R.color.category_zombi);
+        SongAdapter adapter = new SongAdapter(this, R.color.category_zombi);
+
         listView.setAdapter(adapter);
+        adapter.addAll(songs);
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
     }
