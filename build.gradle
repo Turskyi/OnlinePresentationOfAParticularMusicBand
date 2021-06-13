@@ -13,21 +13,6 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
-
-subprojects {
-    afterEvaluate {
-        dependencies{
-        }
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
 ext {
     getParam = { key ->
         def value = System.getenv(key) ?: project.findProperty("env.$key")
@@ -37,6 +22,33 @@ ext {
         return value
     }
     DATABASE_NAME = getParam("DATABASE_SONGS")
+}
+
+subprojects {
+    afterEvaluate {
+        dependencies{
+            // (di) Dagger Hilt
+            annotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
+            annotationProcessor "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
+            implementation "com.google.dagger:hilt-core:$hiltVersion"
+
+            // (Asynchronous programming) RX
+            implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+            implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+
+            // database
+            implementation "androidx.room:room-runtime:$roomVersion"
+            annotationProcessor "androidx.room:room-compiler:$roomVersion"
+            implementation "androidx.room:room-rxjava2:$roomVersion"
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
 task clean(type: Delete) {

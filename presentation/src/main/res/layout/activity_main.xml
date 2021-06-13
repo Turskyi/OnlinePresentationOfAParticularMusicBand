@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="com.music.android.sensilence.presentation.MainActivity">
+    tools:context="com.music.android.sensilence.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"

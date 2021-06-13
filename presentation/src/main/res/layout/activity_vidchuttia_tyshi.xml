@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/tan_background"
     android:orientation="vertical"
-    tools:context="com.music.android.sensilence.presentation.MainActivity">
+    tools:context="com.music.android.sensilence.MainActivity">
     <!-- "sense.of.silence" album -->
     <FrameLayout
         android:layout_width="match_parent"
