@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.music.android.sensilence.common.adapters.MusicBandPageAdapter;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.github.turskyi.domain.entities.enums.Band;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.view_pager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        MusicBandPageAdapter adapter = new MusicBandPageAdapter(getSupportFragmentManager(), getLifecycle());
+        MusicBandPageAdapter adapter = new MusicBandPageAdapter(
+                getSupportFragmentManager(),
+                getLifecycle()
+        );
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
@@ -38,13 +42,11 @@ public class MainActivity extends AppCompatActivity {
           1. Update the tab layout when the view pager is swiped
           2. Update the view pager when a tab is selected
           3. Set the tab layout's tab names with the view pager's adapter's titles */
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            if (position == 0) {
-                tab.setText(getString(R.string.band_sense_of_silence));
-            } else {
-                tab.setText(getString(R.string.band_zigmund_afraid));
-            }
-        }).attach();
+        new TabLayoutMediator(
+                tabLayout,
+                viewPager,
+                (tab, position) -> tab.setText(Band.values()[position].name)
+        ).attach();
     }
 }
 
