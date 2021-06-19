@@ -48,7 +48,7 @@
             android:theme="@style/CategoryTheme">
         </activity>
         <activity
-            android:name=".vidchuttiatyshi.sensofsilence.SenseOfSilenceActivity"
+            android:name=".vidchuttiatyshi.sensofsilencelp.SenseOfSilenceLpActivity"
             android:label="@string/band_sense_of_silence"
             android:parentActivityName="com.music.android.sensilence.MainActivity"
             android:theme="@style/CategoryTheme">

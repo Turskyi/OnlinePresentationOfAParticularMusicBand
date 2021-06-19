@@ -1,4 +1,4 @@
-package com.music.android.sensilence.zigmundafraid;
+package com.music.android.sensilence.vidchuttiatyshi.sensofsilencelp;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,16 +7,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -30,12 +27,8 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.pojo.Song;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 @AndroidEntryPoint
-public class ZigmundAfraidFragment extends Fragment {
-
+public class SenseOfSilenceLpActivity extends AppCompatActivity {
     private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
     protected MediaPlayer mediaPlayer;
@@ -45,7 +38,7 @@ public class ZigmundAfraidFragment extends Fragment {
      */
     private AudioManager audioManager;
 
-    // Create an empty array of songs
+    // Create an array of songs
     private final ArrayList<Song> songs = new ArrayList<>();
 
     private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
@@ -68,7 +61,6 @@ public class ZigmundAfraidFragment extends Fragment {
                 }
             };
 
-
     private final AdapterView.OnItemClickListener firstClickListener =
             new AdapterView.OnItemClickListener() {
                 @Override
@@ -87,7 +79,7 @@ public class ZigmundAfraidFragment extends Fragment {
                             listView,
                             songs,
                             audioManager,
-                            getActivity()
+                            SenseOfSilenceLpActivity.this
                     );
                 }
             };
@@ -101,26 +93,12 @@ public class ZigmundAfraidFragment extends Fragment {
             };
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        View rootView = inflater.inflate(R.layout.activity_song_list, container, false);
-        setBackground(rootView);
-        return rootView;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SenseOfSilenceLpViewModel viewModel = new ViewModelProvider(this)
+                .get(SenseOfSilenceLpViewModel.class);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ZigmundAfraidViewModel viewModel = new ViewModelProvider(this)
-                .get(ZigmundAfraidViewModel.class);
-
-        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
-         * The adapter knows how to create list items for each item in the list. */
-        SongAdapter adapter = new SongAdapter(getActivity(), R.color.category_zigmund_afraid);
-        listView.setAdapter(adapter);
+        SongAdapter adapter = initView();
 
         initObservers(viewModel, adapter);
 
@@ -128,12 +106,25 @@ public class ZigmundAfraidFragment extends Fragment {
         listView.setOnItemClickListener(firstClickListener);
 
         musicPlayerActivity = new MusicPlayerActivity();
-
-        //Create and setup the {@link AudioManager} to request audio focus
-        audioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
+        // Create and setup the {@link AudioManager} to request audio focus
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
 
-    private void initObservers(ZigmundAfraidViewModel viewModel, SongAdapter adapter) {
+    @org.jetbrains.annotations.NotNull
+    private SongAdapter initView() {
+        setContentView(R.layout.activity_song_list);
+
+        setBackground();
+
+        /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+         * The adapter knows how to create list items for each item in the list. */
+        SongAdapter adapter = new SongAdapter(this, R.color.album_crime_color);
+
+        listView.setAdapter(adapter);
+        return adapter;
+    }
+
+    private void initObservers(SenseOfSilenceLpViewModel viewModel, SongAdapter adapter) {
         // Create the observer which updates the UI.
         final Observer<List<Song>> songsObserver = albumSongs -> {
             // Update the UI
@@ -142,24 +133,24 @@ public class ZigmundAfraidFragment extends Fragment {
             }
             adapter.addAll(songs);
         };
-        viewModel.getSongs().observe(getViewLifecycleOwner(), songsObserver);
+        viewModel.getSongs().observe(this, songsObserver);
 
         // Create the observer which updates the UI.
         final Observer<String> errorObserver = error -> Toast.makeText(
-                getContext(),
+                this,
                 error,
                 Toast.LENGTH_LONG
         ).show();
 
         // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorObserver);
+        viewModel.getErrorMessage().observe(this, errorObserver);
     }
 
-    private void setBackground(View rootView) {
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.zigmund_afraid_cover);
+    private void setBackground() {
+        listView = findViewById(R.id.list_view);
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_white);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        bitmapDrawable.setAlpha(100);
-        listView = rootView.findViewById(R.id.list_view);
+        bitmapDrawable.setGravity(Gravity.NO_GRAVITY);
         listView.setBackground(bitmapDrawable);
     }
 }

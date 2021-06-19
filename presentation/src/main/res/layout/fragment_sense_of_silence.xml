@@ -81,7 +81,7 @@
             android:src="@drawable/zombi_cover" />
 
         <TextView
-            android:id="@+id/zombi"
+            android:id="@+id/tv_zombi"
             style="@style/AlbumStyle"
             android:layout_gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground"

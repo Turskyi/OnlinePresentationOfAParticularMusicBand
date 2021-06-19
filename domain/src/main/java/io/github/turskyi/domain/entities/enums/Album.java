@@ -1,8 +1,10 @@
 package io.github.turskyi.domain.entities.enums;
 
 public enum Album {
-    ZIGMUND_AFRAID("Zigmund Afraid"),
-    SENSE_OF_SILENCE("Відчуття.Тиші LP");
+    SENSE_OF_SILENCE_LP("Відчуття.Тиші LP"),
+    CRIME("Злочин"),
+    ZOMBI("Зомбі"),
+    ZIGMUND_AFRAID("Zigmund Afraid");
 
     public final String name;
 

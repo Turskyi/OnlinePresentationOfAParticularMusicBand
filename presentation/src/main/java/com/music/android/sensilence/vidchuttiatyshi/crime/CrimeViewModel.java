@@ -1,4 +1,4 @@
-package com.music.android.sensilence.zigmundafraid;
+package com.music.android.sensilence.vidchuttiatyshi.crime;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,7 +15,7 @@ import io.github.turskyi.domain.entities.pojo.Song;
 import io.github.turskyi.domain.usecase.GetSongsUseCase;
 
 @HiltViewModel
-public class ZigmundAfraidViewModel extends BaseViewModel {
+public class CrimeViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Song>> _songs;
 
@@ -39,13 +39,13 @@ public class ZigmundAfraidViewModel extends BaseViewModel {
     private final GetSongsUseCase useCase;
 
     @Inject
-    ZigmundAfraidViewModel(GetSongsUseCase useCase) {
+    CrimeViewModel(GetSongsUseCase useCase) {
         this.useCase = useCase;
     }
 
     private void getSongsFromAlbum() {
         io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
-                Album.ZIGMUND_AFRAID.name,
+                Album.CRIME.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(String.valueOf(error))
         );

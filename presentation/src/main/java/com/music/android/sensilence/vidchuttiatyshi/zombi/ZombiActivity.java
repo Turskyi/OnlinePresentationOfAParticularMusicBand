@@ -10,16 +10,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.music.android.sensilence.R;
-import io.github.turskyi.domain.entities.pojo.Song;
 import com.music.android.sensilence.common.MusicPlayerActivity;
 import com.music.android.sensilence.common.adapters.SongAdapter;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import dagger.hilt.android.AndroidEntryPoint;
+import io.github.turskyi.domain.entities.pojo.Song;
+
+@AndroidEntryPoint
 public class ZombiActivity extends AppCompatActivity {
     private MusicPlayerActivity musicPlayerActivity;
     private ListView listView;
@@ -87,49 +96,55 @@ public class ZombiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_list);
+        ZombiViewModel viewModel = new ViewModelProvider(this)
+                .get(ZombiViewModel.class);
+
+        SongAdapter adapter = initView();
+
+        initObservers(viewModel, adapter);
+
+        //Set a click listener to play the audio when the list item is clicked on
+        listView.setOnItemClickListener(firstClickListener);
+
         //Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         musicPlayerActivity = new MusicPlayerActivity();
+    }
+
+    @NotNull
+    private SongAdapter initView() {
+        setContentView(R.layout.activity_song_list);
 
         setBackground();
 
-        // fill up an album with a list of songs
-        songs.add(
-                new Song(
-                        getString(R.string.band_sense_of_silence),
-                        getString(R.string.album_zombi),
-                        getString(R.string.song_name_zombi),
-                        R.drawable.zombi,
-                        getString(R.string.audio_zombi)
-                )
-        );
-        songs.add(
-                new Song(
-                        getString(R.string.band_sense_of_silence),
-                        getString(R.string.album_zombi),
-                        getString(R.string.song_name_zombi_dubstep),
-                        R.drawable.vt_dnb120,
-                        getString(R.string.audio_zombi_dubstep)
-                )
-        );
-        songs.add(
-                new Song(
-                        getString(R.string.band_sense_of_silence),
-                        getString(R.string.album_zombi),
-                        getString(R.string.song_name_japanese_zombie),
-                        R.drawable.zombi,
-                        getString(R.string.audio_japanese_zombie)
-                )
-        );
         /*  Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
          * The adapter knows how to create list items for each item in the list. */
         SongAdapter adapter = new SongAdapter(this, R.color.category_zombi);
 
         listView.setAdapter(adapter);
-        adapter.addAll(songs);
-        //Set a click listener to play the audio when the list item is clicked on
-        listView.setOnItemClickListener(firstClickListener);
+        return adapter;
+    }
+
+    private void initObservers(ZombiViewModel viewModel, SongAdapter adapter) {
+        // Create the observer which updates the UI.
+        final Observer<List<Song>> songsObserver = albumSongs -> {
+            // Update the UI
+            if (songs.isEmpty()) {
+                songs.addAll(albumSongs);
+            }
+            adapter.addAll(songs);
+        };
+        viewModel.getSongs().observe(this, songsObserver);
+
+        // Create the observer which updates the UI.
+        final Observer<String> errorObserver = error -> Toast.makeText(
+                this,
+                error,
+                Toast.LENGTH_LONG
+        ).show();
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        viewModel.getErrorMessage().observe(this, errorObserver);
     }
 
     private void setBackground() {
