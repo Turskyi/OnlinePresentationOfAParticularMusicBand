@@ -4,7 +4,7 @@ package io.github.turskyi.domain.entities.pojo;
  * {@link Song} represents an album song that the user wants to listen.
  * It contains a Name of the song from the album and a  song from that album.
  */
-public class Song{
+public class Song {
     /**
      * Name of the music band
      */
@@ -39,7 +39,12 @@ public class Song{
      * @param songName      is the song from the album
      * @param audioLink     is the resource link for the audio file associated with song.
      */
-    public Song(String nameOfTheBand, String album, String songName, int imageResourceId, String audioLink) {
+    public Song(String nameOfTheBand,
+                String album,
+                String songName,
+                int imageResourceId,
+                String audioLink
+    ) {
         this.songName = songName;
         this.nameOfTheBand = nameOfTheBand;
         this.album = album;

@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.compile_sdk_version
     defaultConfig {
         applicationId "com.music.android.sensilence"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 12
-        versionName "1.0.2"
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode rootProject.version_code
+        versionName rootProject.version_name
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -34,13 +34,14 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     /* Allowing app to build and read multiple DEX files.
- Avoids an error that indicates that the app has reached
- the limit of the Android build architecture. */
+     * Avoids an error that indicates that the app has reached
+     * the limit of the Android build architecture. */
     implementation "androidx.multidex:multidex:$multidexVersion"
 
     implementation "com.google.dagger:hilt-android:$hiltVersion"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // test
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }

@@ -1,12 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        // sdk versions
+        compile_sdk_version = 30
+        build_tools_version = "30.0.3"
+        min_sdk_version = 21
+        target_sdk_version = 30
+        version_code = 12
+        version_name = "1.0.2"
+    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath "com.android.tools.build:gradle:$build_gradle_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -22,21 +31,22 @@ ext {
         return value
     }
     DATABASE_NAME = getParam("DATABASE_SONGS")
+
 }
 
 subprojects {
     afterEvaluate {
         dependencies{
-            // (di) Dagger Hilt
+            // dependency injection (Dagger Hilt)
             annotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
             annotationProcessor "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
             implementation "com.google.dagger:hilt-core:$hiltVersion"
 
-            // (Asynchronous programming) RX
+            // Asynchronous programming (Reactive Extensions)
             implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-            implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+            implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 
-            // database
+            // database (Room)
             implementation "androidx.room:room-runtime:$roomVersion"
             annotationProcessor "androidx.room:room-compiler:$roomVersion"
             implementation "androidx.room:room-rxjava2:$roomVersion"
