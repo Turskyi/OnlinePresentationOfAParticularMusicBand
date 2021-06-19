@@ -2,7 +2,8 @@ package com.music.android.sensilence.common;
 
 import androidx.lifecycle.ViewModel;
 
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 
 public abstract class BaseViewModel extends ViewModel {
 

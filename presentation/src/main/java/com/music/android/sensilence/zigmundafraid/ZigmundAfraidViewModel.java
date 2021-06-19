@@ -3,9 +3,6 @@ package com.music.android.sensilence.zigmundafraid;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import io.github.turskyi.domain.entities.enums.Album;
-import io.github.turskyi.domain.entities.pojo.Song;
-import io.github.turskyi.domain.usecase.GetSongsUseCase;
 import com.music.android.sensilence.common.BaseViewModel;
 
 import java.util.List;
@@ -13,7 +10,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
-import io.reactivex.disposables.Disposable;
+import io.github.turskyi.domain.entities.enums.Album;
+import io.github.turskyi.domain.entities.pojo.Song;
+import io.github.turskyi.domain.usecase.GetSongsUseCase;
 
 @HiltViewModel
 public class ZigmundAfraidViewModel extends BaseViewModel {
@@ -45,7 +44,7 @@ public class ZigmundAfraidViewModel extends BaseViewModel {
     }
 
     private void getSongsFromAlbum() {
-        Disposable disposable = useCase.getDisposableSongs(
+        io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
                 Album.ZIGMUND_AFRAID.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(error)

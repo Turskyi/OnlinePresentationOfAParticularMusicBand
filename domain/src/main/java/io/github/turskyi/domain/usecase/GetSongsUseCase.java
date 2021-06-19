@@ -3,14 +3,12 @@ package io.github.turskyi.domain.usecase;
 import java.util.List;
 
 import io.github.turskyi.domain.entities.pojo.Song;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public interface GetSongsUseCase {
 
-    Disposable getDisposableSongs(
+    io.reactivex.rxjava3.disposables.Disposable getDisposableSongs(
             String album,
-            Consumer<List<Song>> successConsumer,
-            Consumer<String> errorConsumer
+            io.reactivex.rxjava3.functions.Consumer<List<Song>> successConsumer,
+            io.reactivex.rxjava3.functions.Consumer<String> errorConsumer
     );
 }

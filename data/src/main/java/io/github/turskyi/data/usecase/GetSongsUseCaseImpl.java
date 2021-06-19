@@ -7,18 +7,15 @@ import javax.inject.Inject;
 import io.github.turskyi.domain.entities.pojo.Song;
 import io.github.turskyi.domain.repository.SongsRepository;
 import io.github.turskyi.domain.usecase.GetSongsUseCase;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class GetSongsUseCaseImpl implements GetSongsUseCase {
     private final SongsRepository repository;
 
-    private final Scheduler subscribeOnScheduler;
+    private final io.reactivex.rxjava3.core.Scheduler subscribeOnScheduler;
 
-    private final Scheduler observeOnScheduler;
+    private final io.reactivex.rxjava3.core.Scheduler observeOnScheduler;
 
     @Inject
     GetSongsUseCaseImpl(SongsRepository repository) {
@@ -28,10 +25,11 @@ public class GetSongsUseCaseImpl implements GetSongsUseCase {
     }
 
     @Override
-    public Disposable getDisposableSongs(
+    public io.reactivex.rxjava3.disposables.Disposable getDisposableSongs(
             String album,
-            Consumer<List<Song>> successConsumer,
-            Consumer<String> errorConsumer
+
+            io.reactivex.rxjava3.functions.Consumer<List<Song>> successConsumer,
+            io.reactivex.rxjava3.functions.Consumer<String> errorConsumer
     ) {
 
         return repository

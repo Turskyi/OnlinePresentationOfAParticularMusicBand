@@ -43,8 +43,9 @@ subprojects {
             implementation "com.google.dagger:hilt-core:$hiltVersion"
 
             // Asynchronous programming (Reactive Extensions)
-            implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-            implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+            implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+            implementation "com.github.akarnokd:rxjava3-bridge:$rxAndroidVersion"
+            implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
 
             // database (Room)
             implementation "androidx.room:room-runtime:$roomVersion"
