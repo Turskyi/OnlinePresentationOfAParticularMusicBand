@@ -8,6 +8,10 @@ import androidx.lifecycle.Lifecycle;
 import com.music.android.sensilence.vidchuttiatyshi.VidchuttiaTyshiFragment;
 import com.music.android.sensilence.zigmundafraid.ZigmundAfraidFragment;
 
+import java.util.Arrays;
+
+import io.github.turskyi.domain.entities.enums.Band;
+
 /**
  * {@link MusicBandPageAdapter} is a {@link androidx.viewpager2.adapter.FragmentStateAdapter} that can provide the layout for
  * each list item based on a data source which is a list of { Song} objects.
@@ -30,7 +34,7 @@ public class MusicBandPageAdapter extends androidx.viewpager2.adapter.FragmentSt
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 0) {
+        if (position == Arrays.asList(Band.values()).indexOf(Band.SENSE_OF_SILENCE)) {
             return new VidchuttiaTyshiFragment();
         } else {
             return new ZigmundAfraidFragment();
@@ -42,7 +46,7 @@ public class MusicBandPageAdapter extends androidx.viewpager2.adapter.FragmentSt
      */
     @Override
     public int getItemCount() {
-        return 2;
+        return Band.values().length;
     }
 }
 

@@ -18,10 +18,6 @@ import com.music.android.sensilence.vidchuttiatyshi.zombi.ZombiActivity;
 
 public class VidchuttiaTyshiFragment extends Fragment {
 
-    public VidchuttiaTyshiFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
