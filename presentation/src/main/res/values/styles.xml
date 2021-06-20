@@ -1,21 +1,20 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="actionBarStyle">@style/SensilenceAppBarStyle</item>
+        <item name="actionBarStyle">@style/SenseOfSilenceAppBarStyle</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!-- App bar style -->
-    <style name="SensilenceAppBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SenseOfSilenceAppBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Remove the shadow below the app bar -->
         <item name="elevation">0dp</item>
     </style>
 
-    <!-- Style for a category of album songs -->
+    <!-- Style for album songs -->
     <style name="AlbumStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -27,7 +26,7 @@
     </style>
 
     <!-- Style for a tab that displays a category name -->
-    <style name="CategoryTab" parent="Widget.Design.TabLayout">
+    <style name="BandTabStyle" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@android:color/white</item>
         <item name="tabSelectedTextColor">@android:color/white</item>
         <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
@@ -38,8 +37,7 @@
         <item name="android:textColor">#A8A19E</item>
     </style>
 
-    <style name="CategoryTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="SenseOfSilenceTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

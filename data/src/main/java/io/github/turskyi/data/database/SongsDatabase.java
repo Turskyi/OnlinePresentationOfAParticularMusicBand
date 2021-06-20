@@ -45,111 +45,13 @@ public abstract class SongsDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             db.query("PRAGMA journal_mode = MEMORY");
-            int senseOfSilenceSize = fillSenseOfSilenceLpAlbum(db);
-            int crimeSize = fillCrimeAlbum(db, senseOfSilenceSize);
-            int zombiSize = fillZombiAlbum(db, crimeSize);
-            fillZigmundAfraidAlbum(db, zombiSize);
+            fillSenseOfSilenceLpAlbum(db);
+            fillZombiAlbum(db);
+            fillCrimeAlbum(db);
+            fillZigmundAfraidAlbum(db);
         }
 
-        private void fillZigmundAfraidAlbum(SupportSQLiteDatabase db, int zombiSize) {
-            List<String> zigmundAfraidNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_abroad),
-                    applicationContext.getString(R.string.song_name_abroad_rmx),
-                    applicationContext.getString(R.string.song_name_pleasure_was_mine)
-            );
-
-            List<Integer> zigmundAfraidImageResources = Arrays.asList(
-                    R.drawable.ic_za,
-                    R.drawable.vt_dnb120,
-                    R.drawable.pwm
-            );
-
-            List<String> zigmundAfraidLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_abroad),
-                    applicationContext.getString(R.string.audio_abroad_rmx),
-                    applicationContext.getString(R.string.audio_pleasure_was_mine)
-            );
-
-            fillAlbum(
-                    db,
-                    applicationContext.getString(R.string.band_zigmund_afraid),
-                    Album.ZIGMUND_AFRAID.name,
-                    zigmundAfraidNames,
-                    zigmundAfraidImageResources,
-                    zigmundAfraidLinks,
-                    zombiSize
-            );
-        }
-
-
-        private int fillZombiAlbum(SupportSQLiteDatabase db, int crimeSize) {
-            List<String> zombiNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_zombi),
-                    applicationContext.getString(R.string.song_name_zombi_dubstep),
-                    applicationContext.getString(R.string.song_name_japanese_zombie)
-            );
-
-            List<Integer> zombiImageResources = new ArrayList<>(Collections.nCopies(
-                    zombiNames.size(),
-                    R.drawable.zombi
-            ));
-
-            List<String> zombiLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_zombi),
-                    applicationContext.getString(R.string.audio_zombi_dubstep),
-                    applicationContext.getString(R.string.audio_japanese_zombie)
-            );
-
-            fillAlbum(
-                    db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
-                    Album.ZOMBI.name,
-                    zombiNames,
-                    zombiImageResources,
-                    zombiLinks,
-                    crimeSize
-            );
-            return zombiNames.size();
-        }
-
-        private int fillCrimeAlbum(SupportSQLiteDatabase db, int startIndex) {
-            List<String> crimeNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_to_astarta),
-                    applicationContext.getString(R.string.song_name_angelscream),
-                    applicationContext.getString(R.string.song_name_zombi_album),
-                    applicationContext.getString(R.string.song_name_did_not_want),
-                    applicationContext.getString(R.string.song_name_crime),
-                    applicationContext.getString(R.string.song_name_noli_respicere_rmx)
-            );
-
-            List<Integer> crimeImageResources = new ArrayList<>(Collections.nCopies(
-                    crimeNames.size() - 1,
-                    R.drawable.pic_crime_cover
-            ));
-            crimeImageResources.add(R.drawable.vt_dnb120);
-
-            List<String> crimeLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_to_astarta),
-                    applicationContext.getString(R.string.audio_angelscream),
-                    applicationContext.getString(R.string.audio_zombi_album_version),
-                    applicationContext.getString(R.string.audio_did_not_want),
-                    applicationContext.getString(R.string.audio_crime),
-                    applicationContext.getString(R.string.audio_noli_respicere_rmx)
-            );
-
-            fillAlbum(
-                    db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
-                    Album.CRIME.name,
-                    crimeNames,
-                    crimeImageResources,
-                    crimeLinks,
-                    startIndex
-            );
-            return crimeNames.size();
-        }
-
-        private int fillSenseOfSilenceLpAlbum(SupportSQLiteDatabase db) {
+        private void fillSenseOfSilenceLpAlbum(SupportSQLiteDatabase db) {
             List<String> senseOfSilenceNames = Arrays.asList(
                     applicationContext.getString(R.string.song_name_winter),
                     applicationContext.getString(R.string.song_name_noli_respicere),
@@ -193,10 +95,100 @@ public abstract class SongsDatabase extends RoomDatabase {
                     Album.SENSE_OF_SILENCE_LP.name,
                     senseOfSilenceNames,
                     senseOfSilenceImageResources,
-                    senseOfSilenceLinks,
-                    0
+                    senseOfSilenceLinks
             );
-            return senseOfSilenceNames.size();
+        }
+
+        private void fillZombiAlbum(SupportSQLiteDatabase db) {
+            List<String> zombiNames = Arrays.asList(
+                    applicationContext.getString(R.string.song_name_zombi),
+                    applicationContext.getString(R.string.song_name_zombi_dubstep),
+                    applicationContext.getString(R.string.song_name_japanese_zombie)
+            );
+
+            List<Integer> zombiImageResources = new ArrayList<>(Collections.nCopies(
+                    zombiNames.size(),
+                    R.drawable.zombi
+            ));
+
+            List<String> zombiLinks = Arrays.asList(
+                    applicationContext.getString(R.string.audio_zombi),
+                    applicationContext.getString(R.string.audio_zombi_dubstep),
+                    applicationContext.getString(R.string.audio_japanese_zombie)
+            );
+
+            fillAlbum(
+                    db,
+                    applicationContext.getString(R.string.band_sense_of_silence),
+                    Album.ZOMBI.name,
+                    zombiNames,
+                    zombiImageResources,
+                    zombiLinks
+            );
+        }
+
+        private void fillCrimeAlbum(SupportSQLiteDatabase db) {
+            List<String> crimeNames = Arrays.asList(
+                    applicationContext.getString(R.string.song_name_to_astarta),
+                    applicationContext.getString(R.string.song_name_angelscream),
+                    applicationContext.getString(R.string.song_name_zombi_album),
+                    applicationContext.getString(R.string.song_name_did_not_want),
+                    applicationContext.getString(R.string.song_name_crime),
+                    applicationContext.getString(R.string.song_name_noli_respicere_rmx)
+            );
+
+            List<Integer> crimeImageResources = new ArrayList<>(Collections.nCopies(
+                    crimeNames.size() - 1,
+                    R.drawable.pic_crime_cover
+            ));
+            crimeImageResources.add(R.drawable.vt_dnb120);
+
+            List<String> crimeLinks = Arrays.asList(
+                    applicationContext.getString(R.string.audio_to_astarta),
+                    applicationContext.getString(R.string.audio_angelscream),
+                    applicationContext.getString(R.string.audio_zombi_album_version),
+                    applicationContext.getString(R.string.audio_did_not_want),
+                    applicationContext.getString(R.string.audio_crime),
+                    applicationContext.getString(R.string.audio_noli_respicere_rmx)
+            );
+
+            fillAlbum(
+                    db,
+                    applicationContext.getString(R.string.band_sense_of_silence),
+                    Album.CRIME.name,
+                    crimeNames,
+                    crimeImageResources,
+                    crimeLinks
+            );
+        }
+
+        private void fillZigmundAfraidAlbum(SupportSQLiteDatabase db) {
+            List<String> zigmundAfraidNames = Arrays.asList(
+                    applicationContext.getString(R.string.song_name_abroad),
+                    applicationContext.getString(R.string.song_name_abroad_rmx),
+                    applicationContext.getString(R.string.song_name_pleasure_was_mine)
+            );
+
+            List<Integer> zigmundAfraidImageResources = Arrays.asList(
+                    R.drawable.ic_za,
+                    R.drawable.vt_dnb120,
+                    R.drawable.pwm
+            );
+
+            List<String> zigmundAfraidLinks = Arrays.asList(
+                    applicationContext.getString(R.string.audio_abroad),
+                    applicationContext.getString(R.string.audio_abroad_rmx),
+                    applicationContext.getString(R.string.audio_pleasure_was_mine)
+            );
+
+            fillAlbum(
+                    db,
+                    applicationContext.getString(R.string.band_zigmund_afraid),
+                    Album.ZIGMUND_AFRAID.name,
+                    zigmundAfraidNames,
+                    zigmundAfraidImageResources,
+                    zigmundAfraidLinks
+            );
         }
 
         private void fillAlbum(
@@ -205,8 +197,7 @@ public abstract class SongsDatabase extends RoomDatabase {
                 String albumName,
                 List<String> names,
                 List<Integer> imageResources,
-                List<String> links,
-                int startIndex
+                List<String> links
         ) {
 
             for (int i = 0; i < names.size(); i++) {

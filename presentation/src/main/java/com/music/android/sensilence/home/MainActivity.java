@@ -1,4 +1,4 @@
-package com.music.android.sensilence;
+package com.music.android.sensilence.home;
 
 import android.os.Bundle;
 
@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.music.android.sensilence.common.adapters.MusicBandPageAdapter;
+import com.music.android.sensilence.R;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Band;

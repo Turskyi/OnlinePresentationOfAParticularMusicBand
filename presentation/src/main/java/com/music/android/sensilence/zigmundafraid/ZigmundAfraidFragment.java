@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.common.MusicPlayerActivity;
-import com.music.android.sensilence.common.adapters.SongAdapter;
+import com.music.android.sensilence.common.SongAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

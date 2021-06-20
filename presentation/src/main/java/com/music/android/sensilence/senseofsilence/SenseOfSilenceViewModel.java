@@ -1,4 +1,4 @@
-package com.music.android.sensilence.vidchuttiatyshi.zombi;
+package com.music.android.sensilence.senseofsilence;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,14 +15,14 @@ import io.github.turskyi.domain.entities.pojo.Song;
 import io.github.turskyi.domain.usecase.GetSongsUseCase;
 
 @HiltViewModel
-public class ZombiViewModel extends BaseViewModel {
+public class SenseOfSilenceViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Song>> _songs;
 
-    public LiveData<List<Song>> getSongs() {
+    public LiveData<List<Song>> getSongs(Album album) {
         if (_songs == null) {
             _songs = new MutableLiveData<>();
-            getSongsFromAlbum();
+            getSongsFromAlbum(album);
         }
         return _songs;
     }
@@ -39,13 +39,13 @@ public class ZombiViewModel extends BaseViewModel {
     private final GetSongsUseCase useCase;
 
     @Inject
-    ZombiViewModel(GetSongsUseCase useCase) {
+    SenseOfSilenceViewModel(GetSongsUseCase useCase) {
         this.useCase = useCase;
     }
 
-    private void getSongsFromAlbum() {
+    private void getSongsFromAlbum(Album album) {
         io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
-                Album.ZOMBI.name,
+                album.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(String.valueOf(error))
         );

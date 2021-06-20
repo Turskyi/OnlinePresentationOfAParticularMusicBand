@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="com.music.android.sensilence.MainActivity">
+    tools:context="com.music.android.sensilence.home.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        style="@style/CategoryTab"
+        style="@style/BandTabStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

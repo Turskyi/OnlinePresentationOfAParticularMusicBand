@@ -1,4 +1,4 @@
-package com.music.android.sensilence.common.adapters;
+package com.music.android.sensilence.common;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

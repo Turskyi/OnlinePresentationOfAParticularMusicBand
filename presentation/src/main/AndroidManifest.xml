@@ -3,7 +3,8 @@
     package="com.music.android.sensilence">
 
     <queries>
-        <!-- Browser query for "intent.resolveActivity(activity.getPackageManager())"-->
+        <!-- Browser query
+        (for "intent.resolveActivity(activity.getPackageManager()) in MusicPlayerActivity" -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />
@@ -14,46 +15,30 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-<!--    TODO: set allowBackup and fullBackupContent to true before release-->
+    <!--    TODO: set allowBackup and fullBackupContent to true before release-->
     <application
         android:name=".App"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
-        android:label= "@string/app_name"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.music.android.sensilence.MainActivity">
+        <activity android:name="com.music.android.sensilence.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".vidchuttiatyshi.zombi.ZombiActivity"
-            android:label="@string/album_zombi"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
-            android:theme="@style/CategoryTheme">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.music.android.sensilence.MainActivity" />
-        </activity>
-        <activity
-            android:name=".vidchuttiatyshi.crime.CrimeActivity"
-            android:label="@string/album_crime"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
-            android:theme="@style/CategoryTheme">
-        </activity>
-        <activity
-            android:name=".vidchuttiatyshi.sensofsilencelp.SenseOfSilenceLpActivity"
+            android:name=".senseofsilence.SenseOfSilenceActivity"
             android:label="@string/band_sense_of_silence"
-            android:parentActivityName="com.music.android.sensilence.MainActivity"
-            android:theme="@style/CategoryTheme">
-        </activity>
-        <activity android:name=".common.MusicPlayerActivity"/>
+            android:parentActivityName="com.music.android.sensilence.home.MainActivity"
+            android:theme="@style/SenseOfSilenceTheme" />
+        <activity android:name=".common.MusicPlayerActivity" />
     </application>
 
 </manifest>
