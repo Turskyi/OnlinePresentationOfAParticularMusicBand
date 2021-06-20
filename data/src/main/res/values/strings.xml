@@ -45,9 +45,15 @@
     <string name="song_name_falling">Падаю</string>
     <string name="song_name_in_the_spring">Навесні</string>
     <string name="song_name_alesia">Алєся (Пєсняри cover)</string>
+
     <string name="song_name_zombi">Зомбі</string>
     <string name="song_name_zombi_dubstep">Зомбі (aContrari Post-Apocalyptic Dubstep Mix)</string>
     <string name="song_name_japanese_zombie" translatable="false">ゾンビ</string>
+    <string name="song_name_zombie_instrumental" translatable="false">Зомбі (instrumental)</string>
+
+    <string name="song_name_whisper">шепіт</string>
+    <string name="song_name_fly_away">Відлітай (demo)</string>
+
     <string name="song_name_abroad_rmx" translatable="false">Abroad (Retroflex Encoded)</string>
     <string name="song_name_pleasure_was_mine" translatable="false">Pleasure was mine (∞)</string>
 
@@ -133,6 +139,17 @@
     <string name="audio_japanese_zombie" translatable="false">
         https://dl.dropboxusercontent.com/s/v1h0lfbzh7oimb7/vidchuttia_tyshi_zombi_jap.mp3?dl=1
     </string>
+    <string name="audio_zombie_instrumental" translatable="false">
+        https://dl.dropboxusercontent.com/s/pn3bdn4erq4u1xs/vidchuttia_tyshi_zombi_instrumental.mp3?dl=1
+    </string>
+
+    <string name="audio_whisper" translatable="false">
+        https://dl.dropboxusercontent.com/s/2okcrty6yu12onu/sense_of_silence_whisper.mp3?dl=1
+    </string>
+    <string name="audio_fly_away" translatable="false">
+        https://dl.dropboxusercontent.com/s/uekwyrwmdlbyxxs/sense_of_silence_fly_away.mp3?dl=1
+    </string>
+
     <string name="audio_abroad_rmx" translatable="false">
         https://dl.dropboxusercontent.com/s/1a1ie7j56t0bp77/zigmund_afraid_abroad_retroflex_encoded.mp3?dl=1
     </string>

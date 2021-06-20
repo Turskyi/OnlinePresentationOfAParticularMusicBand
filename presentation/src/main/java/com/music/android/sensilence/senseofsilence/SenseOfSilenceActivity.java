@@ -150,6 +150,21 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
             listView.setAdapter(adapter);
             return adapter;
+        } else if(intentAlbum == Album.BONUS){
+            setContentView(R.layout.activity_bonus);
+
+            // set background
+            listView = findViewById(R.id.list_view);
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo);
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
+            bitmapDrawable.setGravity(Gravity.NO_GRAVITY);
+            listView.setBackground(bitmapDrawable);
+
+            /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
+             * The adapter knows how to create list items for each item in the list. */
+            SongAdapter adapter = new SongAdapter(this, R.color.colorDark);
+            listView.setAdapter(adapter);
+            return adapter;
         } else {
             setContentView(R.layout.activity_song_list);
 

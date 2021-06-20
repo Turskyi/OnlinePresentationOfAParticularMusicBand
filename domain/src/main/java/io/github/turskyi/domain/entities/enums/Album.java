@@ -4,6 +4,7 @@ public enum Album {
     SENSE_OF_SILENCE_LP("Відчуття.Тиші LP"),
     CRIME("Злочин"),
     ZOMBI("Зомбі"),
+    BONUS("Bonus Track"),
     ZIGMUND_AFRAID("Zigmund Afraid");
 
     public final String name;

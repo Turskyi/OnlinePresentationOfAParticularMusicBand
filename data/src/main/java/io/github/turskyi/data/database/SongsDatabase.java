@@ -48,7 +48,37 @@ public abstract class SongsDatabase extends RoomDatabase {
             fillSenseOfSilenceLpAlbum(db);
             fillZombiAlbum(db);
             fillCrimeAlbum(db);
+            fillBonusAlbum(db);
             fillZigmundAfraidAlbum(db);
+        }
+
+        private void fillBonusAlbum(@NonNull SupportSQLiteDatabase db) {
+            List<String> bonusNames = Arrays.asList(
+                    applicationContext.getString(R.string.song_name_noli_respicere_rmx),
+                    applicationContext.getString(R.string.song_name_whisper),
+                    applicationContext.getString(R.string.song_name_fly_away)
+            );
+
+            List<Integer> bonusImageResources = Arrays.asList(
+                    R.drawable.vt_dnb120,
+                    R.drawable.pic_whisper_cover,
+                    R.drawable.pic_vt_cover
+            );
+
+            List<String> bonusLinks = Arrays.asList(
+                    applicationContext.getString(R.string.audio_noli_respicere_rmx),
+                    applicationContext.getString(R.string.audio_whisper),
+                    applicationContext.getString(R.string.audio_fly_away)
+                    );
+
+            fillAlbum(
+                    db,
+                    applicationContext.getString(R.string.band_sense_of_silence),
+                    Album.BONUS.name,
+                    bonusNames,
+                    bonusImageResources,
+                    bonusLinks
+            );
         }
 
         private void fillSenseOfSilenceLpAlbum(SupportSQLiteDatabase db) {
@@ -103,7 +133,8 @@ public abstract class SongsDatabase extends RoomDatabase {
             List<String> zombiNames = Arrays.asList(
                     applicationContext.getString(R.string.song_name_zombi),
                     applicationContext.getString(R.string.song_name_zombi_dubstep),
-                    applicationContext.getString(R.string.song_name_japanese_zombie)
+                    applicationContext.getString(R.string.song_name_japanese_zombie),
+                    applicationContext.getString(R.string.song_name_zombie_instrumental)
             );
 
             List<Integer> zombiImageResources = new ArrayList<>(Collections.nCopies(
@@ -114,7 +145,8 @@ public abstract class SongsDatabase extends RoomDatabase {
             List<String> zombiLinks = Arrays.asList(
                     applicationContext.getString(R.string.audio_zombi),
                     applicationContext.getString(R.string.audio_zombi_dubstep),
-                    applicationContext.getString(R.string.audio_japanese_zombie)
+                    applicationContext.getString(R.string.audio_japanese_zombie),
+                    applicationContext.getString(R.string.audio_zombie_instrumental)
             );
 
             fillAlbum(
@@ -133,23 +165,20 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_angelscream),
                     applicationContext.getString(R.string.song_name_zombi_album),
                     applicationContext.getString(R.string.song_name_did_not_want),
-                    applicationContext.getString(R.string.song_name_crime),
-                    applicationContext.getString(R.string.song_name_noli_respicere_rmx)
+                    applicationContext.getString(R.string.song_name_crime)
             );
 
             List<Integer> crimeImageResources = new ArrayList<>(Collections.nCopies(
-                    crimeNames.size() - 1,
+                    crimeNames.size(),
                     R.drawable.pic_crime_cover
             ));
-            crimeImageResources.add(R.drawable.vt_dnb120);
 
             List<String> crimeLinks = Arrays.asList(
                     applicationContext.getString(R.string.audio_to_astarta),
                     applicationContext.getString(R.string.audio_angelscream),
                     applicationContext.getString(R.string.audio_zombi_album_version),
                     applicationContext.getString(R.string.audio_did_not_want),
-                    applicationContext.getString(R.string.audio_crime),
-                    applicationContext.getString(R.string.audio_noli_respicere_rmx)
+                    applicationContext.getString(R.string.audio_crime)
             );
 
             fillAlbum(
