@@ -7,6 +7,11 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.appdistribution'
 
+// for Codemagic CI/CD
+def keystorePropertiesFile= rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion rootProject.compile_sdk_version
     defaultConfig {
@@ -35,10 +40,10 @@ android {
     }
     signingConfigs {
         production {
-            storeFile file(rootProject.SIGNING_KEY_RELEASE_PATH)
-            storePassword rootProject.SIGNING_KEY_RELEASE_PASSWORD
-            keyAlias rootProject.SIGNING_KEY_RELEASE_KEY
-            keyPassword rootProject.SIGNING_KEY_RELEASE_KEY_PASSWORD
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
         }
         dev {
             storeFile file(rootProject.SIGNING_KEY_DEBUG_PATH)
