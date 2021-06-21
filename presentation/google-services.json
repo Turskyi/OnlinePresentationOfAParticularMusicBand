@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1037221257",
+    "project_id": "sense-of-silence",
+    "storage_bucket": "sense-of-silence.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037221257:android:591fdc80150034213db558",
+        "android_client_info": {
+          "package_name": "com.music.android.sensilence"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037221257-drsb73t25hashbuhu8hqf4v9ep20083j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.music.android.sensilence",
+            "certificate_hash": "3036d938c1dc9492cd887a781ce1b0a3bc3e7655"
+          }
+        },
+        {
+          "client_id": "1037221257-le72qj701bbp8f80miqu574mf4a9hmh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALc_br9GqiGiJAXJnKqUcmcQIYnDnzdKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037221257-le72qj701bbp8f80miqu574mf4a9hmh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

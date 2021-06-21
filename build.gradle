@@ -11,6 +11,7 @@ buildscript {
         version_name = "1.0.2"
     }
     repositories {
+        // Google's Maven repository
         google()
         mavenCentral()
     }
@@ -20,6 +21,14 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+
+        // Google Services plugin (required for firebase)
+        classpath 'com.google.gms:google-services:4.3.8'
+
+        // firebase
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.0'
+        classpath 'com.google.firebase:perf-plugin:1.4.0'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:2.1.2'
     }
 }
 ext {
@@ -31,12 +40,11 @@ ext {
         return value
     }
     DATABASE_NAME = getParam("DATABASE_SONGS")
-
 }
 
 subprojects {
     afterEvaluate {
-        dependencies{
+        dependencies {
             // dependency injection (Dagger Hilt)
             annotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
             annotationProcessor "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
@@ -57,6 +65,7 @@ subprojects {
 
 allprojects {
     repositories {
+        // Google's Maven repository
         google()
         mavenCentral()
     }
