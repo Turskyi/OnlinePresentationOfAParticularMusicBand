@@ -17,8 +17,6 @@ import static com.music.android.sensilence.BuildConfig.DATABASE_SONGS;
 
 @Module
 @InstallIn(SingletonComponent.class)
-// Java program implementing AppModule class
-// with getInstance() method
 public class AppModule {
 
     AppModule() {
@@ -35,8 +33,6 @@ public class AppModule {
     public SongsDatabase provideDatabase(Application app, SongsDatabase.Callback callback) {
         return Room.databaseBuilder(app, SongsDatabase.class, DATABASE_SONGS)
                 .addCallback(callback)
-                //        TODO: remove before release
-                .fallbackToDestructiveMigration()
                 .build();
     }
 
