@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.common.MusicPlayerActivity;
 import com.music.android.sensilence.common.SongAdapter;
+import com.music.android.sensilence.databinding.ActivitySongListBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import io.github.turskyi.domain.entities.pojo.Song;
 public class ZigmundAfraidFragment extends Fragment {
 
     private MusicPlayerActivity musicPlayerActivity;
-    private ListView listView;
+
     protected MediaPlayer mediaPlayer;
 
     /**
@@ -84,7 +84,7 @@ public class ZigmundAfraidFragment extends Fragment {
                             onAudioFocusChangeListener,
                             completionListener,
                             secondClickListener,
-                            listView,
+                            binding.listView,
                             songs,
                             audioManager,
                             getActivity()
@@ -96,19 +96,20 @@ public class ZigmundAfraidFragment extends Fragment {
             new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    musicPlayerActivity.onSecondClick(firstClickListener, listView);
+                    musicPlayerActivity.onSecondClick(firstClickListener, binding.listView);
                 }
             };
-
+    private ActivitySongListBinding binding;
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState
     ) {
-        View rootView = inflater.inflate(R.layout.activity_song_list, container, false);
-        setBackground(rootView);
-        return rootView;
+        binding = ActivitySongListBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        setBackground();
+        return view;
     }
 
     @Override
@@ -119,13 +120,13 @@ public class ZigmundAfraidFragment extends Fragment {
 
         /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
          * The adapter knows how to create list items for each item in the list. */
-        SongAdapter adapter = new SongAdapter(getActivity(), R.color.category_zigmund_afraid);
-        listView.setAdapter(adapter);
+        SongAdapter adapter = new SongAdapter(getActivity(), R.color.colorPurple);
+        binding.listView.setAdapter(adapter);
 
         initObservers(viewModel, adapter);
 
         //Set a click listener to play the audio when the list item is clicked on
-        listView.setOnItemClickListener(firstClickListener);
+        binding.listView.setOnItemClickListener(firstClickListener);
 
         musicPlayerActivity = new MusicPlayerActivity();
 
@@ -155,11 +156,10 @@ public class ZigmundAfraidFragment extends Fragment {
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorObserver);
     }
 
-    private void setBackground(View rootView) {
+    private void setBackground() {
         Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.zigmund_afraid_cover);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
         bitmapDrawable.setAlpha(100);
-        listView = rootView.findViewById(R.id.list_view);
-        listView.setBackground(bitmapDrawable);
+        binding.listView.setBackground(bitmapDrawable);
     }
 }

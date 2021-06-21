@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,12 +29,7 @@ public class SenseOfSilenceFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSenseOfSilenceBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-
-        initSenseOfSilenceListItem(view);
-        initZombiListItem(view);
-        initCrimeListItem(view);
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -44,26 +38,11 @@ public class SenseOfSilenceFragment extends Fragment {
             @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
     ) {
         super.onViewCreated(view, savedInstanceState);
-binding.fabBonus.setOnClickListener(v -> {
-    // your handler code here
-    // Create a new intent to open the {@link SenseOfSilenceActivity}
-    Intent senseOfSilenceIntent = new Intent(getActivity(), SenseOfSilenceActivity.class);
-    senseOfSilenceIntent.putExtra(EXTRA_ALBUM, Album.BONUS);
-
-    // Start the new activity
-    startActivity(senseOfSilenceIntent);
-});
-    }
-
-    private void initSenseOfSilenceListItem(View rootView) {
-        // Find the View that shows the sense of silence album
-        TextView tvSenseOfSilence = rootView.findViewById(R.id.title_sense_of_silence);
-
         // Set a click listener on that View
         // The code in this method will be executed when the sense of silence album is clicked on.
-        tvSenseOfSilence.setOnClickListener(view -> {
+        binding.titleSenseOfSilence.setOnClickListener(v -> {
             Toast.makeText(
-                    view.getContext(),
+                    v.getContext(),
                     getString(R.string.sensilence_sense_of_silence_songs),
                     Toast.LENGTH_SHORT
             ).show();
@@ -74,17 +53,31 @@ binding.fabBonus.setOnClickListener(v -> {
             // Start the new activity
             startActivity(senseOfSilenceIntent);
         });
-    }
 
-    private void initCrimeListItem(View rootView) {
-        // Find the View that shows the crime album
-        TextView tvCrime = rootView.findViewById(R.id.title_crime);
+        // Set a click listener on that View
+        binding.tvZombi.setOnClickListener(new View.OnClickListener() {
+            /** The code in this method will be executed when the zombi album is clicked on. */
+            @Override
+            public void onClick(View view) {
+                //pop up message with description of a next page
+                Toast.makeText(
+                        view.getContext(),
+                        getString(R.string.sensilence_zombi_songs),
+                        Toast.LENGTH_SHORT
+                ).show();
+                // Create a new intent to open the {@link ZombiActivity}
+                Intent zombiIntent = new Intent(getActivity(), SenseOfSilenceActivity.class);
+                zombiIntent.putExtra(EXTRA_ALBUM, Album.ZOMBI);
+                // Start the new activity
+                startActivity(zombiIntent);
+            }
+        });
 
         // Set a click listener on that View
         // The code in this method will be executed when the "crime" album is clicked on.
-        tvCrime.setOnClickListener(view -> {
+        binding.titleCrime.setOnClickListener(v -> {
             Toast.makeText(
-                    view.getContext(),
+                    v.getContext(),
                     getString(R.string.sensilence_crime_songs),
                     Toast.LENGTH_SHORT
             ).show();
@@ -94,24 +87,21 @@ binding.fabBonus.setOnClickListener(v -> {
             // Start the new activity
             startActivity(crimeIntent);
         });
+
+        binding.fabBonus.setOnClickListener(v -> {
+            // your handler code here
+            // Create a new intent to open the {@link SenseOfSilenceActivity}
+            Intent senseOfSilenceIntent = new Intent(getActivity(), SenseOfSilenceActivity.class);
+            senseOfSilenceIntent.putExtra(EXTRA_ALBUM, Album.BONUS);
+
+            // Start the new activity
+            startActivity(senseOfSilenceIntent);
+        });
     }
 
-    private void initZombiListItem(View rootView) {
-        // Find the View that shows the zombi category
-        TextView tvZombi = rootView.findViewById(R.id.tv_zombi);
-        // Set a click listener on that View
-        tvZombi.setOnClickListener(new View.OnClickListener() {
-            /** The code in this method will be executed when the zombi album is clicked on. */
-            @Override
-            public void onClick(View view) {
-                //pop up message with description of a next page
-                Toast.makeText(view.getContext(), getString(R.string.sensilence_zombi_songs), Toast.LENGTH_SHORT).show();
-                // Create a new intent to open the {@link ZombiActivity}
-                Intent zombiIntent = new Intent(getActivity(), SenseOfSilenceActivity.class);
-                zombiIntent.putExtra(EXTRA_ALBUM, Album.ZOMBI);
-                // Start the new activity
-                startActivity(zombiIntent);
-            }
-        });
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

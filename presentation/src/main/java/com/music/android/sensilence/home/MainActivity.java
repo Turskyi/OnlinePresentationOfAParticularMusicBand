@@ -1,30 +1,28 @@
 package com.music.android.sensilence.home;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.music.android.sensilence.R;
+import com.music.android.sensilence.databinding.ActivityMainBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Band;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         //  Setting the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.activity_main);
-
-        // Find the view pager that will allow the user to swipe between fragments
-        ViewPager2 viewPager = findViewById(R.id.view_pager);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         // Create an adapter that knows which fragment should be shown on each page
         MusicBandPageAdapter adapter = new MusicBandPageAdapter(
@@ -33,10 +31,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // Set the adapter onto the view pager
-        viewPager.setAdapter(adapter);
-
-        // Find the tab layout that shows the tabs
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        binding.viewPager.setAdapter(adapter);
 
         /* Connect the tab layout with the view pager.
          This will:
@@ -44,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
           2. Update the view pager when a tab is selected
           3. Set the tab layout's tab names with the view pager's adapter's titles */
         new TabLayoutMediator(
-                tabLayout,
-                viewPager,
+                binding.tabLayout,
+                binding.viewPager,
                 (tab, position) -> tab.setText(Band.values()[position].name)
         ).attach();
     }

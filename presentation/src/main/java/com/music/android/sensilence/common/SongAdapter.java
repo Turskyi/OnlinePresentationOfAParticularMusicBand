@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.music.android.sensilence.R;
+import com.music.android.sensilence.databinding.ItemListBinding;
+
 import io.github.turskyi.domain.entities.pojo.Song;
 
 public class SongAdapter extends ArrayAdapter<Song> {
@@ -35,8 +37,12 @@ public class SongAdapter extends ArrayAdapter<Song> {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.item_list, parent, false);
+            ItemListBinding binding = ItemListBinding.inflate(
+                    LayoutInflater.from(parent.getContext()),
+                    parent,
+                    false
+            );
+            listItemView = binding.getRoot();
         }
         // Get the {@link Song} object located at this position in the list
         Song currentSong = getItem(position);

@@ -16,10 +16,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.music.android.sensilence.R;
-import io.github.turskyi.domain.entities.pojo.Song;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import io.github.turskyi.domain.entities.pojo.Song;
 
 public class MusicPlayerActivity extends AppCompatActivity {
 
@@ -28,6 +29,15 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     public MusicPlayerActivity() {
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        /* When the activity is stopped, release the media player resources because we won't
+         * be playing any more sounds. */
+        releaseMediaPlayer();
     }
 
     public void onFirstClick(
@@ -237,14 +247,5 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     }).create();
             lastDialog.show();
         });
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        /* When the activity is stopped, release the media player resources because we won't
-         * be playing any more sounds. */
-        releaseMediaPlayer();
     }
 }

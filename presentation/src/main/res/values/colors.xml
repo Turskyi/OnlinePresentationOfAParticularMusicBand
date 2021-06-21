@@ -19,5 +19,5 @@
     <color name="color_sense_of_silence">#F6F6F8</color>
 
     <!-- Background color for the phrases category -->
-    <color name="category_zigmund_afraid">#4F7206EE</color>
+    <color name="colorPurple">#4F7206EE</color>
 </resources>
