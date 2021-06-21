@@ -1,39 +1,38 @@
-# Online_music_player_for_particular_music_band
-Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano), with an opportunity to listen to all their songs online.
+# sense.of.silence & Zigmund Afraid
+Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano),
+ with an opportunity to listen to all their songs online.
 
-                   PROJECT SPECIFICATION
+ Showcase for using java, view-model, clean-architecture, hilt and RxJava3.
 
-CRITERIA.                           MEETS SPECIFICATIONS
+ [Project on Google Play](https://play.google.com/store/apps/details?id=com.music.android.sensilence)
 
+## PROJECT SPECIFICATION
 
-Layout.
+• CI/CD: [GitHub Actions](https://docs.github.com/en/actions) is used to deliver new APK to [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) after every push to the dev branch,
+[Codemagic](https://codemagic.io/start/) is used to deliver new release app bundle to **Google Play** after every push to master branch;
 
-Overall Layout: The app contains 4 lists of relevant songs
+• Programming language: **Java**;
 
-Navigation: User can navigate between lists using a central screen and a View pager.
+• Structural design patterns: [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) wrapped with [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html);
 
-List Item Contents: Each list item contains information about a song.
+• Architecture Components: [LiveData](https://developer.android.com/topic/libraries/architecture/livedata),
+[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel);
 
-Pictures: lists include cover pictures of the albums on the background.
+• Database: [Room](https://developer.android.com/training/data-storage/room);
 
-The code adheres to all of the following Layout best practices: Text sizes are defined in sp, Lengths are defined in dp, Padding and margin are used appropriately, such that the views are not crammed up against each other.
+• Dependency injection: [Hilt](https://developer.android.com/training/dependency-injection/hilt-android);
 
+• Asynchronous programming: [ReactiveX](http://reactivex.io/) with [RxJava3](https://github.com/ReactiveX/RxJava);
 
-Functionality.
+• UI components: [ViewPager2](https://developer.android.com/jetpack/androidx/releases/viewpager2),
+[View Binding](https://developer.android.com/topic/libraries/view-binding)
 
-Custom Adapter: App uses a custom adapter to populate the layout with views based on instances of the custom class.
+• Layout: the app contains 5 lists of relevant songs, user can navigate between lists using a central screen and a View pager,
+ each list item contains information about a song and a picture, screens include cover pictures of the albums on the background,
 
-String Storage: All strings are stored in the strings.xml resource file.
+• Functionality: app uses a custom adapter to populate the layout with views based on instances of the custom class,
+ all images are stored as drawables, the code runs without errors.
 
-Image Storage: All images are stored as drawables, All drawables are stored at multiple densities.
-
-Errors: The code runs without errors.
-
-
-Code Readability
-
-Readability: Code is easily readable such that a fellow programmer can understand the purpose of the app.
-
-Naming Conventions: All variables, methods, and resource IDs are descriptively named such that another developer reading the code can easily understand their function.
-
-The code is properly formatted: No unnecessary blank lines, No unused variables or methods, No commented out code, The code also has proper indentation when defining variables and methods.
+• Code Readability: code is easily readable such that a fellow programmer can understand the purpose of the app,
+all variables, methods, and resource IDs are descriptively named such that another developer reading the code can easily understand their function,
+no unnecessary blank lines, no unused variables or methods, no commented out code.
