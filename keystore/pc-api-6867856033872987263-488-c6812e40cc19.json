@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pc-api-6867856033872987263-488",
+  "private_key_id": "c6812e40cc19e83777b37f831a4b3adfacbd5515",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCP4wRVSOHP8Hkx\n5Lf6cJKlB7qFdSMMkIja+W2o1Jb1MX7w3dRWYXYnJvyJk5ERgRlY+TITQGLYyEaa\n8pf58jKpf1ExZ2vDI7hwbm1owuqUMl3QCabiEcfOyle3j2Lv5zxcE/4iX2rph7c/\n7RFsYD2PGq2MBEcVHxEgI5Oc9qShoGrepr1iiHdzFa/gpI3OM3u0cRQZrTd7Gg4j\ndzuQ+8PmuiHCg1jSgnF8cGO7LZrRBU0HQmbC4k0MoLIgirKLuKB8f2gWZYP9oLDZ\nESULzpprhpbMNssf9LLPl7RkBQqoYZP41IqY3nNZy3Q+6PU0uS6TII9dRs+iwC5l\nZLUd4feHAgMBAAECggEAFRuKcTBl3+k4/ja9PoHxIUCG/jj20UsKqITar1+wXXvL\nUW5ZTeqyOIAhn9UD/PthSooT7HsPhRmsMeLQpJwBDphcwtCXIGNHFUc9yZZ+bwsM\ndA5WaueM1iscvxLLwsG7Ow67wzMYLfX4zenrGmjr3uhc+SNPgiuyiXJunyIXeJYl\ncrkjd3AEd3KY46NSevdoNCF1+N67BFnY2ZYxp/LNJTuUgkNgl0Xkib3uVxZ1oi2Q\n8xMLKKv2FrTr6c4pc3738fbeaiA+clZrIJFebKQNgx8E+I9lFU8PRwTmdAxTiTXO\nHsXQCTqK2C/RtDk8oda3x1GVaOHfBBGNEN8lex0ioQKBgQDKoot0raFYtT+Z47qJ\nFnrLRaTKgbRV4yAz2wQ6H2CdzUVY7cnBWqfabbsXxOKisjNXoTsw5XqQ/3WzYG7g\nbkk69HrTlYlrVh9Ixt+A6TJlaIWDQ+rdYJjnG6HS3fpvTuvmLEYfGzTn/iYlbUzc\nNaW+qrEyXIdDYXuZJrg+N6V/rwKBgQC1x7oxobD2LMryTOYFZv0lEzUJ5BvtLLIx\nGtWnwedGely4RcovSGPjYe8u9sA4ED/ZJ+6nQPanDQjXe0zjl4oKEQXmwcLI3KGx\nl0RBFFMwgcqzJp2vhrDUVArTEOlVRv9c1cV292OrxXJzngiA3pt2WdVUGMki+FiG\nDkI1wsBjqQKBgAUykCMpBPdyhrQazEER64plOenb09VUIxJRbtVS0raZekripoco\nHSAUKnVcnneP3JNF1m/VowQvGUTFl3J4QbaaaMAemMzBA8JpH3h+AsXpHWuVhWOy\nQ5nB8q+m8/KA8roPrqjDmOLOeQoCuLL5SUwPssXY67tFt9bg0F8ALGWPAoGBAIaC\nCcab7IPcVTfBqxsoP/zlH4P4JKn1Ps2TG7GMi4PdGyrHiXo/SJqCZygLMeTKMVSQ\ndcmRCnJF9Nrtw9FM2rnkKse7bFSQ3Zy5X6oATiZAhCrYUioFsmcK4Q+ZHe8aH+8j\nx3/mQvxhl/TxZT1mewayJmaaCIs11NstRdTeDNoxAoGBAMF/C5ohJzN5SlNVyVF5\nVEcXWTimom8yxel7yXRTtRfu5UOmzKwR2Aa28r4Yq0/E2H0qeguXMwIA/+oeL2Ne\n9WnCELrTGKP3q8lY0Oc9w9tp1Tsfbx3cynUdD5ccS9z37zGOekgTPEnt2aM4Jg/c\ndXZqoPcDmrgXBFwpTRIUIkZn\n-----END PRIVATE KEY-----\n",
+  "client_email": "codemagic-publishing@pc-api-6867856033872987263-488.iam.gserviceaccount.com",
+  "client_id": "117561065029409573369",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/codemagic-publishing%40pc-api-6867856033872987263-488.iam.gserviceaccount.com"
+}
