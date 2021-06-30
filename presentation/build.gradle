@@ -94,7 +94,9 @@ dependencies {
      * the limit of the Android build architecture. */
     implementation "androidx.multidex:multidex:$multidexVersion"
 
+    // required app module hilt dependency
     implementation "com.google.dagger:hilt-android:$hiltVersion"
+
     implementation 'org.jetbrains:annotations:15.0'
 
     /* Firebase Bill of Materials
