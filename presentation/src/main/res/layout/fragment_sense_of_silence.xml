@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.music.android.sensilence.home.MainActivity">
+    tools:context=".features.home.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.music.android.sensilence.zigmundafraid;
+package com.music.android.sensilence.features.zigmundafraid;
 
 import android.content.Context;
 import android.graphics.Bitmap;

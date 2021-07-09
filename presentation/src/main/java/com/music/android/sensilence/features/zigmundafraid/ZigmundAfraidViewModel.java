@@ -1,4 +1,4 @@
-package com.music.android.sensilence.senseofsilence;
+package com.music.android.sensilence.features.zigmundafraid;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,14 +15,14 @@ import io.github.turskyi.domain.entities.pojo.Song;
 import io.github.turskyi.domain.usecase.GetSongsUseCase;
 
 @HiltViewModel
-public class SenseOfSilenceViewModel extends BaseViewModel {
+public class ZigmundAfraidViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Song>> _songs;
 
-    public LiveData<List<Song>> getSongs(Album album) {
+    public LiveData<List<Song>> getSongs() {
         if (_songs == null) {
             _songs = new MutableLiveData<>();
-            getSongsFromAlbum(album);
+            getSongsFromAlbum();
         }
         return _songs;
     }
@@ -39,13 +39,13 @@ public class SenseOfSilenceViewModel extends BaseViewModel {
     private final GetSongsUseCase useCase;
 
     @Inject
-    SenseOfSilenceViewModel(GetSongsUseCase useCase) {
+    ZigmundAfraidViewModel(GetSongsUseCase useCase) {
         this.useCase = useCase;
     }
 
-    private void getSongsFromAlbum(Album album) {
+    private void getSongsFromAlbum() {
         io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
-                album.name,
+                Album.ZIGMUND_AFRAID.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(String.valueOf(error))
         );

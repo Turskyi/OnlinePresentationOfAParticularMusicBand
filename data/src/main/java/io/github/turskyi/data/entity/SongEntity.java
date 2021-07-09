@@ -67,6 +67,7 @@ class SongEntity {
         this.audioLink = audioLink;
         this.imageResourceId = imageResourceId;
     }
+
     @Ignore
     public SongEntity(
             int id,

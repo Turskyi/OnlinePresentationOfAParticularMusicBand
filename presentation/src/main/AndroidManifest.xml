@@ -24,8 +24,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!-- [START fcm_default_icon] -->
+        <!-- Default icon. This is used when no icon is set for incoming notification messages.
+              -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo" />
+        <!-- This color used with incoming notification messages.
+         This is used when no color is set for the incoming
+             notification message.  -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorBloody" />
+        <!-- [END fcm_default_icon] -->
+
+        <!-- [START fcm_default_channel] -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <!-- [END fcm_default_channel] -->
         <activity
-            android:name="com.music.android.sensilence.home.MainActivity"
+            android:name=".features.home.MainActivity"
             android:theme="@style/AppTheme.Launcher">
 
             <intent-filter>
@@ -36,11 +55,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".senseofsilence.SenseOfSilenceActivity"
+            android:name=".features.senseofsilence.SenseOfSilenceActivity"
             android:label="@string/band_sense_of_silence"
-            android:parentActivityName="com.music.android.sensilence.home.MainActivity"
+            android:parentActivityName=".features.home.MainActivity"
             android:theme="@style/SenseOfSilenceTheme" />
         <activity android:name=".common.MusicPlayerActivity" />
+
+        <!-- [START firebase_service] -->
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
     </application>
 
 </manifest>

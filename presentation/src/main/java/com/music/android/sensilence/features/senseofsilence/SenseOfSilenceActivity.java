@@ -1,4 +1,4 @@
-package com.music.android.sensilence.senseofsilence;
+package com.music.android.sensilence.features.senseofsilence;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Album;
 import io.github.turskyi.domain.entities.pojo.Song;
 
-import static com.music.android.sensilence.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
+import static com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
 
 @AndroidEntryPoint
 public class SenseOfSilenceActivity extends AppCompatActivity {
