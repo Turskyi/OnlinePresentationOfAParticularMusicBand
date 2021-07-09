@@ -38,8 +38,8 @@ public class SenseOfSilenceFragment extends Fragment {
             @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState
     ) {
         super.onViewCreated(view, savedInstanceState);
-        // Set a click listener on that View
-        // The code in this method will be executed when the sense of silence album is clicked on.
+        /* Set a click listener on that View
+         * The code in this method will be executed when the sense of silence album is clicked on. */
         binding.titleSenseOfSilence.setOnClickListener(v -> {
             Toast.makeText(
                     v.getContext(),
@@ -73,7 +73,6 @@ public class SenseOfSilenceFragment extends Fragment {
             }
         });
 
-        // Set a click listener on that View
         // The code in this method will be executed when the "crime" album is clicked on.
         binding.titleCrime.setOnClickListener(v -> {
             Toast.makeText(
@@ -89,8 +88,8 @@ public class SenseOfSilenceFragment extends Fragment {
         });
 
         binding.fabBonus.setOnClickListener(v -> {
-            // your handler code here
-            // Create a new intent to open the {@link SenseOfSilenceActivity}
+            /* The handler code here.
+             * Creating a new intent to open the {@link SenseOfSilenceActivity} */
             Intent senseOfSilenceIntent = new Intent(getActivity(), SenseOfSilenceActivity.class);
             senseOfSilenceIntent.putExtra(EXTRA_ALBUM, Album.BONUS);
 

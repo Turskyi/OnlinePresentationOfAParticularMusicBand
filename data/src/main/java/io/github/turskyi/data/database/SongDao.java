@@ -19,9 +19,6 @@ public interface SongDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(SongEntity item);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllSongs(List<SongEntity> songs);
-
     @Query("SELECT * FROM " + TABLE_SONGS + " WHERE " + COLUMN_ALBUM + " = :album")
     Single<List<SongEntity>> getAlbumSongs(String album);
 }
