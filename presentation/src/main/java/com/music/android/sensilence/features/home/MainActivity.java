@@ -1,5 +1,8 @@
-package com.music.android.sensilence.home;
+package com.music.android.sensilence.features.home;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            String channelId  = getString(R.string.default_notification_channel_id);
+            String channelName = getString(R.string.default_notification_channel_name);
+            NotificationManager notificationManager =
+                    getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW));
+        }
 
         // Create an adapter that knows which fragment should be shown on each page
         MusicBandPageAdapter adapter = new MusicBandPageAdapter(

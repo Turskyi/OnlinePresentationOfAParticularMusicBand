@@ -1,4 +1,4 @@
-package com.music.android.sensilence.senseofsilence;
+package com.music.android.sensilence.features.senseofsilence;
 
 import android.content.Intent;
 import android.os.Bundle;

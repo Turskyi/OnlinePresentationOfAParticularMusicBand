@@ -1,12 +1,12 @@
-package com.music.android.sensilence.home;
+package com.music.android.sensilence.features.home;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
-import com.music.android.sensilence.senseofsilence.SenseOfSilenceFragment;
-import com.music.android.sensilence.zigmundafraid.ZigmundAfraidFragment;
+import com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment;
+import com.music.android.sensilence.features.zigmundafraid.ZigmundAfraidFragment;
 
 import java.util.Arrays;
 

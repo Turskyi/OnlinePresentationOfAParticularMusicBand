@@ -99,7 +99,7 @@ dependencies {
 
     implementation 'org.jetbrains:annotations:15.0'
 
-    /* Firebase Bill of Materials
+    /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      *  app will always use compatible versions of the Firebase Android libraries. */
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
@@ -108,6 +108,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-perf'
+    // Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging'
 
     // test
     testImplementation "junit:junit:$junitVersion"

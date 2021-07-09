@@ -15,6 +15,7 @@
     <string name="content_description_picture_of_the_song">picture of the song</string>
     <string name="content_description_play_button">play button</string>
     <string name="content_description_background">background</string>
+    <string name="content_description_word">word bonus</string>
 
     <!-- pop up messages -->
     <string name="sensilence_zombi_songs">Пісні з альбому Зомбі</string>
@@ -88,5 +89,7 @@
     <string name="audio_japanese_zombie" translatable="false">https://dl.dropboxusercontent.com/s/v1h0lfbzh7oimb7/vidchuttia_tyshi_zombi_jap.mp3?dl=1</string>
     <string name="audio_abroad_rmx" translatable="false">https://dl.dropboxusercontent.com/s/1a1ie7j56t0bp77/zigmund_afraid_abroad_retroflex_encoded.mp3?dl=1</string>
     <string name="audio_pleasure_was_mine" translatable="false">https://dl.dropboxusercontent.com/s/5960o0g06ejai9m/zigmund_afraid_pleasure_was_mine.mp3?dl=1</string>
-    <string name="content_description_word">word bonus</string>
+
+    <string name="default_notification_channel_id">Повідомлення від \"відчуття.тиші\".</string>
+    <string name="default_notification_channel_name"><![CDATA[Нотифікації від \"відчуття.тиші & Zigmund Afraid\"]]></string>
 </resources>
