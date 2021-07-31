@@ -187,7 +187,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         });
 
         /* Setup a listener on the media player, so that we can stop and release the
-         media player once the sounds has finished */
+         * media player once the sounds has finished */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
     }
@@ -221,7 +221,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
                                         Uri.fromParts(
                                                 getString(R.string.scheme_mailto),
                                                 getString(R.string.email),
-                                                ""
+//    // Gets the decoded fragment part of this URI, everything after the '#', null if undefined.
+                                                null
                                         )
                                 );
                                 intent.putExtra(
