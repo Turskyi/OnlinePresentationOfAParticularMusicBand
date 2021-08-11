@@ -101,15 +101,15 @@ dependencies {
 
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
-     *  app will always use compatible versions of the Firebase Android libraries. */
-    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+     * app will always use compatible versions of the Firebase Android libraries. */
+    implementation platform('com.google.firebase:firebase-bom:28.3.1')
 
     // Firebase SDK for Google Analytics
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-crashlytics'
-    implementation 'com.google.firebase:firebase-perf'
+    implementation 'com.google.firebase:firebase-analytics:19.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.1'
+    implementation 'com.google.firebase:firebase-perf:20.0.2'
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
 
     // test
     testImplementation "junit:junit:$junitVersion"
