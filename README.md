@@ -1,6 +1,7 @@
 # sense.of.silence & Zigmund Afraid
 
-Online Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano), with an opportunity to listen to all their songs online.
+Online Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano),
+with an opportunity to listen to all their songs online.
 
 ## PROJECT SPECIFICATION
 
@@ -9,6 +10,8 @@ Online Music Player for particular Music Band "відчуття.тиші"  (wher
 • Operating system: [Android](https://www.android.com/);
 
 • Programming language: [Java](https://www.oracle.com/java/);
+
+• Interface: [XML](https://developer.android.com/guide/topics/ui/declaring-layout);
 
 • SDK: [Android](https://developer.android.com/studio/intro);
 
@@ -29,12 +32,15 @@ Online Music Player for particular Music Band "відчуття.тиші"  (wher
 • UI components: [ViewPager2](https://developer.android.com/jetpack/androidx/releases/viewpager2),
 [View Binding](https://developer.android.com/topic/libraries/view-binding)
 
-• Layout: the app contains 5 lists of relevant songs, user can navigate between lists using a central screen and a View pager,
- each list item contains information about a song and a picture, screens include cover pictures of the albums on the background;
+• Layout: the app contains 5 lists of relevant songs,
+user can navigate between lists using a central screen and a View pager,
+ each list item contains information about a song and a picture,
+screens include cover pictures of the albums on the background;
 
 • Functionality: app uses a custom adapter to populate the layout with views based on instances of the custom class,
  all images are stored as drawables, the code runs without errors;
 
 • Code Readability: code is easily readable such that a fellow programmer can understand the purpose of the app,
-all variables, methods, and resource IDs are descriptively named such that another developer reading the code can easily understand their function,
+all variables, methods,
+and resource IDs are descriptively named such that another developer reading the code can easily understand their function,
 no unnecessary blank lines, no unused variables or methods, no commented out code.
