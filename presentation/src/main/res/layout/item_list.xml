@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:background="@color/tan_background"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:ignore="Overdraw">
 
     <ImageView
         android:id="@+id/image_view"
@@ -27,21 +28,21 @@
             android:id="@+id/sensilence_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:gravity="bottom"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:layout_marginEnd="40dp"
             tools:text="відчуття.тиші" />
 
         <TextView
             android:id="@+id/default_text_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:gravity="top"
-            android:layout_marginEnd="40dp"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="@android:color/white"
             tools:text="Song" />
@@ -66,13 +67,13 @@
 
     <ProgressBar
         android:id="@+id/loading_spinner"
-        android:visibility="invisible"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/LoadingProgress"
-        android:layout_marginEnd="@dimen/margin_end_progress_bar"
+        android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginEnd="@dimen/margin_end_progress_bar"
+        android:theme="@style/LoadingProgress"
+        android:visibility="invisible" />
 
 </RelativeLayout>

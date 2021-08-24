@@ -25,7 +25,7 @@ public class GetSongsUseCaseImpl implements GetSongsUseCase {
     }
 
     @Override
-    public io.reactivex.rxjava3.disposables.Disposable getDisposableSongs(
+    public io.reactivex.rxjava3.disposables.Disposable setSongs(
             String album,
 
             io.reactivex.rxjava3.functions.Consumer<List<Song>> successConsumer,

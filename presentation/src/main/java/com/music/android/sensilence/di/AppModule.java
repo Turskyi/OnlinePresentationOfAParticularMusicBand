@@ -1,5 +1,7 @@
 package com.music.android.sensilence.di;
 
+import static com.music.android.sensilence.BuildConfig.DATABASE_SONGS;
+
 import android.app.Application;
 
 import androidx.room.Room;
@@ -12,8 +14,7 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import io.github.turskyi.data.database.SongDao;
 import io.github.turskyi.data.database.SongsDatabase;
-
-import static com.music.android.sensilence.BuildConfig.DATABASE_SONGS;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 @Module
 @InstallIn(SingletonComponent.class)
@@ -24,7 +25,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    SongsDatabase.Callback provideCallback(Application app){
+    SongsDatabase.Callback provideDatabaseCallback(Application app) {
         return new SongsDatabase.Callback(app);
     }
 
@@ -39,5 +40,10 @@ public class AppModule {
     @Provides
     public SongDao provideSongDao(SongsDatabase database) {
         return database.getSongDao();
+    }
+
+    @Provides
+    public CompositeDisposable providesCompositeDisposable() {
+        return new CompositeDisposable();
     }
 }

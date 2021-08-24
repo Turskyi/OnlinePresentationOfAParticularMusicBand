@@ -12,8 +12,7 @@ import io.github.turskyi.domain.entities.pojo.Song;
  * It contains a Name of the song from the album and a  song from that album.
  */
 @Entity(tableName = SongEntity.TABLE_SONGS)
-public
-class SongEntity {
+public class SongEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
     private int id = 0;

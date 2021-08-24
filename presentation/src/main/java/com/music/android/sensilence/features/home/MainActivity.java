@@ -29,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create channel to show notifications.
-            String channelId  = getString(R.string.default_notification_channel_id);
+            String channelId = getString(R.string.default_notification_channel_id);
             String channelName = getString(R.string.default_notification_channel_name);
-            NotificationManager notificationManager =
-                    getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
-                    channelName, NotificationManager.IMPORTANCE_LOW));
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(
+                    new NotificationChannel(
+                            channelId,
+                            channelName,
+                            NotificationManager.IMPORTANCE_LOW
+                    )
+            );
         }
 
         // Create an adapter that knows which fragment should be shown on each page

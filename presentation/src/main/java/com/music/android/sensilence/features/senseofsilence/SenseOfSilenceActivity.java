@@ -1,5 +1,7 @@
 package com.music.android.sensilence.features.senseofsilence;
 
+import static com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,15 +29,18 @@ import com.music.android.sensilence.common.SongAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Album;
 import io.github.turskyi.domain.entities.pojo.Song;
 
-import static com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
-
 @AndroidEntryPoint
 public class SenseOfSilenceActivity extends AppCompatActivity {
-    private MusicPlayerActivity musicPlayerActivity;
+
+    @Inject
+    MusicPlayerActivity musicPlayerActivity;
+    private SenseOfSilenceViewModel viewModel;
     private ListView listView;
     protected MediaPlayer mediaPlayer;
 
@@ -103,17 +108,15 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SenseOfSilenceViewModel viewModel = new ViewModelProvider(this)
-                .get(SenseOfSilenceViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SenseOfSilenceViewModel.class);
         Album intentAlbum = (Album) getIntent().getSerializableExtra(EXTRA_ALBUM);
         SongAdapter adapter = initView(intentAlbum);
 
-        initObservers(intentAlbum, viewModel, adapter);
+        initObservers(intentAlbum, adapter);
 
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
 
-        musicPlayerActivity = new MusicPlayerActivity();
         // Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
@@ -126,7 +129,10 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
             // set background
             listView = findViewById(R.id.list_view);
             Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.logo_black350);
-            BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), scalePreserveRatio(bmp, bmp.getWidth()));
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(
+                    getResources(),
+                    scalePreserveRatio(bmp, bmp.getWidth())
+            );
             bitmapDrawable.setGravity(Gravity.NO_GRAVITY | Gravity.FILL_HORIZONTAL);
             listView.setBackground(bitmapDrawable);
 
@@ -150,7 +156,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
 
             listView.setAdapter(adapter);
             return adapter;
-        } else if(intentAlbum == Album.BONUS){
+        } else if (intentAlbum == Album.BONUS) {
             setContentView(R.layout.activity_bonus);
 
             // set background
@@ -168,7 +174,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         } else {
             setContentView(R.layout.activity_song_list);
 
-           // set background
+            // set background
             listView = findViewById(R.id.list_view);
             /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
              * The adapter knows how to create list items for each item in the list. */
@@ -184,7 +190,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         }
     }
 
-    private void initObservers(Album album, SenseOfSilenceViewModel viewModel, SongAdapter adapter) {
+    private void initObservers(Album album, SongAdapter adapter) {
         // Create the observer which updates the UI.
         final Observer<List<Song>> songsObserver = albumSongs -> {
             // Update the UI
@@ -236,8 +242,11 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
                     .createScaledBitmap(imageToScale, finalWidth, finalHeight, true);
 
             //Created a bitmap with desired sizes
-            Bitmap scaledImage = Bitmap
-                    .createBitmap(destinationWidth, destinationHeight, Bitmap.Config.ARGB_8888);
+            Bitmap scaledImage = Bitmap.createBitmap(
+                    destinationWidth,
+                    destinationHeight,
+                    Bitmap.Config.ARGB_8888
+            );
             Canvas canvas = new Canvas(scaledImage);
 
             //Draw background color

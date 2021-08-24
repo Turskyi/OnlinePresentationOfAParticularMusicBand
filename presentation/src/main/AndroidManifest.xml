@@ -64,7 +64,7 @@
             android:label="@string/band_sense_of_silence"
             android:parentActivityName=".features.home.MainActivity"
             android:theme="@style/SenseOfSilenceTheme" />
-        <activity android:name=".common.MusicPlayerActivity" />
+        <activity android:name="com.music.android.sensilence.common.MusicPlayerActivity" />
 
         <!-- [START firebase_service] -->
         <service
