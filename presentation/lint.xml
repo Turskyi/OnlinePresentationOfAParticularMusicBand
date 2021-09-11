@@ -2,5 +2,7 @@
 <lint>
     <issue id="IconLocation">
         <ignore path="src/main/res/drawable/ic_logo.webp" />
+        <ignore path="src/main/res/drawable/ic_pause.png" />
+        <ignore path="src/main/res/drawable/zombi_cover.webp" />
     </issue>
 </lint>

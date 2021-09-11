@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/ic_pause.png" />
+        <ignore path="src/main/res/drawable/ic_play_arrow.png" />
+        <ignore path="src/main/res/drawable/ic_za.webp" />
+        <ignore path="src/main/res/drawable/logo_black.webp" />
+        <ignore path="src/main/res/drawable/logo_black350.webp" />
+        <ignore path="src/main/res/drawable/logo_white.webp" />
+        <ignore path="src/main/res/drawable/pic_crime_cover.jpg" />
+        <ignore path="src/main/res/drawable/pic_vt_cover.jpg" />
+        <ignore path="src/main/res/drawable/pwm.webp" />
+        <ignore path="src/main/res/drawable/vt_dnb120.webp" />
+        <ignore path="src/main/res/drawable/white_and_black.webp" />
+        <ignore path="src/main/res/drawable/zigmund_afraid_cover.webp" />
+        <ignore path="src/main/res/drawable/zombi.jpg" />
+        <ignore path="src/main/res/drawable/zombi_txt.webp" />
+    </issue>
+</lint>

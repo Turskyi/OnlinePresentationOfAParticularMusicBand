@@ -7,6 +7,8 @@ with an opportunity to listen to all their songs online.
 
 • App store: [Google Play](https://play.google.com/store/apps/details?id=com.music.android.sensilence);
 
+• Testing invite link: https://appdistribution.firebase.dev/i/0fab69b4a3a132f6;
+
 • Operating system: [Android](https://www.android.com/);
 
 • Programming language: [Java](https://www.oracle.com/java/);
