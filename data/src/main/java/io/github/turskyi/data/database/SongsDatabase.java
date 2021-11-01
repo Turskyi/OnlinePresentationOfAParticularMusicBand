@@ -1,5 +1,7 @@
 package io.github.turskyi.data.database;
 
+import static io.github.turskyi.data.entity.SongEntity.TABLE_SONGS;
+
 import android.content.ContentValues;
 import android.content.Context;
 
@@ -20,9 +22,7 @@ import io.github.turskyi.data.R;
 import io.github.turskyi.data.entity.SongEntity;
 import io.github.turskyi.domain.entities.enums.Album;
 
-import static io.github.turskyi.data.entity.SongEntity.TABLE_SONGS;
-
-@Database(entities = {SongEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {SongEntity.class}, version = 2, exportSchema = false)
 public abstract class SongsDatabase extends RoomDatabase {
     public abstract SongDao getSongDao();
 
@@ -55,20 +55,23 @@ public abstract class SongsDatabase extends RoomDatabase {
         private void fillBonusAlbum(@NonNull SupportSQLiteDatabase db) {
             List<String> bonusNames = Arrays.asList(
                     applicationContext.getString(R.string.song_name_noli_respicere_rmx),
+                    applicationContext.getString(R.string.song_name_fly_away),
                     applicationContext.getString(R.string.song_name_whisper),
-                    applicationContext.getString(R.string.song_name_fly_away)
+                    applicationContext.getString(R.string.song_name_hate_number)
             );
 
             List<Integer> bonusImageResources = Arrays.asList(
                     R.drawable.vt_dnb120,
+                    R.drawable.pic_vt_cover,
                     R.drawable.pic_whisper_cover,
-                    R.drawable.pic_vt_cover
+                    R.drawable.pic_hate_number_cover
             );
 
             List<String> bonusLinks = Arrays.asList(
                     applicationContext.getString(R.string.audio_noli_respicere_rmx),
+                    applicationContext.getString(R.string.audio_fly_away),
                     applicationContext.getString(R.string.audio_whisper),
-                    applicationContext.getString(R.string.audio_fly_away)
+                    applicationContext.getString(R.string.audio_hate_number)
                     );
 
             fillAlbum(
