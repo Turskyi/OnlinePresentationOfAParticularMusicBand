@@ -34,6 +34,13 @@ public class AppModule {
     public SongsDatabase provideDatabase(Application app, SongsDatabase.Callback callback) {
         return Room.databaseBuilder(app, SongsDatabase.class, DATABASE_SONGS)
                 .addCallback(callback)
+                /*
+                 * If you don’t want to provide migrations
+                 * and you specifically want your database to be cleared
+                 * when you upgrade the version,
+                 * call fallbackToDestructiveMigration in the database builder:
+                 * */
+                .fallbackToDestructiveMigration()
                 .build();
     }
 

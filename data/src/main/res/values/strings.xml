@@ -52,6 +52,7 @@
     <string name="song_name_zombie_instrumental" translatable="false">Зомбі (instrumental)</string>
 
     <string name="song_name_whisper">шепіт</string>
+    <string name="song_name_hate_number">Число ненависті</string>
     <string name="song_name_fly_away">Відлітай (demo)</string>
 
     <string name="song_name_abroad_rmx" translatable="false">Abroad (Retroflex Encoded)</string>
@@ -143,11 +144,16 @@
         https://dl.dropboxusercontent.com/s/pn3bdn4erq4u1xs/vidchuttia_tyshi_zombi_instrumental.mp3?dl=1
     </string>
 
+    <string name="audio_fly_away" translatable="false">
+        https://dl.dropboxusercontent.com/s/uekwyrwmdlbyxxs/sense_of_silence_fly_away.mp3?dl=1
+    </string>
+
     <string name="audio_whisper" translatable="false">
         https://dl.dropboxusercontent.com/s/2okcrty6yu12onu/sense_of_silence_whisper.mp3?dl=1
     </string>
-    <string name="audio_fly_away" translatable="false">
-        https://dl.dropboxusercontent.com/s/uekwyrwmdlbyxxs/sense_of_silence_fly_away.mp3?dl=1
+
+    <string name="audio_hate_number" translatable="false">
+        https://dl.dropboxusercontent.com/s/6chfkej0hugac0z/sense_of_silence_hate_number.mp3?dl=1
     </string>
 
     <string name="audio_abroad_rmx" translatable="false">
