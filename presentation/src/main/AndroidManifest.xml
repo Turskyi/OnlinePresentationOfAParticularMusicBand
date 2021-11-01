@@ -24,6 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- [START fcm_default_icon] -->
         <!-- Default icon. This is used when no icon is set for incoming notification messages.
               -->
@@ -43,8 +44,11 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
         <!-- [END fcm_default_channel] -->
+
+        <!-- android:exported should be set true for main activity, or it won't launch -->
         <activity
             android:name=".features.home.MainActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.Launcher">
 
             <intent-filter>
@@ -54,12 +58,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".features.senseofsilence.SenseOfSilenceActivity"
             android:label="@string/band_sense_of_silence"
             android:parentActivityName=".features.home.MainActivity"
             android:theme="@style/SenseOfSilenceTheme" />
-        <activity android:name=".common.MusicPlayerActivity" />
+        <activity android:name="com.music.android.sensilence.common.MusicPlayerActivity" />
 
         <!-- [START firebase_service] -->
         <service

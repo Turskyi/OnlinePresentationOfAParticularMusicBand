@@ -44,7 +44,7 @@ public class ZigmundAfraidViewModel extends BaseViewModel {
     }
 
     private void getSongsFromAlbum() {
-        io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
+        io.reactivex.rxjava3.disposables.Disposable disposable = useCase.setSongs(
                 Album.ZIGMUND_AFRAID.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(String.valueOf(error))

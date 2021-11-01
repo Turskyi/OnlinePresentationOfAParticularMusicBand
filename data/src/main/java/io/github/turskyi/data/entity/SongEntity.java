@@ -2,7 +2,6 @@ package io.github.turskyi.data.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import io.github.turskyi.domain.entities.pojo.Song;
@@ -12,8 +11,7 @@ import io.github.turskyi.domain.entities.pojo.Song;
  * It contains a Name of the song from the album and a  song from that album.
  */
 @Entity(tableName = SongEntity.TABLE_SONGS)
-public
-class SongEntity {
+public class SongEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
     private int id = 0;
@@ -46,44 +44,6 @@ class SongEntity {
      */
     @ColumnInfo(name = COLUMN_AUDIO_LINK)
     private String audioLink;
-
-    /**
-     * Create a new Song object.
-     *
-     * @param bandName  is the name of the band
-     * @param songName  is the song from the album
-     * @param audioLink is the resource link for the audio file associated with song.
-     */
-    public SongEntity(
-            String bandName,
-            String album,
-            String songName,
-            int imageResourceId,
-            String audioLink
-    ) {
-        this.songName = songName;
-        this.bandName = bandName;
-        this.album = album;
-        this.audioLink = audioLink;
-        this.imageResourceId = imageResourceId;
-    }
-
-    @Ignore
-    public SongEntity(
-            int id,
-            String bandName,
-            String album,
-            String songName,
-            int imageResourceId,
-            String audioLink
-    ) {
-        this.id = id;
-        this.songName = songName;
-        this.bandName = bandName;
-        this.album = album;
-        this.audioLink = audioLink;
-        this.imageResourceId = imageResourceId;
-    }
 
     public int getId() {
         return id;

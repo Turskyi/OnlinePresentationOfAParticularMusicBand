@@ -44,7 +44,7 @@ public class SenseOfSilenceViewModel extends BaseViewModel {
     }
 
     private void getSongsFromAlbum(Album album) {
-        io.reactivex.rxjava3.disposables.Disposable disposable = useCase.getDisposableSongs(
+        io.reactivex.rxjava3.disposables.Disposable disposable = useCase.setSongs(
                 album.name,
                 (List<Song> albumSongs) -> _songs.postValue(albumSongs),
                 (String error) -> _errorMessage.postValue(String.valueOf(error))

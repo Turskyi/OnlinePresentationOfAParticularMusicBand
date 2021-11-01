@@ -27,6 +27,8 @@ import com.music.android.sensilence.databinding.ActivitySongListBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.pojo.Song;
 
@@ -36,8 +38,9 @@ import io.github.turskyi.domain.entities.pojo.Song;
 @AndroidEntryPoint
 public class ZigmundAfraidFragment extends Fragment {
 
-    private MusicPlayerActivity musicPlayerActivity;
-
+    @Inject
+    MusicPlayerActivity musicPlayerActivity;
+    private ZigmundAfraidViewModel viewModel;
     protected MediaPlayer mediaPlayer;
 
     /**
@@ -100,6 +103,7 @@ public class ZigmundAfraidFragment extends Fragment {
                 }
             };
     private ActivitySongListBinding binding;
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
@@ -115,26 +119,23 @@ public class ZigmundAfraidFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ZigmundAfraidViewModel viewModel = new ViewModelProvider(this)
-                .get(ZigmundAfraidViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ZigmundAfraidViewModel.class);
 
         /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
          * The adapter knows how to create list items for each item in the list. */
         SongAdapter adapter = new SongAdapter(getActivity(), R.color.colorPurple);
         binding.listView.setAdapter(adapter);
 
-        initObservers(viewModel, adapter);
+        initObservers(adapter);
 
         //Set a click listener to play the audio when the list item is clicked on
         binding.listView.setOnItemClickListener(firstClickListener);
-
-        musicPlayerActivity = new MusicPlayerActivity();
 
         //Create and setup the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
     }
 
-    private void initObservers(ZigmundAfraidViewModel viewModel, SongAdapter adapter) {
+    private void initObservers(@SuppressWarnings("unused") SongAdapter adapter) {
         // Create the observer which updates the UI.
         final Observer<List<Song>> songsObserver = albumSongs -> {
             // Update the UI

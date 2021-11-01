@@ -20,6 +20,8 @@ import com.music.android.sensilence.R;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import io.github.turskyi.domain.entities.pojo.Song;
 
 public class MusicPlayerActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private ImageView imageView;
     private ProgressBar progressBar;
 
+    @Inject
     public MusicPlayerActivity() {
     }
 
@@ -187,7 +190,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         });
 
         /* Setup a listener on the media player, so that we can stop and release the
-         media player once the sounds has finished */
+         * media player once the sounds has finished */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
     }
@@ -221,7 +224,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
                                         Uri.fromParts(
                                                 getString(R.string.scheme_mailto),
                                                 getString(R.string.email),
-                                                ""
+                                                /* Gets the decoded fragment part of this URI,
+                                                 * everything after the '#', null if undefined. */
+                                                null
                                         )
                                 );
                                 intent.putExtra(
@@ -232,19 +237,21 @@ public class MusicPlayerActivity extends AppCompatActivity {
                                 if (intent.resolveActivity(activity.getPackageManager()) != null) {
                                     activity.startActivity(intent);
                                 }
-                            }).setNegativeButton(getString(R.string.no), (dialog, id) -> {
-                        Toast.makeText(
-                                activity,
-                                getString(R.string.error_message_try_tomorrow),
-                                Toast.LENGTH_SHORT
-                        ).show();
-                        dialog.cancel();
-                        Intent newIntent = new Intent(
-                                activity,
-                                activity.getClass()
-                        );
-                        activity.startActivity(newIntent);
-                    }).create();
+                            }).setNegativeButton(
+                            getString(R.string.no),
+                            (dialog, id) -> {
+                                Toast.makeText(
+                                        activity,
+                                        getString(R.string.error_message_try_tomorrow),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                dialog.cancel();
+                                Intent newIntent = new Intent(
+                                        activity,
+                                        activity.getClass()
+                                );
+                                activity.startActivity(newIntent);
+                            }).create();
             lastDialog.show();
         });
     }

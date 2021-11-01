@@ -14,11 +14,12 @@ import io.reactivex.rxjava3.core.Single;
 public class SongsRepositoryImpl implements SongsRepository {
     private final SongDao dao;
 
+    /* Constructor-injected, because Hilt needs to know how to
+     * provide instances of  SongsRepositoryImpl, too. */
     @Inject
     SongsRepositoryImpl(SongDao dao) {
         this.dao = dao;
     }
-
 
     @Override
     public Single<List<Song>> getSongsFromAlbum(String album) {
