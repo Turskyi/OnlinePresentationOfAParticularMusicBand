@@ -60,4 +60,4 @@ unused variables or methods, no commented out code.
 • Screenshots:
 
 <img src="/screenshots/bonus-2021-11-01.png?raw=true" width="200" ><img src="/screenshots/home-2021-11-01.png?raw=true" width="200" >
-<img src="/screenshots/za-2021-11-01.png?raw=true" width="200" ><img src="/screenshots/zombi-2021-11-01.png?raw=true" width="200" >
+<img src="/screenshots/za-2021-11-01.png?raw=true" width="300" ><img src="/screenshots/zombi-2021-11-01.png?raw=true" width="200" >
