@@ -1,4 +1,4 @@
-# sense.of.silence & Zigmund Afraid
+# sense.of.silence & Zigmund Afraid [![Codemagic build status](https://api.codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/status_badge.svg)](https://codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/latest_build)
 
 Online Music Player for particular Music Band "відчуття.тиші"  (where I used to play on piano), with
 an opportunity to listen to almost all their songs online.
