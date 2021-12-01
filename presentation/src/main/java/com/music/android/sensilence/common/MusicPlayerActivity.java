@@ -6,23 +6,15 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.music.android.sensilence.R;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import io.github.turskyi.domain.entities.pojo.Song;
 
 import javax.inject.Inject;
-
-import io.github.turskyi.domain.entities.pojo.Song;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MusicPlayerActivity extends AppCompatActivity {
 
@@ -69,6 +61,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                      * play a different sound file. */
                     releaseMediaPlayer();
                     //Request audio focus for playback
+                    //TODO: replace deprecated method
                     int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
                             //Use the music stream.
                             AudioManager.STREAM_MUSIC,
@@ -77,11 +70,12 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                         //We have an audio focus now.
 
-/*                Create and setup the {@link MedeaPlayer} for the audio resource associated
+/*                Create and set up the {@link MedeaPlayer} for the audio resource associated
                 with the current song */
                         String url;
                         url = song.getAudioLink(); // your URL here
                         mediaPlayer = new MediaPlayer();
+                        // TODO: replace deprecated method
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                         try {
                             mediaPlayer.setDataSource(url);
@@ -189,7 +183,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             imageView.setImageResource(R.drawable.ic_pause);
         });
 
-        /* Setup a listener on the media player, so that we can stop and release the
+        /* Set up a listener on the media player, so that we can stop and release the
          * media player once the sounds has finished */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);

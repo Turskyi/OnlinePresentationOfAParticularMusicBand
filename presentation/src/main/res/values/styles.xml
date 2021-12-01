@@ -9,7 +9,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
+    <!-- The launcher themes. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.Launcher">
     <item name="android:windowBackground">@drawable/layout_launch_screen</item>
     <!-- modifying the colorPrimaryDark color to match the windowBackground color for further branding-->

@@ -1,13 +1,7 @@
 package com.music.android.sensilence.features.senseofsilence;
 
-import static com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -17,23 +11,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.common.MusicPlayerActivity;
 import com.music.android.sensilence.common.SongAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Album;
 import io.github.turskyi.domain.entities.pojo.Song;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.music.android.sensilence.features.senseofsilence.SenseOfSilenceFragment.EXTRA_ALBUM;
 
 @AndroidEntryPoint
 public class SenseOfSilenceActivity extends AppCompatActivity {
@@ -117,7 +109,7 @@ public class SenseOfSilenceActivity extends AppCompatActivity {
         //Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(firstClickListener);
 
-        // Create and setup the {@link AudioManager} to request audio focus
+        // Create and set up the {@link AudioManager} to request audio focus
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
 

@@ -12,25 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.common.MusicPlayerActivity;
 import com.music.android.sensilence.common.SongAdapter;
 import com.music.android.sensilence.databinding.ActivitySongListBinding;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.pojo.Song;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,42 +34,36 @@ import io.github.turskyi.domain.entities.pojo.Song;
 @AndroidEntryPoint
 public class ZigmundAfraidFragment extends Fragment {
 
+    // Create an empty array of songs
+    private final ArrayList<Song> songs = new ArrayList<> ( );
+    protected MediaPlayer mediaPlayer;
     @Inject
     MusicPlayerActivity musicPlayerActivity;
-    private ZigmundAfraidViewModel viewModel;
-    protected MediaPlayer mediaPlayer;
-
-    /**
-     * Handles audio focus when playing a sound file
-     */
-    private AudioManager audioManager;
-
-    // Create an empty array of songs
-    private final ArrayList<Song> songs = new ArrayList<>();
-
     private final AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener =
-            new AudioManager.OnAudioFocusChangeListener() {
+            new AudioManager.OnAudioFocusChangeListener ( ) {
                 @Override
                 public void onAudioFocusChange(int focusChange) {
-                    musicPlayerActivity.onFocusChange(focusChange, mediaPlayer);
+                    musicPlayerActivity.onFocusChange (focusChange, mediaPlayer);
                 }
             };
-
     /**
      * This listener gets triggered when the {@link MediaPlayer} has completed
      * playing the audio file.
      */
     private final MediaPlayer.OnCompletionListener completionListener =
-            new MediaPlayer.OnCompletionListener() {
+            new MediaPlayer.OnCompletionListener ( ) {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    musicPlayerActivity.releaseMediaPlayer();
+                    musicPlayerActivity.releaseMediaPlayer ( );
                 }
             };
-
-
-    private final AdapterView.OnItemClickListener firstClickListener =
-            new AdapterView.OnItemClickListener() {
+    private ZigmundAfraidViewModel viewModel;
+    /**
+     * Handles audio focus when playing a sound file
+     */
+    private AudioManager audioManager;
+    private ActivitySongListBinding binding;    private final AdapterView.OnItemClickListener firstClickListener =
+            new AdapterView.OnItemClickListener ( ) {
                 @Override
                 public void onItemClick(
                         AdapterView<?> parent,
@@ -81,7 +71,7 @@ public class ZigmundAfraidFragment extends Fragment {
                         final int position,
                         long id
                 ) {
-                    musicPlayerActivity.onFirstClick(
+                    musicPlayerActivity.onFirstClick (
                             view,
                             position,
                             onAudioFocusChangeListener,
@@ -90,19 +80,10 @@ public class ZigmundAfraidFragment extends Fragment {
                             binding.listView,
                             songs,
                             audioManager,
-                            getActivity()
+                            getActivity ( )
                     );
                 }
             };
-
-    private final AdapterView.OnItemClickListener secondClickListener =
-            new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    musicPlayerActivity.onSecondClick(firstClickListener, binding.listView);
-                }
-            };
-    private ActivitySongListBinding binding;
 
     @Override
     public View onCreateView(
@@ -110,57 +91,67 @@ public class ZigmundAfraidFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = ActivitySongListBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-        setBackground();
+        binding = ActivitySongListBinding.inflate (inflater, container, false);
+        View view = binding.getRoot ( );
+        setBackground ( );
         return view;
-    }
+    }    private final AdapterView.OnItemClickListener secondClickListener =
+            new AdapterView.OnItemClickListener ( ) {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    musicPlayerActivity.onSecondClick (firstClickListener, binding.listView);
+                }
+            };
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(ZigmundAfraidViewModel.class);
+        super.onViewCreated (view, savedInstanceState);
+        viewModel = new ViewModelProvider (this).get (ZigmundAfraidViewModel.class);
 
         /* Create an {@link SongAdapter}, whose data source is a list of {@link Song}s.
          * The adapter knows how to create list items for each item in the list. */
-        SongAdapter adapter = new SongAdapter(getActivity(), R.color.colorPurple);
-        binding.listView.setAdapter(adapter);
+        SongAdapter adapter = new SongAdapter (getActivity ( ), R.color.colorPurple);
+        binding.listView.setAdapter (adapter);
 
-        initObservers(adapter);
+        initObservers (adapter);
 
         //Set a click listener to play the audio when the list item is clicked on
-        binding.listView.setOnItemClickListener(firstClickListener);
+        binding.listView.setOnItemClickListener (firstClickListener);
 
-        //Create and setup the {@link AudioManager} to request audio focus
-        audioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
+        //Create and set up the {@link AudioManager} to request audio focus
+        audioManager = (AudioManager) requireActivity ( ).getSystemService (Context.AUDIO_SERVICE);
     }
 
     private void initObservers(@SuppressWarnings("unused") SongAdapter adapter) {
         // Create the observer which updates the UI.
         final Observer<List<Song>> songsObserver = albumSongs -> {
             // Update the UI
-            if (songs.isEmpty()) {
-                songs.addAll(albumSongs);
+            if (songs.isEmpty ( )) {
+                songs.addAll (albumSongs);
             }
-            adapter.addAll(songs);
+            adapter.addAll (songs);
         };
-        viewModel.getSongs().observe(getViewLifecycleOwner(), songsObserver);
+        viewModel.getSongs ( ).observe (getViewLifecycleOwner ( ), songsObserver);
 
         // Create the observer which updates the UI.
-        final Observer<String> errorObserver = error -> Toast.makeText(
-                getContext(),
+        final Observer<String> errorObserver = error -> Toast.makeText (
+                getContext ( ),
                 error,
                 Toast.LENGTH_LONG
-        ).show();
+        ).show ( );
 
         // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorObserver);
+        viewModel.getErrorMessage ( ).observe (getViewLifecycleOwner ( ), errorObserver);
     }
 
     private void setBackground() {
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.zigmund_afraid_cover);
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bmp);
-        bitmapDrawable.setAlpha(100);
-        binding.listView.setBackground(bitmapDrawable);
+        Bitmap bmp = BitmapFactory.decodeResource (getResources ( ), R.drawable.zigmund_afraid_cover);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable (getResources ( ), bmp);
+        bitmapDrawable.setAlpha (100);
+        binding.listView.setBackground (bitmapDrawable);
     }
+
+
+
+
 }

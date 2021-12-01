@@ -81,7 +81,7 @@ public class Song {
     }
 
     /**
-     * Returns whether or not there is an image for this song.
+     * Returns whether there is an image for this song.
      */
     public boolean hasImage() {
         return imageResourceID != NO_IMAGE_PROVIDED;
