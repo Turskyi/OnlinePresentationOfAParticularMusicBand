@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Primary color of the app (shown in the app bar) -->
     <color name="colorPrimary">#000000</color>
     <!-- Primary dark color of the app (shown in the status bar) -->
@@ -7,7 +7,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <!-- Background color for app -->
-    <color name="tan_background">#63070707</color>
+    <color name="tan_background" tools:keep="@color/tan_background">#63070707</color>
 
     <!-- Background color for zombi album -->
     <color name="colorBloody">#61FD0909</color>
@@ -16,7 +16,7 @@
     <color name="colorDark">#7C000700</color>
 
     <!-- Background color for the colors category -->
-    <color name="color_sense_of_silence">#F6F6F8</color>
+    <color name="color_sense_of_silence" tools:keep="@color/color_sense_of_silence">#F6F6F8</color>
 
     <!-- Background color for the phrases category -->
     <color name="colorPurple">#4F7206EE</color>

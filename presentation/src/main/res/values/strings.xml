@@ -7,15 +7,15 @@
     <string name="band_sense_of_silence">відчуття.тиші</string>
 
     <!-- Album names [CHAR LIMIT=20] -->
-    <string name="album_zombi">Зомбі</string>
-    <string name="album_crime">Злочин</string>
-    <string name="album_sense_of_silence">Відчуття.Тиші LP</string>
+    <string name="album_zombi" tools:keep="@string/album_zombi">Зомбі</string>
+    <string name="album_crime" tools:keep="@string/album_crime">Злочин</string>
+    <string name="album_sense_of_silence" tools:keep="@string/album_sense_of_silence">Відчуття.Тиші LP</string>
 
     <!-- content descriptions-->
-    <string name="content_description_picture_of_the_song">picture of the song</string>
-    <string name="content_description_play_button">play button</string>
-    <string name="content_description_background">background</string>
-    <string name="content_description_word">word bonus</string>
+    <string name="content_description_picture_of_the_song" tools:keep="@string/content_description_picture_of_the_song">picture of the song</string>
+    <string name="content_description_play_button" tools:keep="@string/content_description_play_button">play button</string>
+    <string name="content_description_background" tools:keep="@string/content_description_background">background</string>
+    <string name="content_description_word" tools:keep="@string/content_description_word">word bonus</string>
 
     <!-- pop up messages -->
     <string name="sensilence_zombi_songs">Пісні з альбому Зомбі</string>

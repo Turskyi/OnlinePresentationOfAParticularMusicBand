@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Height of each list item -->
-    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="list_item_height" tools:keep="@dimen/list_item_height">88dp</dimen>
 
-    <dimen name="alpha_0_7">0.7</dimen>
-    <dimen name="alpha_0_8">0.8</dimen>
-    <dimen name="height_album_background">250dp</dimen>
-    <dimen name="text_size_album_name">32sp</dimen>
-    <dimen name="size_play_btn">24dp</dimen>
-    <dimen name="margin_end_play_btn">16dp</dimen>
-    <dimen name="margin_end_progress_bar">4dp</dimen>
-    <dimen name="margin_fab">16dp</dimen>
+    <dimen name="alpha_0_7" tools:keep="@dimen/alpha_0_7">0.7</dimen>
+    <dimen name="alpha_0_8" tools:keep="@dimen/alpha_0_8">0.8</dimen>
+    <dimen name="height_album_background" tools:keep="@dimen/height_album_background">250dp</dimen>
+    <dimen name="text_size_album_name" tools:keep="@dimen/text_size_album_name">32sp</dimen>
+    <dimen name="size_play_btn" tools:keep="@dimen/size_play_btn">24dp</dimen>
+    <dimen name="margin_end_play_btn" tools:keep="@dimen/margin_end_play_btn">16dp</dimen>
+    <dimen name="margin_end_progress_bar" tools:keep="@dimen/margin_end_progress_bar">4dp</dimen>
+    <dimen name="margin_fab" tools:keep="@dimen/margin_fab">16dp</dimen>
 </resources>

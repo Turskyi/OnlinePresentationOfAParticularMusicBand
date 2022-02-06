@@ -6,15 +6,23 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.music.android.sensilence.R;
-import io.github.turskyi.domain.entities.pojo.Song;
 
-import javax.inject.Inject;
+import com.music.android.sensilence.R;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import io.github.turskyi.domain.entities.pojo.Song;
 
 public class MusicPlayerActivity extends AppCompatActivity {
 

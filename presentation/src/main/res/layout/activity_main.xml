@@ -6,7 +6,8 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.music.android.sensilence.features.home.MainActivity"
-    tools:ignore="Overdraw">
+    tools:ignore="Overdraw"
+    tools:keep="@layout/activity_main">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
