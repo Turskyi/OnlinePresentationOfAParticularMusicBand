@@ -114,7 +114,7 @@ dependencies {
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.10'
     implementation 'com.google.firebase:firebase-perf:20.0.6'
     // Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:23.0.3'
