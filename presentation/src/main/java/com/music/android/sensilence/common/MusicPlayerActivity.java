@@ -69,6 +69,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                      * play a different sound file. */
                     releaseMediaPlayer();
                     //Request audio focus for playback
+                    //TODO: replace deprecated method
                     int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
                             //Use the music stream.
                             AudioManager.STREAM_MUSIC,
@@ -77,11 +78,12 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                         //We have an audio focus now.
 
-/*                Create and setup the {@link MedeaPlayer} for the audio resource associated
+/*                Create and set up the {@link MedeaPlayer} for the audio resource associated
                 with the current song */
                         String url;
                         url = song.getAudioLink(); // your URL here
                         mediaPlayer = new MediaPlayer();
+                        // TODO: replace deprecated method
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                         try {
                             mediaPlayer.setDataSource(url);
@@ -189,7 +191,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             imageView.setImageResource(R.drawable.ic_pause);
         });
 
-        /* Setup a listener on the media player, so that we can stop and release the
+        /* Set up a listener on the media player, so that we can stop and release the
          * media player once the sounds has finished */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);

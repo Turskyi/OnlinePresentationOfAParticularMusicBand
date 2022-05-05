@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -9,7 +9,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
+    <!-- The launcher themes. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.Launcher">
     <item name="android:windowBackground">@drawable/layout_launch_screen</item>
     <!-- modifying the colorPrimaryDark color to match the windowBackground color for further branding-->
@@ -23,7 +23,7 @@
     </style>
 
     <!-- Style for album songs -->
-    <style name="AlbumStyle">
+    <style name="AlbumStyle" tools:keep="@style/AlbumStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
@@ -34,14 +34,14 @@
     </style>
 
     <!-- Style for a tab that displays a category name -->
-    <style name="BandTabStyle" parent="Widget.Design.TabLayout">
+    <style name="BandTabStyle" parent="Widget.Design.TabLayout" tools:keep="@style/BandTabStyle">
         <item name="tabIndicatorColor">@android:color/white</item>
         <item name="tabSelectedTextColor">@android:color/white</item>
         <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
     </style>
 
     <!-- Text appearance style for a category tab -->
-    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">
+    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab" tools:keep="@style/CategoryTabTextAppearance">
         <item name="android:textColor">#A8A19E</item>
     </style>
 
@@ -51,7 +51,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LoadingProgress" parent="Theme.AppCompat.Light">
+    <style name="LoadingProgress" parent="Theme.AppCompat.Light" tools:keep="@style/LoadingProgress">
         <item name="colorAccent">@android:color/white</item>
     </style>
 

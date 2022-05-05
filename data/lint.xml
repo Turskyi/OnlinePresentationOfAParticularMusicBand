@@ -19,4 +19,7 @@
         <ignore path="src/main/res/drawable/zombi_cover.webp" />
         <ignore path="src/main/res/drawable/zombi_txt.webp" />
     </issue>
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/drawable/white_and_black.webp" />
+    </issue>
 </lint>

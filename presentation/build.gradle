@@ -1,3 +1,5 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GrUnresolvedAccess
 apply plugin: 'com.android.application'
 apply plugin: 'dagger.hilt.android.plugin'
 // Google Services plugin (required for firebase)
@@ -13,6 +15,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
+    //noinspection GrUnresolvedAccess
     compileSdkVersion rootProject.compile_sdk_version
     defaultConfig {
         applicationId "com.music.android.sensilence"
@@ -97,7 +100,7 @@ dependencies {
     // required app module hilt dependency
     implementation "com.google.dagger:hilt-android:$hiltVersion"
 
-    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
 
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
@@ -105,16 +108,20 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.3.1')
 
     // Firebase SDK for Google Analytics
-    implementation('com.google.firebase:firebase-analytics:20.0.0') {
+    implementation('com.google.firebase:firebase-analytics:20.1.2') {
         // remove advertising dependency
         exclude module: "play-services-ads-identifier"
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.4'
-    implementation 'com.google.firebase:firebase-perf:20.0.3'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.10'
+    implementation 'com.google.firebase:firebase-perf:20.0.6'
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.3'
+
+    // added to avoid errors with libraries, which using kotlin
+    //noinspection DifferentStdlibGradleVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     // test
     testImplementation "junit:junit:$junitVersion"
@@ -123,4 +130,8 @@ dependencies {
 
     androidTestImplementation "androidx.test:runner:$androidx_test_version"
     androidTestImplementation "androidx.test:core:$androidx_test_version"
+}
+
+repositories {
+    mavenCentral()
 }
