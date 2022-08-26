@@ -5,10 +5,12 @@
 buildscript {
     ext {
         // sdk versions
-        compile_sdk_version = 31
+        compile_sdk_version = 32
         build_tools_version = "30.0.3"
         min_sdk_version = 21
-        target_sdk_version = 30
+        target_sdk_version = 32
+        /* to check the latest version @see
+[https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview] */
         version_code = 18
         version_name = "1.0.8"
     }
@@ -18,7 +20,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.android.tools.build:gradle:7.2.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -30,7 +32,7 @@ buildscript {
         // firebase
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
         classpath 'com.google.firebase:perf-plugin:1.4.1'
-        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.2'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
     }
 }
 ext {

@@ -38,7 +38,7 @@ android {
         }
 //        Remove unused alternative resources
 //        (https://developer.android.com/studio/build/shrink-code#unused-alt-resources)
-        resConfigs "en", "ua"
+        resConfigs 'en', 'ua'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -89,6 +89,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.music.android.sensilence'
 }
 
 dependencies {
@@ -114,19 +115,19 @@ dependencies {
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation platform('com.google.firebase:firebase-bom:30.3.2')
 
     // Firebase SDK for Google Analytics
-    implementation('com.google.firebase:firebase-analytics:21.0.0') {
+    implementation('com.google.firebase:firebase-analytics:21.1.0') {
         // remove advertising dependency
         exclude module: "play-services-ads-identifier"
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
     implementation 'com.google.firebase:firebase-perf:20.1.0'
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:23.0.6'
+    implementation 'com.google.firebase:firebase-messaging:23.0.7'
 
     // added to avoid errors with libraries, which using kotlin
     //noinspection DifferentStdlibGradleVersion
