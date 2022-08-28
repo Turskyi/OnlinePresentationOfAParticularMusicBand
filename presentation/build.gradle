@@ -36,6 +36,9 @@ android {
                         "room.expandProjection": "true"]
             }
         }
+//        Remove unused alternative resources
+//        (https://developer.android.com/studio/build/shrink-code#unused-alt-resources)
+        resConfigs 'en', 'ua'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -58,28 +61,35 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            // Enables code shrinking, obfuscation, and optimization for only
+            // project's release build type.
+            // https://developer.android.com/studio/build/shrink-code#enable
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    // List additional ProGuard rules for the given build type here. By default,
+                    // Android Studio creates and includes an empty rules file (located
+                    // at the root directory of each module).
                     'proguard-rules.pro'
             signingConfig signingConfigs.production
         }
         debug {
             signingConfig signingConfigs.dev
-        }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
-                    'proguard-rules.pro'
-        }
-        debug {
             pseudoLocalesEnabled true
         }
     }
+
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.music.android.sensilence'
 }
 
 dependencies {
@@ -105,19 +115,23 @@ dependencies {
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation platform('com.google.firebase:firebase-bom:28.3.1')
+    implementation platform('com.google.firebase:firebase-bom:30.3.2')
 
     // Firebase SDK for Google Analytics
-    implementation('com.google.firebase:firebase-analytics:20.1.2') {
+    implementation('com.google.firebase:firebase-analytics:21.1.0') {
         // remove advertising dependency
         exclude module: "play-services-ads-identifier"
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.10'
-    implementation 'com.google.firebase:firebase-perf:20.0.6'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
+    implementation 'com.google.firebase:firebase-perf:20.1.0'
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:23.0.3'
+    implementation 'com.google.firebase:firebase-messaging:23.0.7'
+
+    // added to avoid errors with libraries, which using kotlin
+    //noinspection DifferentStdlibGradleVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     // added to avoid errors with libraries, which using kotlin
     //noinspection DifferentStdlibGradleVersion
