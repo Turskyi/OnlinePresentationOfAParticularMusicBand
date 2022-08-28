@@ -13,7 +13,8 @@
         android:id="@+id/tab_layout"
         style="@style/BandTabStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/band_sense_of_silence" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
