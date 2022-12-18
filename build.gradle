@@ -5,14 +5,15 @@
 buildscript {
     ext {
         // sdk versions
-        compile_sdk_version = 32
+        compile_sdk_version = 33
         build_tools_version = "30.0.3"
         min_sdk_version = 21
-        target_sdk_version = 32
+        target_sdk_version = 33
         /* to check the latest version @see
-[https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview] */
-        version_code = 18
-        version_name = "1.0.8"
+[https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview]
+*/
+        version_code = 19
+        version_name = "1.0.9"
     }
     repositories {
         // Google's Maven repository
@@ -20,19 +21,19 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // Google Services plugin (required for firebase)
-        classpath 'com.google.gms:google-services:4.3.13'
+        classpath 'com.google.gms:google-services:4.3.14'
 
         // firebase
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
-        classpath 'com.google.firebase:perf-plugin:1.4.1'
-        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+        classpath 'com.google.firebase:perf-plugin:1.4.2'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
     }
 }
 ext {
@@ -75,8 +76,10 @@ subprojects {
         }
     }
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << '-Xmaxerrs' << '500'
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << '-Xmaxerrs' << '500'
+            }
         }
     }
 }
@@ -89,6 +92,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean') {
     delete rootProject.buildDir
 }
