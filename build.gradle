@@ -10,7 +10,9 @@ buildscript {
         min_sdk_version = 21
         target_sdk_version = 33
         /* to check the latest version @see
-[https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview]
+[
+https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview
+]
 */
         version_code = 19
         version_name = "1.0.9"
@@ -21,19 +23,19 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:8.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // Google Services plugin (required for firebase)
-        classpath 'com.google.gms:google-services:4.3.14'
+        classpath 'com.google.gms:google-services:4.3.15'
 
         // firebase
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.5'
         classpath 'com.google.firebase:perf-plugin:1.4.2'
-        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.1.1'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:4.0.0'
     }
 }
 ext {
@@ -68,11 +70,6 @@ subprojects {
             implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
             implementation "com.github.akarnokd:rxjava3-bridge:$rxAndroidVersion"
             implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
-
-            // database (Room)
-            implementation "androidx.room:room-runtime:$roomVersion"
-            annotationProcessor "androidx.room:room-compiler:$roomVersion"
-            implementation "androidx.room:room-rxjava2:$roomVersion"
         }
     }
     gradle.projectsEvaluated {

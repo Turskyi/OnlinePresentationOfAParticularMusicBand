@@ -12,6 +12,14 @@ import io.github.turskyi.domain.entities.pojo.Song;
  */
 @Entity(tableName = SongEntity.TABLE_SONGS)
 public class SongEntity {
+    public static final String TABLE_SONGS = "table_songs";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_BAND = "band";
+    public static final String COLUMN_ALBUM = "album";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_IMAGE_RES_ID = "image_resource_id";
+    public static final String COLUMN_IMAGE_RES = "image_resource";
+    public static final String COLUMN_AUDIO_LINK = "audio_link";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
     private int id = 0;
@@ -20,25 +28,23 @@ public class SongEntity {
      */
     @ColumnInfo(name = COLUMN_BAND)
     private String bandName;
-
     /**
      * Name of the album
      */
     @ColumnInfo(name = COLUMN_ALBUM)
     private String album;
-
     /**
      * name of the song from the album
      */
     @ColumnInfo(name = COLUMN_NAME)
     private String songName;
-
     /**
      * Image resource ID for the song
      */
     @ColumnInfo(name = COLUMN_IMAGE_RES_ID)
     private int imageResourceId;
-
+    @ColumnInfo(name = COLUMN_IMAGE_RES)
+    private String imageResource;
     /**
      * Audio resource for the song
      */
@@ -97,6 +103,14 @@ public class SongEntity {
         this.imageResourceId = imageResourceId;
     }
 
+    public String getImageResource() {
+        return imageResource;
+    }
+
+    public void setImageResource(String imageResource) {
+        this.imageResource = imageResource;
+    }
+
     /**
      * Returns the audio link of the song.
      */
@@ -108,20 +122,13 @@ public class SongEntity {
         this.audioLink = audioLink;
     }
 
-    public static final String TABLE_SONGS = "table_songs";
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_BAND = "band";
-    public static final String COLUMN_ALBUM = "album";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_IMAGE_RES_ID = "image_resource_id";
-    public static final String COLUMN_AUDIO_LINK = "audio_link";
-
     public Song mapToDomain() {
         return new Song(
                 this.bandName,
                 this.album,
                 this.songName,
                 this.imageResourceId,
+                this.imageResource,
                 this.audioLink
         );
     }

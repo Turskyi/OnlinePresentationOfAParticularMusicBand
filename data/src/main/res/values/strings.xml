@@ -162,4 +162,33 @@
     <string name="audio_pleasure_was_mine" translatable="false">
         https://dl.dropboxusercontent.com/s/5960o0g06ejai9m/zigmund_afraid_pleasure_was_mine.mp3?dl=1
     </string>
+
+    <!-- links to image resources -->
+    <string name="image_vt_dnb" translatable="false">
+        https://dl.dropboxusercontent.com/s/luge6ysksfvmj7r/vt_dnb120.webp?dl=1
+    </string>
+    <string name="image_vt_cover" translatable="false">
+        https://dl.dropboxusercontent.com/s/zimzody148ljo1d/pic_vt_cover.jpg?dl=1
+    </string>
+    <string name="image_whisper_cover" translatable="false">
+        https://dl.dropboxusercontent.com/s/wxjck5v5ilvzest/pic_whisper_cover.jpg?dl=1
+    </string>
+    <string name="image_hate_number_cover" translatable="false">
+        https://dl.dropboxusercontent.com/s/v6iqiiuk19p9upj/pic_hate_number_cover.jpg?dl=1
+    </string>
+    <string name="image_logo_black" translatable="false">
+        https://dl.dropboxusercontent.com/s/gc2kdydcrt9c9um/logo_black.webp?dl=1
+    </string>
+    <string name="image_zombi" translatable="false">
+        https://dl.dropboxusercontent.com/s/jvny4los44wys3y/zombi.jpg?dl=1
+    </string>
+    <string name="image_crime_cover" translatable="false">
+        https://dl.dropboxusercontent.com/s/z8teg5p90400o8b/pic_crime_cover.jpg?dl=1
+    </string>
+    <string name="image_za" translatable="false">
+        https://dl.dropboxusercontent.com/s/66v5kzgi01gcda0/ic_za.webp?dl=1
+    </string>
+    <string name="image_pwm" translatable="false">
+        https://dl.dropboxusercontent.com/s/2dffvikunch56vs/pwm.webp?dl=1
+    </string>
 </resources>

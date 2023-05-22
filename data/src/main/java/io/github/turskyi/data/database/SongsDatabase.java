@@ -1,9 +1,17 @@
 package io.github.turskyi.data.database;
 
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_ALBUM;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_AUDIO_LINK;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_BAND;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_ID;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_IMAGE_RES;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_IMAGE_RES_ID;
+import static io.github.turskyi.data.entity.SongEntity.COLUMN_NAME;
 import static io.github.turskyi.data.entity.SongEntity.TABLE_SONGS;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteException;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -22,8 +30,16 @@ import io.github.turskyi.data.R;
 import io.github.turskyi.data.entity.SongEntity;
 import io.github.turskyi.domain.entities.enums.Album;
 
-@Database(entities = {SongEntity.class}, version = 2, exportSchema = false)
+@Database(
+        version = 1,
+        entities = {SongEntity.class}
+)
 public abstract class SongsDatabase extends RoomDatabase {
+    private static void recreateTable(SupportSQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONGS);
+        db.execSQL("CREATE TABLE " + TABLE_SONGS + "(" + COLUMN_ID + " INTEGER, " + COLUMN_BAND + " TEXT, " + COLUMN_NAME + " TEXT, " + COLUMN_ALBUM + " TEXT, " + COLUMN_IMAGE_RES_ID + " INTEGER, " + COLUMN_IMAGE_RES + " TEXT, " + COLUMN_AUDIO_LINK + " TEXT)");
+    }
+
     public abstract SongDao getSongDao();
 
     public static class Callback extends RoomDatabase.Callback {
@@ -42,14 +58,15 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         @Override
+        public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
+            super.onDestructiveMigration(db);
+            insertValuesInTable(db);
+        }
+
+        @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            db.query("PRAGMA journal_mode = MEMORY");
-            fillSenseOfSilenceLpAlbum(db);
-            fillZombiAlbum(db);
-            fillCrimeAlbum(db);
-            fillBonusAlbum(db);
-            fillZigmundAfraidAlbum(db);
+            insertValuesInTable(db);
         }
 
         private void fillBonusAlbum(@NonNull SupportSQLiteDatabase db) {
@@ -60,11 +77,18 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_hate_number)
             );
 
-            List<Integer> bonusImageResources = Arrays.asList(
+            List<Integer> bonusImageResourceIds = Arrays.asList(
                     R.drawable.vt_dnb120,
                     R.drawable.pic_vt_cover,
                     R.drawable.pic_whisper_cover,
                     R.drawable.pic_hate_number_cover
+            );
+
+            List<String> bonusImageLinks = Arrays.asList(
+                    applicationContext.getString(R.string.image_vt_dnb),
+                    applicationContext.getString(R.string.image_vt_cover),
+                    applicationContext.getString(R.string.image_whisper_cover),
+                    applicationContext.getString(R.string.image_hate_number_cover)
             );
 
             List<String> bonusLinks = Arrays.asList(
@@ -72,14 +96,15 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.audio_fly_away),
                     applicationContext.getString(R.string.audio_whisper),
                     applicationContext.getString(R.string.audio_hate_number)
-                    );
+            );
 
             fillAlbum(
                     db,
                     applicationContext.getString(R.string.band_sense_of_silence),
                     Album.BONUS.name,
                     bonusNames,
-                    bonusImageResources,
+                    bonusImageResourceIds,
+                    bonusImageLinks,
                     bonusLinks
             );
         }
@@ -101,9 +126,14 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_alesia)
             );
 
-            List<Integer> senseOfSilenceImageResources = new ArrayList<>(Collections.nCopies(
+            List<Integer> senseOfSilenceImageResourceIds = new ArrayList<>(Collections.nCopies(
                     senseOfSilenceNames.size(),
                     R.drawable.logo_black
+            ));
+
+            List<String> senseOfSilenceImageResources = new ArrayList<>(Collections.nCopies(
+                    senseOfSilenceNames.size(),
+                    applicationContext.getString(R.string.image_logo_black)
             ));
 
             List<String> senseOfSilenceLinks = Arrays.asList(
@@ -127,6 +157,7 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.band_sense_of_silence),
                     Album.SENSE_OF_SILENCE_LP.name,
                     senseOfSilenceNames,
+                    senseOfSilenceImageResourceIds,
                     senseOfSilenceImageResources,
                     senseOfSilenceLinks
             );
@@ -140,9 +171,14 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_zombie_instrumental)
             );
 
-            List<Integer> zombiImageResources = new ArrayList<>(Collections.nCopies(
+            List<Integer> zombiImageResourceIds = new ArrayList<>(Collections.nCopies(
                     zombiNames.size(),
                     R.drawable.zombi
+            ));
+
+            List<String> zombiImageResources = new ArrayList<>(Collections.nCopies(
+                    zombiNames.size(),
+                    applicationContext.getString(R.string.image_zombi)
             ));
 
             List<String> zombiLinks = Arrays.asList(
@@ -157,6 +193,7 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.band_sense_of_silence),
                     Album.ZOMBI.name,
                     zombiNames,
+                    zombiImageResourceIds,
                     zombiImageResources,
                     zombiLinks
             );
@@ -171,9 +208,14 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_crime)
             );
 
-            List<Integer> crimeImageResources = new ArrayList<>(Collections.nCopies(
+            List<Integer> crimeImageResourceIds = new ArrayList<>(Collections.nCopies(
                     crimeNames.size(),
                     R.drawable.pic_crime_cover
+            ));
+
+            List<String> crimeImageResources = new ArrayList<>(Collections.nCopies(
+                    crimeNames.size(),
+                    applicationContext.getString(R.string.image_crime_cover)
             ));
 
             List<String> crimeLinks = Arrays.asList(
@@ -189,6 +231,7 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.band_sense_of_silence),
                     Album.CRIME.name,
                     crimeNames,
+                    crimeImageResourceIds,
                     crimeImageResources,
                     crimeLinks
             );
@@ -201,10 +244,16 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.song_name_pleasure_was_mine)
             );
 
-            List<Integer> zigmundAfraidImageResources = Arrays.asList(
+            List<Integer> zigmundAfraidImageResourceIds = Arrays.asList(
                     R.drawable.ic_za,
                     R.drawable.vt_dnb120,
                     R.drawable.pwm
+            );
+
+            List<String> zigmundAfraidImageResources = Arrays.asList(
+                    applicationContext.getString(R.string.image_za),
+                    applicationContext.getString(R.string.image_vt_dnb),
+                    applicationContext.getString(R.string.image_pwm)
             );
 
             List<String> zigmundAfraidLinks = Arrays.asList(
@@ -218,6 +267,7 @@ public abstract class SongsDatabase extends RoomDatabase {
                     applicationContext.getString(R.string.band_zigmund_afraid),
                     Album.ZIGMUND_AFRAID.name,
                     zigmundAfraidNames,
+                    zigmundAfraidImageResourceIds,
                     zigmundAfraidImageResources,
                     zigmundAfraidLinks
             );
@@ -228,19 +278,33 @@ public abstract class SongsDatabase extends RoomDatabase {
                 String bandName,
                 String albumName,
                 List<String> names,
-                List<Integer> imageResources,
+                List<Integer> imageResourceIds,
+                List<String> imageLinks,
                 List<String> links
         ) {
-
             for (int i = 0; i < names.size(); i++) {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(SongEntity.COLUMN_BAND, bandName);
-                contentValues.put(SongEntity.COLUMN_ALBUM, albumName);
-                contentValues.put(SongEntity.COLUMN_NAME, names.get(i));
-                contentValues.put(SongEntity.COLUMN_IMAGE_RES_ID, imageResources.get(i));
-                contentValues.put(SongEntity.COLUMN_AUDIO_LINK, links.get(i));
-                db.insert(TABLE_SONGS, OnConflictStrategy.REPLACE, contentValues);
+                contentValues.put(COLUMN_BAND, bandName);
+                contentValues.put(COLUMN_ALBUM, albumName);
+                contentValues.put(COLUMN_NAME, names.get(i));
+                contentValues.put(COLUMN_IMAGE_RES_ID, imageResourceIds.get(i));
+                contentValues.put(COLUMN_IMAGE_RES, imageLinks.get(i));
+                contentValues.put(COLUMN_AUDIO_LINK, links.get(i));
+                try {
+                    db.insert(TABLE_SONGS, OnConflictStrategy.REPLACE, contentValues);
+                } catch (SQLiteException e) {
+                    recreateTable(db);
+                }
             }
+        }
+
+        private void insertValuesInTable(@NonNull SupportSQLiteDatabase db) {
+            db.query("PRAGMA journal_mode = MEMORY");
+            fillSenseOfSilenceLpAlbum(db);
+            fillZombiAlbum(db);
+            fillCrimeAlbum(db);
+            fillBonusAlbum(db);
+            fillZigmundAfraidAlbum(db);
         }
     }
 }
