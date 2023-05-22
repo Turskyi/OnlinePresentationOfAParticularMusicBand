@@ -1,10 +1,14 @@
 package io.github.turskyi.domain.entities.pojo;
 
+import java.util.Objects;
+
 /**
  * {@link Song} represents an album song that the user wants to listen.
  * It contains a Name of the song from the album and a  song from that album.
  */
 public class Song {
+    private static final int NO_IMAGE_ID = -1;
+    private static final String NO_IMAGE_LINK_PROVIDED = "";
     /**
      * Name of the music band
      */
@@ -23,10 +27,8 @@ public class Song {
     /**
      * Image resource ID for the song
      */
-    private final int imageResourceID;
-
-    private static final int NO_IMAGE_PROVIDED = -1;
-
+    private final int imageResourceId;
+    private final String imageResource;
     /**
      * Audio resource for the song
      */
@@ -43,13 +45,15 @@ public class Song {
                 String album,
                 String songName,
                 int imageResourceId,
+                String imageResource,
                 String audioLink
     ) {
         this.songName = songName;
         this.nameOfTheBand = nameOfTheBand;
         this.album = album;
         this.audioLink = audioLink;
-        this.imageResourceID = imageResourceId;
+        this.imageResourceId = imageResourceId;
+        this.imageResource = imageResource;
     }
 
     /**
@@ -77,14 +81,19 @@ public class Song {
      * Return the image resource ID of the song.
      */
     public int getImageResourceId() {
-        return imageResourceID;
+        return imageResourceId;
+    }
+
+    @SuppressWarnings("unused")
+    public String getImageResource() {
+        return imageResource;
     }
 
     /**
      * Returns whether there is an image for this song.
      */
     public boolean hasImage() {
-        return imageResourceID != NO_IMAGE_PROVIDED;
+        return imageResourceId != NO_IMAGE_ID && !Objects.equals(imageResource, NO_IMAGE_LINK_PROVIDED);
     }
 
     /**
