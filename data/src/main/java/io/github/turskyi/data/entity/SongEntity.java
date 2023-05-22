@@ -103,6 +103,7 @@ public class SongEntity {
         this.imageResourceId = imageResourceId;
     }
 
+    @SuppressWarnings("unused")
     public String getImageResource() {
         return imageResource;
     }

@@ -84,6 +84,7 @@ public class Song {
         return imageResourceId;
     }
 
+    @SuppressWarnings("unused")
     public String getImageResource() {
         return imageResource;
     }
