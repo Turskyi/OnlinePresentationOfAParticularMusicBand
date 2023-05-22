@@ -8,6 +8,7 @@ workflows:
         CM_KEYSTORE_PASSWORD: Encrypted(Z0FBQUFBQmcwSUhMSzRicGJNRDJlT1FrREVEUWNMck9DRXFpY1hQVVJOVWl5QldWN05YUzRtWTdTNWVCOHNrTExSVVRoVlVyTkhXRGRXT1NfVnF5TzAzcVVUams3cjZvWlE9PQ==)
         CM_KEY_ALIAS_USERNAME: TurskyiApps
         CM_KEY_ALIAS_PASSWORD: Encrypted(Z0FBQUFBQmcwSUl4Y3ZoUEthUFltYlV4SW5pTHcxalBCbDZkLS1PZGNhM3A2TFlBUG5PTk9la1RtR3JhclRaYjVKSVpOaUdNZHd2d2NhZXJiT1lzOWtjZmtQVGFkbGpKOWc9PQ==)
+        JAVA_HOME: /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home # Path to Java 17
     triggering:
       events:
         - push
