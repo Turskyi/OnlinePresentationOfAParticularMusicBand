@@ -14,8 +14,8 @@ buildscript {
 https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview
 ]
 */
-        version_code = 19
-        version_name = "1.0.9"
+        version_code = 20
+        version_name = "1.1.0"
     }
     repositories {
         // Google's Maven repository
@@ -23,7 +23,7 @@ https://play.google.com/console/u/0/developers/6867856033872987263/app/497404502
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.1'
+        classpath 'com.android.tools.build:gradle:8.0.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
