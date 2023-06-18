@@ -1,4 +1,5 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
+
 # sense.of.silence & Zigmund Afraid
 
 [![Codemagic build status](https://api.codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/status_badge.svg)](https://codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/latest_build)
@@ -22,6 +23,9 @@ an opportunity to listen to almost all their songs online.
 • Dependency injection:
 [Hilt](https://developer.android.com/training/dependency-injection/hilt-android);
 
+• Reactive programming: [ReactiveX](http://reactivex.io/) with
+[RxJava3](https://github.com/ReactiveX/RxJava);
+
 • Version control system: [Git](https://git-scm.com);
 
 • Git Hosting Service: [GitHub](https://github.com);
@@ -39,9 +43,6 @@ new release app bundle to **Google Play** after every push to **master** branch;
 
 • Operating system: [Android](https://www.android.com/);
 
-• Asynchronous programming: [ReactiveX](http://reactivex.io/) with
-[RxJava3](https://github.com/ReactiveX/RxJava);
-
 • Cloud services: [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging);
 
 • UI components: [ViewPager2](https://developer.android.com/jetpack/androidx/releases/viewpager2),
@@ -51,7 +52,12 @@ new release app bundle to **Google Play** after every push to **master** branch;
 [LiveData](https://developer.android.com/topic/libraries/architecture/livedata),
 [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel);
 
-• Architectural pattern: [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel);
+• Architectural pattern:
+<br>
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">
+<img src="documentation/java_mvvm.jpeg" width="800" >
+</a>
+</br>
 
 • **Screenshots:**
 
