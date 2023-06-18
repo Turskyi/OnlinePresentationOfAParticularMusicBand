@@ -37,9 +37,9 @@ android {
                 ]
             }
         }
-        resourceConfigurations += ['en', 'ua']
 //        Remove unused alternative resources
 //        (https://developer.android.com/studio/build/shrink-code#unused-alt-resources)
+         resourceConfigurations += ['en', 'ua']
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
