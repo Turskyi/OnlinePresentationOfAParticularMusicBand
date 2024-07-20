@@ -23,6 +23,11 @@ public class AppModule {
     AppModule() {
     }
 
+    @Provides
+    public CompositeDisposable providesCompositeDisposable() {
+        return new CompositeDisposable();
+    }
+
     @Singleton
     @Provides
     SongsDatabase.Callback provideDatabaseCallback(Application app) {
@@ -41,10 +46,5 @@ public class AppModule {
     @Provides
     public SongDao provideSongDao(SongsDatabase database) {
         return database.getSongDao();
-    }
-
-    @Provides
-    public CompositeDisposable providesCompositeDisposable() {
-        return new CompositeDisposable();
     }
 }
