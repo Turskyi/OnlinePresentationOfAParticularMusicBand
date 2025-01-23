@@ -30,7 +30,7 @@ https://play.google.com/console/u/0/developers/6867856033872987263/app/497404502
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // Google Services plugin (required for firebase)
-        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.google.gms:google-services:4.4.2'
 
         // firebase
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.5'
