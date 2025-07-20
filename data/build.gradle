@@ -6,7 +6,6 @@ plugins {
 
 android {
     compileSdkVersion rootProject.compile_sdk_version
-    buildToolsVersion rootProject.build_tools_version
 
     defaultConfig {
         minSdkVersion rootProject.min_sdk_version
@@ -59,4 +58,5 @@ dependencies {
 
 repositories {
     google()
+    mavenCentral()
 }

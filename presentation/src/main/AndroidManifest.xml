@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:versionCode="22"
+    android:versionName="1.2.2">
 
     <queries>
         <!-- Browser query
@@ -66,9 +68,9 @@
         </activity>
 
         <activity
-            android:name=".features.senseofsilence.SenseOfSilenceActivity"
+            android:name="com.music.android.sensilence.features.senseofsilence.SenseOfSilenceActivity"
             android:label="@string/band_sense_of_silence"
-            android:parentActivityName=".features.home.MainActivity"
+            android:parentActivityName="com.music.android.sensilence.features.home.MainActivity"
             android:theme="@style/SenseOfSilenceTheme" />
         <activity android:name="com.music.android.sensilence.common.MusicPlayerActivity" />
 
