@@ -5,10 +5,10 @@
 buildscript {
     ext {
         // sdk versions
-        compile_sdk_version = 34
+        compile_sdk_version = 35
         build_tools_version = "30.0.3"
         min_sdk_version = 21
-        target_sdk_version = 34
+        target_sdk_version = 35
         /* to check the latest version @see
 [
 https://play.google.com/console/u/0/developers/6867856033872987263/app/4974045020812963921/releases/overview
