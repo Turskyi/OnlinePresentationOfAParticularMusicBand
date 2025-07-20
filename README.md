@@ -1,6 +1,7 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
 [![Codemagic build status](https://api.codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/status_badge.svg)](https://codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/latest_build)
 [![Build & upload to Firebase App Distribution](https://github.com/Turskyi/OnlinePresentationOfAParticularMusicBand/actions/workflows/android_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/OnlinePresentationOfAParticularMusicBand/actions/workflows/android_ci.yml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Turskyi/OnlinePresentationOfAParticularMusicBand)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/OnlinePresentationOfAParticularMusicBand">
 
 # sense.of.silence & Zigmund Afraid

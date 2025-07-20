@@ -101,7 +101,7 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:1.1.0"
 
     /* Allowing app to build and read multiple DEX files.
      * Avoids an error that indicates that the app has reached
@@ -111,24 +111,24 @@ dependencies {
     // required app module hilt dependency
     implementation "com.google.dagger:hilt-android:$hiltVersion"
 
-    implementation 'org.jetbrains:annotations:24.0.1'
+    implementation 'org.jetbrains:annotations:26.0.2'
 
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
 
     // Firebase SDK for Google Analytics
-    implementation('com.google.firebase:firebase-analytics:21.3.0') {
+    implementation('com.google.firebase:firebase-analytics:22.5.0') {
         // remove advertising dependency
         exclude module: "play-services-ads-identifier"
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
-    implementation 'com.google.firebase:firebase-perf:20.3.2'
+    implementation 'com.google.firebase:firebase-crashlytics:19.4.4'
+    implementation 'com.google.firebase:firebase-perf:21.0.5'
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    implementation 'com.google.firebase:firebase-messaging:24.1.2'
 
     // added to avoid errors with libraries, which using kotlin
     //noinspection DifferentStdlibGradleVersion
@@ -148,5 +148,6 @@ dependencies {
 }
 
 repositories {
+    google()
     mavenCentral()
 }

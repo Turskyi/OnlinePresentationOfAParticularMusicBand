@@ -23,19 +23,19 @@ https://play.google.com/console/u/0/developers/6867856033872987263/app/497404502
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.8.0'
+        classpath 'com.android.tools.build:gradle:8.11.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
         // Google Services plugin (required for firebase)
-        classpath 'com.google.gms:google-services:4.4.2'
+        classpath 'com.google.gms:google-services:4.4.3'
 
         // firebase
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.5'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.4'
         classpath 'com.google.firebase:perf-plugin:1.4.2'
-        classpath 'com.google.firebase:firebase-appdistribution-gradle:4.0.0'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:5.1.1'
     }
 }
 ext {
@@ -67,7 +67,9 @@ subprojects {
             implementation "com.google.dagger:hilt-core:$hiltVersion"
 
             // Asynchronous programming (Reactive Extensions)
-            implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+//            Tried 3.0.2 and 3.0.1, but it did not compile.
+            //noinspection NewerVersionAvailable
+            implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
             implementation "com.github.akarnokd:rxjava3-bridge:$rxAndroidVersion"
             implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
         }
@@ -90,5 +92,6 @@ allprojects {
 }
 
 tasks.register('clean') {
+    //noinspection GrDeprecatedAPIUsage
     delete rootProject.buildDir
 }
