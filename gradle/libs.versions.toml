@@ -1,0 +1,62 @@
+[versions]
+annotations = "26.1.0"
+appcompat = "1.8.0"
+dagger = "2.60.1"
+espressoCore = "3.7.0"
+firebaseAnalytics = "23.2.0"
+firebaseAppdistributionGradle = "5.3.0"
+firebaseBom = "34.18.0"
+firebaseCrashlytics = "20.1.0"
+firebaseCrashlyticsGradle = "3.0.8"
+firebaseMessaging = "25.1.2"
+firebasePerf = "22.0.6"
+googleServices = "4.5.0"
+gradle = "9.3.1"
+hiltCompiler = "1.4.0"
+junit = "1.3.0"
+junitVersion = "4.13.2"
+kotlinStdlibJdk8 = "2.4.10"
+material = "1.14.0"
+multidex = "2.0.1"
+perfPlugin = "2.0.2"
+room = "2.8.4"
+rxandroid = "3.0.2"
+rxjava = "3.1.12"
+rxjava3Bridge = "3.0.2"
+test = "1.7.0"
+viewpager2 = "1.1.0"
+compileSdk = "37"
+
+[libraries]
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+core = { group = "androidx.test", name = "core", version.ref = "test" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-appdistribution-gradle = { group = "com.google.firebase", name = "firebase-appdistribution-gradle", version.ref = "firebaseAppdistributionGradle" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
+firebase-crashlytics-gradle = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePerf" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
+hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }
+hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "dagger" }
+junit = { group = "junit", name = "junit", version.ref = "junitVersion" }
+kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlinStdlibJdk8" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+perf-plugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "perfPlugin" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room" }
+runner = { group = "androidx.test", name = "runner", version.ref = "test" }
+rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+rxjava3-bridge = { group = "com.github.akarnokd", name = "rxjava3-bridge", version.ref = "rxjava3Bridge" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }

@@ -18,3 +18,8 @@ app/debug
 /presentation/release/
 projectFilesBackup/
 projectFilesBackup1/
+/.artifacts/
+
+# Generated Java bytecode and IDE compiler output
+*.class
+**/bin/

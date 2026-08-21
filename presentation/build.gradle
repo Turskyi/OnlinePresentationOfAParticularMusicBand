@@ -16,7 +16,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     //noinspection GrUnresolvedAccess
-    compileSdkVersion rootProject.compile_sdk_version
+    compileSdkVersion libs.versions.compileSdk.get().toInteger()
     defaultConfig {
         applicationId "com.music.android.sensilence"
         minSdkVersion rootProject.min_sdk_version
@@ -89,6 +89,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
     namespace 'com.music.android.sensilence'
 }
@@ -99,52 +100,52 @@ dependencies {
     implementation project(':domain')
     implementation project(':data')
 
-    implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.viewpager2:viewpager2:1.1.0"
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.viewpager2
 
     /* Allowing app to build and read multiple DEX files.
      * Avoids an error that indicates that the app has reached
      * the limit of the Android build architecture. */
-    implementation "androidx.multidex:multidex:$multidexVersion"
+    implementation libs.multidex
 
     // required app module hilt dependency
-    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    implementation libs.hilt.android
 
-    implementation 'org.jetbrains:annotations:26.0.2'
+    implementation libs.annotations
 
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    implementation libs.firebase.bom
 
     // Firebase SDK for Google Analytics
-    implementation('com.google.firebase:firebase-analytics:22.5.0') {
+    implementation(libs.firebase.analytics) {
         // remove advertising dependency
         exclude module: "play-services-ads-identifier"
         exclude module: "play-services-measurement"
         exclude module: "play-services-measurement-sdk"
     }
-    implementation 'com.google.firebase:firebase-crashlytics:19.4.4'
-    implementation 'com.google.firebase:firebase-perf:21.0.5'
+    implementation libs.firebase.crashlytics
+    implementation libs.firebase.perf
     // Firebase Cloud Messaging
-    implementation 'com.google.firebase:firebase-messaging:24.1.2'
+    implementation libs.firebase.messaging
 
     // added to avoid errors with libraries, which using kotlin
     //noinspection DifferentStdlibGradleVersion
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation libs.kotlin.stdlib.jdk8
 
     // database (Room)
-    implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
 
     // test
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$extJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 
-    androidTestImplementation "androidx.test:runner:$androidx_test_version"
-    androidTestImplementation "androidx.test:core:$androidx_test_core"
+    androidTestImplementation libs.runner
+    androidTestImplementation libs.core
 }
 
 repositories {

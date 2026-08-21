@@ -29,6 +29,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private ImageView imageView;
     private ProgressBar progressBar;
+    private final Object mediaPlayerLock = new Object();
+    private volatile boolean isPreparing = false;
 
     @Inject
     public MusicPlayerActivity() {
@@ -54,76 +56,81 @@ public class MusicPlayerActivity extends AppCompatActivity {
             final AudioManager audioManager,
             final Activity activity
     ) {
-        if (mediaPlayer != null && imageView == view.findViewById(R.id.iv_btn_play)) {
-            play(view, progressBar, mediaPlayer, mCompletionListener, secondClickListener, listView);
-        } else {
-            progressBar = view.findViewById(R.id.loading_spinner);
-            progressBar.setVisibility(View.VISIBLE);
-            new Thread(() -> {
-                //do time consuming operations
-                if (isOnline()) {
-                    //Get the {@link Song} object at the given position the user clicked on
-                    final Song song = songs.get(position);
-
-                    /* Release the media player if it currently exists because we are about to
-                     * play a different sound file. */
-                    releaseMediaPlayer();
-                    //Request audio focus for playback
-                    //TODO: replace deprecated method
-                    int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
-                            //Use the music stream.
-                            AudioManager.STREAM_MUSIC,
-                            //Request permanent focus.
-                            AudioManager.AUDIOFOCUS_GAIN);
-                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                        //We have an audio focus now.
+        if (isPreparing) {
+            return;
+        }
+        synchronized (mediaPlayerLock) {
+            if (mediaPlayer != null && imageView == view.findViewById(R.id.iv_btn_play)) {
+                play(view, progressBar, mediaPlayer, mCompletionListener, secondClickListener, listView);
+            } else {
+                progressBar = view.findViewById(R.id.loading_spinner);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+                isPreparing = true;
+                new Thread(() -> {
+                    //do time consuming operations
+                    try {
+                        if (isOnline()) {
+                            //Get the {@link Song} object at the given position the user clicked on
+                            final Song song = songs.get(position);
+                            //Request audio focus for playback
+                            //TODO: replace deprecated method
+                            int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
+                                    //Use the music stream.
+                                    AudioManager.STREAM_MUSIC,
+                                    //Request permanent focus.
+                                    AudioManager.AUDIOFOCUS_GAIN);
+                            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                                //We have an audio focus now.
 
 /*                Create and set up the {@link MedeaPlayer} for the audio resource associated
                 with the current song */
-                        String url;
-                        url = song.getAudioLink(); // your URL here
-                        mediaPlayer = new MediaPlayer();
-                        // TODO: replace deprecated method
-                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        try {
-                            mediaPlayer.setDataSource(url);
-                        } catch (NullPointerException | IOException e) {
-                            errorAlert(song, activity);
+                                String url;
+                                url = song.getAudioLink(); // your URL here
+                                final MediaPlayer mp = new MediaPlayer();
+                                // TODO: replace deprecated method
+                                mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                try {
+                                    mp.setDataSource(url);
+                                    // "mediaPlayer.prepare" might take long! (for buffering, etc)
+                                    mp.prepare();
+
+                                    synchronized (mediaPlayerLock) {
+                                        /* Release the media player if it currently exists because we are about to
+                                         * play a different sound file. */
+                                        releaseMediaPlayer();
+                                        mediaPlayer = mp;
+                                    }
+                                    play(
+                                            view,
+                                            progressBar,
+                                            mp,
+                                            mCompletionListener,
+                                            secondClickListener,
+                                            listView
+                                    );
+                                } catch (IOException |
+                                         IllegalStateException e) {
+                                    mp.release();
+                                    errorAlert(song, activity);
+                                }
+                            }
+                        } else {
+                            activity.runOnUiThread(() -> {
+                                Toast.makeText(
+                                        activity, getString(R.string.error_no_internet), Toast.LENGTH_LONG
+                                ).show();
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
+                            });
                         }
-                        try {
-                            // "mediaPlayer.prepare" might take long! (for buffering, etc)
-                            mediaPlayer.prepare();
-                        } catch (IllegalStateException e) {
-                            play(
-                                    view,
-                                    progressBar,
-                                    mediaPlayer,
-                                    mCompletionListener,
-                                    secondClickListener,
-                                    listView
-                            );
-                        } catch (IOException e) {
-                            errorAlert(song, activity);
-                        }
-                        // Start the audio file
-                        play(
-                                view,
-                                progressBar,
-                                mediaPlayer,
-                                mCompletionListener,
-                                secondClickListener,
-                                listView
-                        );
+                    } finally {
+                        isPreparing = false;
                     }
-                } else {
-                    activity.runOnUiThread(() -> {
-                        Toast.makeText(
-                                activity, getString(R.string.error_no_internet), Toast.LENGTH_LONG
-                        ).show();
-                        progressBar.setVisibility(View.INVISIBLE);
-                    });
-                }
-            }).start();
+                }).start();
+            }
         }
     }
 
@@ -131,8 +138,14 @@ public class MusicPlayerActivity extends AppCompatActivity {
             android.widget.AdapterView.OnItemClickListener firstClickListener,
             ListView listView
     ) {
-        mediaPlayer.pause();
-        imageView.setImageResource(R.drawable.ic_play_arrow);
+        synchronized (mediaPlayerLock) {
+            if (mediaPlayer != null) {
+                mediaPlayer.pause();
+            }
+            if (imageView != null) {
+                imageView.setImageResource(R.drawable.ic_play_arrow);
+            }
+        }
         listView.setOnItemClickListener(firstClickListener);
     }
 
@@ -140,20 +153,28 @@ public class MusicPlayerActivity extends AppCompatActivity {
      * Clean up the media player by releasing its resources.
      */
     public void releaseMediaPlayer() {
-        // If the media player is not null, then it may be currently playing a sound.
-        if (mediaPlayer != null) {
-            /* Regardless of the current state of the media player, release its resources
-             * because we no longer need it. */
-            mediaPlayer.release();
+        synchronized (mediaPlayerLock) {
+            // If the media player is not null, then it may be currently playing a sound.
+            if (mediaPlayer != null) {
+                /* Regardless of the current state of the media player, release its resources
+                 * because we no longer need it. */
+                mediaPlayer.release();
 
-            /* Set the media player back to null. For our code, we've decided that
-             * setting the media player to null is an easy way to tell that the media player
-             * is not configured to play an audio file at the moment. */
-            mediaPlayer = null;
+                /* Set the media player back to null. For our code, we've decided that
+                 * setting the media player to null is an easy way to tell that the media player
+                 * is not configured to play an audio file at the moment. */
+                mediaPlayer = null;
+            }
         }
     }
 
     public void onFocusChange(int focusChange, MediaPlayer mMediaPlayer) {
+        if (mMediaPlayer == null) {
+            mMediaPlayer = this.mediaPlayer;
+        }
+        if (mMediaPlayer == null) {
+            return;
+        }
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                 focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
             /* The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus
