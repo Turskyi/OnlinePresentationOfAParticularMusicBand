@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdkVersion rootProject.min_sdk_version
-        targetSdkVersion rootProject.target_sdk_version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,23 +36,29 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'io.github.turskyi.data'
+    testOptions {
+        targetSdk 35
+    }
+    lint {
+        targetSdk 35
+    }
 }
 
 dependencies {
     implementation project(':domain')
 
-    implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation "com.google.android.material:material:$materialVersion"
+    implementation libs.appcompat
+    implementation libs.material
 
     // database (Room)
-    implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
+    implementation libs.room.rxjava2
 
     // test
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$extJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 }
 
 repositories {
