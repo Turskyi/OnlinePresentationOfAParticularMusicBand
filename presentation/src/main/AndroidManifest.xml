@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="23"
-    android:versionName="1.2.3">
+    android:versionCode="24"
+    android:versionName="1.2.4">
 
     <queries>
         <!-- Browser query
@@ -39,8 +39,8 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_logo" />
-        <!-- This color used with incoming notification messages.
-         This is used when no color is set for the incoming
+        <!-- This colour used with incoming notification messages.
+         This is used when no colour is set for the incoming
              notification message.  -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
