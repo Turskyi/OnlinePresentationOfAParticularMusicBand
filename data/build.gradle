@@ -37,10 +37,10 @@ android {
     }
     namespace 'io.github.turskyi.data'
     testOptions {
-        targetSdk 35
+        targetSdk 37
     }
     lint {
-        targetSdk 35
+        targetSdk 37
     }
 }
 
