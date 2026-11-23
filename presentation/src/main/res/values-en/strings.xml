@@ -1,0 +1,101 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">sense of silence</string>
+
+    <!-- band names [CHAR LIMIT=20] -->
+    <string name="band_zigmund_afraid" translatable="false">Zigmund Afraid</string>
+    <string name="band_sense_of_silence">sense of silence</string>
+
+    <!-- Album names [CHAR LIMIT=20] -->
+    <string name="album_zombi" tools:keep="@string/album_zombi">Zombie</string>
+    <string name="album_crime" tools:keep="@string/album_crime">Crime</string>
+    <string name="album_sense_of_silence" tools:keep="@string/album_sense_of_silence">Sense of Silence LP</string>
+
+    <!-- content descriptions-->
+    <string name="content_description_picture_of_the_song" tools:keep="@string/content_description_picture_of_the_song">picture of the song</string>
+    <string name="content_description_play_button" tools:keep="@string/content_description_play_button">play button</string>
+    <string name="content_description_background" tools:keep="@string/content_description_background">background</string>
+    <string name="content_description_word" tools:keep="@string/content_description_word">word bonus</string>
+
+    <!-- pop up messages -->
+    <string name="sensilence_zombi_songs">Songs from Zombie album</string>
+    <string name="sensilence_crime_songs">Songs from Crime album</string>
+    <string name="sensilence_sense_of_silence_songs">Songs from Sense of Silence LP album</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_message_try_tomorrow">Then try tomorrow ;)</string>
+
+    <!-- song names -->
+    <string name="song_name_abroad">Abroad</string>
+    <string name="song_name_to_astarta">To Astarta</string>
+    <string name="song_name_angelscream">angelscream</string>
+    <string name="song_name_zombi_album">Zombie (album version)</string>
+    <string name="song_name_did_not_want">Did not want</string>
+    <string name="song_name_crime">Crime</string>
+    <string name="song_name_noli_respicere_rmx" translatable="false">Noli Respicere (Culturno rmx)</string>
+    <string name="song_name_winter">Winter</string>
+    <string name="song_name_noli_respicere" translatable="false">Noli Respicere</string>
+    <string name="song_name_last_time">Last time</string>
+    <string name="song_name_taste_of_my_oblivion">Taste of My Oblivion</string>
+    <string name="song_name_rays">Rays</string>
+    <string name="song_name_abyss">Abyss</string>
+    <string name="song_name_not_the_end">Not the end</string>
+    <string name="song_name_fear_again">Fear again</string>
+    <string name="song_name_in_half">In half</string>
+    <string name="song_name_wrist">Wrist</string>
+    <string name="song_name_falling">Falling</string>
+    <string name="song_name_in_the_spring">In the spring</string>
+    <string name="song_name_alesia">Alesia</string>
+    <string name="song_name_zombi">Zombie</string>
+    <string name="song_name_zombi_dubstep">Zombie (aContrari Post-Apocalyptic Dubstep Mix)</string>
+    <string name="song_name_japanese_zombie" translatable="false">ゾンビ</string>
+    <string name="song_name_abroad_rmx" translatable="false">Abroad (Retroflex Encoded)</string>
+    <string name="song_name_pleasure_was_mine" translatable="false">Pleasure was mine (∞)</string>
+
+    <!-- alert dialog content -->
+    <string name="alert_error_title">Something terrible happened!</string>
+    <string name="alert_error_message">Do you want to write to the developer?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="error_message_intro">A terrible story that happened with the song</string>
+
+    <!-- not translatable -->
+    <string name="scheme_mailto" translatable="false">mailto</string>
+    <string name="email" translatable="false">dmitriy.turskiy@gmail.com</string>
+
+    <!-- links to audio resources -->
+    <string name="audio_abroad" translatable="false">https://dl.dropboxusercontent.com/s/bx0vcz2ph8ntngu/zigmund_afraid_abroad.mp3?dl=1</string>
+    <string name="audio_to_astarta" translatable="false">https://dl.dropboxusercontent.com/s/efbpgqzlq5thjw5/vdchuttya_tsh_do_astart.mp3?dl=1</string>
+    <string name="audio_angelscream" translatable="false">https://dl.dropboxusercontent.com/s/w7lf917wx95p2sh/v_dchuttya_tish_angelscream.mp3?dl=1</string>
+    <string name="audio_zombi_album_version" translatable="false">https://dl.dropboxusercontent.com/s/lnd6w3j6ii3hbe5/vdchuttya_tish_zomb.mp3?dl=1</string>
+    <string name="audio_did_not_want" translatable="false">https://dl.dropboxusercontent.com/s/iffhhdwy0pe8i61/vdchuttya_tish_ne_khotv.mp3?dl=1</string>
+    <string name="audio_crime" translatable="false">https://dl.dropboxusercontent.com/s/5n9pkv2zqwt8ezg/vdchuttya_tish_zlochin.mp3?dl=1</string>
+    <string name="audio_noli_respicere_rmx" translatable="false">https://dl.dropboxusercontent.com/s/858ck6l24awaehp/v_dchuttya_tish_noli_respicere_culturno_rmx_dub_step_ukraine.mp3?dl=1</string>
+    <string name="audio_winter" translatable="false">https://dl.dropboxusercontent.com/s/rejj8j70vfrqkhx/vidchuttjatishi_zima.mp3?dl=1</string>
+    <string name="audio_noli_respicere" translatable="false">https://dl.dropboxusercontent.com/s/21fq52yct8doqcs/vidchuttjatishi_noli_respicere.mp3?dl=1</string>
+    <string name="audio_last_time" translatable="false">https://dl.dropboxusercontent.com/s/rkyxorqro17mmpg/vidchuttjatishi_vostann.mp3?dl=1</string>
+    <string name="audio_taste_of_my_oblivion" translatable="false">https://dl.dropboxusercontent.com/s/qr89gp2hbz625r8/v_dchuttya_tish_smak_mogo_zabuttya.mp3?dl=1</string>
+    <string name="audio_rays" translatable="false">https://dl.dropboxusercontent.com/s/km6ghrarkxtmh8d/v_dchuttya_tish_promen.mp3?dl=1</string>
+    <string name="audio_abyss" translatable="false" tools:ignore="Typos">https://dl.dropboxusercontent.com/s/lomxsrjdwwu9nx1/v_dchuttya_tish_bezodnya.mp3?dl=1</string>
+    <string name="audio_not_the_end" translatable="false">https://dl.dropboxusercontent.com/s/9aotpzh7bih21sz/v_dchuttya_tish_ne_kraj.mp3?dl=1</string>
+    <string name="audio_fear_again" translatable="false">https://dl.dropboxusercontent.com/s/q8fajbsf4mei35s/v_dchuttya_tish_znovu_strah.mp3?dl=1</string>
+    <string name="audio_in_half" translatable="false">https://dl.dropboxusercontent.com/s/vdks9vbgxpagu3l/vidchuttjatishi_navpil.mp3?dl=1</string>
+    <string name="audio_wrist" translatable="false">https://dl.dropboxusercontent.com/s/10z7nl8nrs31cx0/v_dchuttya_tish_zapyastya.mp3?dl=1</string>
+    <string name="audio_falling" translatable="false">https://dl.dropboxusercontent.com/s/uwm86lkgg7yhiae/vidchuttjatishi_padaju.mp3?dl=1</string>
+    <string name="audio_in_the_spring" translatable="false">https://dl.dropboxusercontent.com/s/ws2eqsqpz0k9c4g/vidchuttjatishi_navesni.mp3?dl=1</string>
+    <string name="audio_alesia" translatable="false">https://dl.dropboxusercontent.com/s/euvixrmvq1mz298/v_dchuttya_tish_alesya.mp3?dl=1</string>
+    <string name="audio_zombi" translatable="false">https://dl.dropboxusercontent.com/s/nruud0f79562bbd/vdchuttya_tish_zomb.mp3?dl=1</string>
+    <string name="audio_zombi_dubstep" translatable="false">https://dl.dropboxusercontent.com/s/ujmilm6ag09nmy9/vdchuttya_tish_zomb_acontrari_post_apocalyptic_dubstep_mix.mp3?dl=1</string>
+    <string name="audio_japanese_zombie" translatable="false">https://dl.dropboxusercontent.com/s/v1h0lfbzh7oimb7/vidchuttia_tyshi_zombi_jap.mp3?dl=1</string>
+    <string name="audio_abroad_rmx" translatable="false">https://dl.dropboxusercontent.com/s/1a1ie7j56t0bp77/zigmund_afraid_abroad_retroflex_encoded.mp3?dl=1</string>
+    <string name="audio_pleasure_was_mine" translatable="false">https://dl.dropboxusercontent.com/s/5960o0g06ejai9m/zigmund_afraid_pleasure_was_mine.mp3?dl=1</string>
+
+    <string name="default_notification_channel_id">Notifications from \"sense of silence\".</string>
+    <string name="default_notification_channel_name"><![CDATA[Notifications from \"sense of silence & Zigmund Afraid\"]]></string>
+
+    <string name="language">Language</string>
+    <string name="choose_language">Choose language</string>
+    <string name="language_system">System</string>
+    <string name="language_ukrainian">Ukrainian</string>
+    <string name="language_english">English</string>
+</resources>

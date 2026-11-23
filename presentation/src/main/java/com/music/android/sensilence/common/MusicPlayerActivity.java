@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import io.github.turskyi.domain.entities.pojo.Song;
 
 public class MusicPlayerActivity extends AppCompatActivity {
-
     private MediaPlayer mediaPlayer;
     private ImageView imageView;
     private ProgressBar progressBar;
@@ -69,7 +68,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 }
                 isPreparing = true;
                 new Thread(() -> {
-                    //do time consuming operations
+                    //do time-consuming operations
                     try {
                         if (isOnline()) {
                             //Get the {@link Song} object at the given position the user clicked on
@@ -207,15 +206,17 @@ public class MusicPlayerActivity extends AppCompatActivity {
     ) {
         mMediaPlayer.start();
         runOnUiThread(() -> {
-            progressBar.setVisibility(View.INVISIBLE);
+            if (progressBar != null) {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
             imageView = view.findViewById(R.id.iv_btn_play);
             imageView.setImageResource(R.drawable.ic_pause);
+            listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
         });
 
         /* Set up a listener on the media player, so that we can stop and release the
          * media player once the sounds has finished */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
-        listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
     }
 
     /**

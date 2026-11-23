@@ -92,4 +92,10 @@
 
     <string name="default_notification_channel_id">Повідомлення від \"відчуття.тиші\".</string>
     <string name="default_notification_channel_name"><![CDATA[Нотифікації від \"відчуття.тиші & Zigmund Afraid\"]]></string>
+
+    <string name="language">Мова</string>
+    <string name="choose_language">Оберіть мову</string>
+    <string name="language_system">Системна</string>
+    <string name="language_ukrainian">Українська</string>
+    <string name="language_english">English</string>
 </resources>

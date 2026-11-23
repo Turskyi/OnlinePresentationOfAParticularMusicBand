@@ -28,6 +28,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="DataExtractionRules">
 
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
         <!-- remove advertising dependency -->
         <meta-data
             android:name="google_analytics_adid_collection_enabled"
