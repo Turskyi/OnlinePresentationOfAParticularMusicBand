@@ -2,12 +2,15 @@ package com.music.android.sensilence.features.home;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,6 +21,7 @@ import androidx.core.os.LocaleListCompat;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.music.android.sensilence.R;
 import com.music.android.sensilence.databinding.ActivityMainBinding;
+import com.music.android.sensilence.features.widget.AlbumDiscoveryWidgetProvider;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import io.github.turskyi.domain.entities.enums.Band;
@@ -108,7 +112,26 @@ public class MainActivity extends AppCompatActivity {
             showLanguageDialog();
             return true;
         }
+        if (item.getItemId() == R.id.action_pin_widget) {
+            requestWidgetPin();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void requestWidgetPin() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AppWidgetManager appWidgetManager = getSystemService(AppWidgetManager.class);
+            if (appWidgetManager != null && appWidgetManager.isRequestPinAppWidgetSupported()) {
+                appWidgetManager.requestPinAppWidget(
+                        new ComponentName(this, AlbumDiscoveryWidgetProvider.class),
+                        null,
+                        null
+                );
+                return;
+            }
+        }
+        Toast.makeText(this, R.string.pin_widget_unavailable, Toast.LENGTH_LONG).show();
     }
 
     private void showLanguageDialog() {

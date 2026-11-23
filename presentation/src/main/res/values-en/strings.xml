@@ -11,6 +11,14 @@
     <string name="album_crime" tools:keep="@string/album_crime">Crime</string>
     <string name="album_sense_of_silence" tools:keep="@string/album_sense_of_silence">Sense of Silence LP</string>
 
+    <!-- home-screen widget -->
+    <string name="widget_name">sense of silence music</string>
+    <string name="widget_description">Quickly open sense of silence albums</string>
+    <string name="widget_eyebrow">SENSE OF SILENCE</string>
+    <string name="widget_title">Choose a record for this moment</string>
+    <string name="pin_widget">Pin widget</string>
+    <string name="pin_widget_unavailable">Add the widget from the home screen widgets menu</string>
+
     <!-- content descriptions-->
     <string name="content_description_picture_of_the_song" tools:keep="@string/content_description_picture_of_the_song">picture of the song</string>
     <string name="content_description_play_button" tools:keep="@string/content_description_play_button">play button</string>

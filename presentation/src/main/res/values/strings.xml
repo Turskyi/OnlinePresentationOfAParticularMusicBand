@@ -11,6 +11,14 @@
     <string name="album_crime" tools:keep="@string/album_crime">Злочин</string>
     <string name="album_sense_of_silence" tools:keep="@string/album_sense_of_silence">Відчуття.Тиші LP</string>
 
+    <!-- home-screen widget -->
+    <string name="widget_name">Музика відчуття.тиші</string>
+    <string name="widget_description">Швидко відкривайте альбоми відчуття.тиші</string>
+    <string name="widget_eyebrow">ВІДЧУТТЯ.ТИШІ</string>
+    <string name="widget_title">Обери платівку для цього моменту</string>
+    <string name="pin_widget">Закріпити віджет</string>
+    <string name="pin_widget_unavailable">Додайте віджет через меню віджетів на головному екрані</string>
+
     <!-- content descriptions-->
     <string name="content_description_picture_of_the_song" tools:keep="@string/content_description_picture_of_the_song">picture of the song</string>
     <string name="content_description_play_button" tools:keep="@string/content_description_play_button">play button</string>

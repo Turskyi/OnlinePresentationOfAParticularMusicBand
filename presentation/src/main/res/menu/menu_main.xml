@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_language"
         android:title="@string/language"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_pin_widget"
+        android:icon="@drawable/ic_widget_add"
+        android:title="@string/pin_widget"
+        app:showAsAction="ifRoom" />
 </menu>

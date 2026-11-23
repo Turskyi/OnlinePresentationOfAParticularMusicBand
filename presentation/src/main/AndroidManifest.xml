@@ -83,6 +83,20 @@
             android:theme="@style/SenseOfSilenceTheme" />
         <activity android:name="com.music.android.sensilence.common.MusicPlayerActivity" />
 
+        <receiver
+            android:name=".features.widget.AlbumDiscoveryWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/album_discovery_widget_info" />
+        </receiver>
+
         <!-- [START firebase_service] -->
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
