@@ -2,9 +2,13 @@ package com.music.android.sensilence.common;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -25,10 +29,11 @@ import javax.inject.Inject;
 import io.github.turskyi.domain.entities.pojo.Song;
 
 public class MusicPlayerActivity extends AppCompatActivity {
+    private static final String TAG = MusicPlayerActivity.class.getSimpleName();
+    private final Object mediaPlayerLock = new Object();
     private MediaPlayer mediaPlayer;
     private ImageView imageView;
     private ProgressBar progressBar;
-    private final Object mediaPlayerLock = new Object();
     private volatile boolean isPreparing = false;
 
     @Inject
@@ -39,8 +44,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
 
-        /* When the activity is stopped, release the media player resources because we won't
-         * be playing any more sounds. */
+        /* When the activity is stopped, release the media player resources
+         * because we won't be playing any more sounds. */
         releaseMediaPlayer();
     }
 
@@ -59,8 +64,17 @@ public class MusicPlayerActivity extends AppCompatActivity {
             return;
         }
         synchronized (mediaPlayerLock) {
-            if (mediaPlayer != null && imageView == view.findViewById(R.id.iv_btn_play)) {
-                play(view, progressBar, mediaPlayer, mCompletionListener, secondClickListener, listView);
+            if (mediaPlayer != null && imageView == view.findViewById(
+                    R.id.iv_btn_play
+            )) {
+                play(
+                        view,
+                        progressBar,
+                        mediaPlayer,
+                        mCompletionListener,
+                        secondClickListener,
+                        listView
+                );
             } else {
                 progressBar = view.findViewById(R.id.loading_spinner);
                 if (progressBar != null) {
@@ -71,15 +85,14 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     //do time-consuming operations
                     try {
                         if (isOnline()) {
-                            //Get the {@link Song} object at the given position the user clicked on
+                            //Get the {@link Song} object at the given
+                            // position the user clicked on
                             final Song song = songs.get(position);
                             //Request audio focus for playback
-                            //TODO: replace deprecated method
-                            int result = audioManager.requestAudioFocus(onAudioFocusChangeListener,
-                                    //Use the music stream.
-                                    AudioManager.STREAM_MUSIC,
-                                    //Request permanent focus.
-                                    AudioManager.AUDIOFOCUS_GAIN);
+                            int result = requestAudioFocus(
+                                    audioManager,
+                                    onAudioFocusChangeListener
+                            );
                             if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                                 //We have an audio focus now.
 
@@ -88,16 +101,20 @@ public class MusicPlayerActivity extends AppCompatActivity {
                                 String url;
                                 url = song.getAudioLink(); // your URL here
                                 final MediaPlayer mp = new MediaPlayer();
-                                // TODO: replace deprecated method
-                                mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mp.setAudioAttributes(
+                                        createMediaAudioAttributes()
+                                );
                                 try {
                                     mp.setDataSource(url);
-                                    // "mediaPlayer.prepare" might take long! (for buffering, etc)
+                                    // "mediaPlayer.prepare" might take long!
+                                    // (for buffering, etc)
                                     mp.prepare();
 
                                     synchronized (mediaPlayerLock) {
-                                        /* Release the media player if it currently exists because we are about to
-                                         * play a different sound file. */
+                                        /* Release the media player if it
+                                         * currently exists because we are
+                                         * about to play a different sound
+                                         * file. */
                                         releaseMediaPlayer();
                                         mediaPlayer = mp;
                                     }
@@ -118,7 +135,10 @@ public class MusicPlayerActivity extends AppCompatActivity {
                         } else {
                             activity.runOnUiThread(() -> {
                                 Toast.makeText(
-                                        activity, getString(R.string.error_no_internet), Toast.LENGTH_LONG
+                                        activity, getString(
+                                                R.string.error_no_internet
+                                        ),
+                                        Toast.LENGTH_LONG
                                 ).show();
                                 if (progressBar != null) {
                                     progressBar.setVisibility(View.INVISIBLE);
@@ -148,20 +168,57 @@ public class MusicPlayerActivity extends AppCompatActivity {
         listView.setOnItemClickListener(firstClickListener);
     }
 
+    private int requestAudioFocus(
+            AudioManager audioManager,
+            AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AudioFocusRequest focusRequest = new AudioFocusRequest.Builder(
+                    AudioManager.AUDIOFOCUS_GAIN
+            ).setAudioAttributes(createMediaAudioAttributes())
+                    .setOnAudioFocusChangeListener(onAudioFocusChangeListener)
+                    .build();
+            return audioManager.requestAudioFocus(focusRequest);
+        }
+        return requestLegacyAudioFocus(audioManager, onAudioFocusChangeListener);
+    }
+
+    @SuppressWarnings("deprecation")
+    private int requestLegacyAudioFocus(
+            AudioManager audioManager,
+            AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener
+    ) {
+        return audioManager.requestAudioFocus(
+                onAudioFocusChangeListener,
+                AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN
+        );
+    }
+
+    private AudioAttributes createMediaAudioAttributes() {
+        return new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build();
+    }
+
     /**
      * Clean up the media player by releasing its resources.
      */
     public void releaseMediaPlayer() {
         synchronized (mediaPlayerLock) {
-            // If the media player is not null, then it may be currently playing a sound.
+            // If the media player is not null, then it may be currently
+            // playing a sound.
             if (mediaPlayer != null) {
-                /* Regardless of the current state of the media player, release its resources
+                /* Regardless of the current state of the media player,
+                release its resources
                  * because we no longer need it. */
                 mediaPlayer.release();
 
-                /* Set the media player back to null. For our code, we've decided that
-                 * setting the media player to null is an easy way to tell that the media player
-                 * is not configured to play an audio file at the moment. */
+                /* Set the media player back to null. For our code, we've
+                 * decided that setting the media player to null is an easy way
+                 * to tell that the media player is not configured to play an
+                 * audio file at the moment. */
                 mediaPlayer = null;
             }
         }
@@ -176,12 +233,17 @@ public class MusicPlayerActivity extends AppCompatActivity {
         }
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                 focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-            /* The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus
-             * short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means
-             * our app is allowed to continue playing sound but at a lower volume. */
+            /* The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio
+             * focus short amount of time.
+             * The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means
+             * our app is allowed to continue playing sound but at a lower
+             * volume.
+             * */
 
-            /* Pause playback and reset player to the start of the file. That way, when
-             * play the song from the beginning when we resume playback. */
+            /* Pause playback and reset player to the start of the file.
+             * That way, when play the song from the beginning when we resume
+             * playback.
+             *  */
             mMediaPlayer.pause();
             mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition());
         } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
@@ -211,11 +273,14 @@ public class MusicPlayerActivity extends AppCompatActivity {
             }
             imageView = view.findViewById(R.id.iv_btn_play);
             imageView.setImageResource(R.drawable.ic_pause);
-            listView.setOnItemClickListener((AdapterView.OnItemClickListener) secondClickListener);
+            listView.setOnItemClickListener(
+                    (AdapterView.OnItemClickListener) secondClickListener
+            );
         });
 
-        /* Set up a listener on the media player, so that we can stop and release the
-         * media player once the sounds has finished */
+        /* Set up a listener on the media player, so that we can stop and
+         * release the media player once the sounds has finished
+         * */
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
     }
 
@@ -225,11 +290,16 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private boolean isOnline() {
         Runtime runtime = Runtime.getRuntime();
         try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            Process ipProcess = runtime.exec(
+                    "/system/bin/ping -c 1 8.8.8.8"
+            );
             int exitValue = ipProcess.waitFor();
             return (exitValue == 0);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            Log.e(TAG, "Unable to determine network availability", e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            Log.e(TAG, "Network availability check was interrupted", e);
         }
         return false;
     }
@@ -242,14 +312,19 @@ public class MusicPlayerActivity extends AppCompatActivity {
                             .setTitle(getString(R.string.alert_error_title))
                             .setMessage(getString(R.string.alert_error_message))
                             .setCancelable(false)
-                            .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            .setPositiveButton(getString(R.string.yes), (
+                                    dialog,
+                                    which
+                            ) -> {
                                 Intent intent = new Intent(
                                         Intent.ACTION_SENDTO,
                                         Uri.fromParts(
                                                 getString(R.string.scheme_mailto),
                                                 getString(R.string.email),
-                                                /* Gets the decoded fragment part of this URI,
-                                                 * everything after the '#', null if undefined. */
+                                                /* Gets the decoded fragment
+                                                part of this URI,
+                                                 * everything after the '#',
+                                                 null if undefined. */
                                                 null
                                         )
                                 );
@@ -258,24 +333,26 @@ public class MusicPlayerActivity extends AppCompatActivity {
                                         getString(R.string.error_message_intro)
                                                 + song.getNameOfTheSong()
                                 );
-                                if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                                if (intent.resolveActivity(
+                                        activity.getPackageManager()
+                                ) != null) {
                                     activity.startActivity(intent);
                                 }
                             }).setNegativeButton(
-                            getString(R.string.no),
-                            (dialog, id) -> {
-                                Toast.makeText(
-                                        activity,
-                                        getString(R.string.error_message_try_tomorrow),
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                dialog.cancel();
-                                Intent newIntent = new Intent(
-                                        activity,
-                                        activity.getClass()
-                                );
-                                activity.startActivity(newIntent);
-                            }).create();
+                                    getString(R.string.no),
+                                    (dialog, id) -> {
+                                        Toast.makeText(
+                                                activity,
+                                                getString(R.string.error_message_try_tomorrow),
+                                                Toast.LENGTH_SHORT
+                                        ).show();
+                                        dialog.cancel();
+                                        Intent newIntent = new Intent(
+                                                activity,
+                                                activity.getClass()
+                                        );
+                                        activity.startActivity(newIntent);
+                                    }).create();
             lastDialog.show();
         });
     }
