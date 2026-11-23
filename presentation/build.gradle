@@ -12,7 +12,9 @@ apply plugin: 'com.google.firebase.appdistribution'
 // for Codemagic CI/CD
 def keystorePropertiesFile = rootProject.file("key.properties")
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 android {
     //noinspection GrUnresolvedAccess
@@ -39,7 +41,7 @@ android {
         }
 //        Remove unused alternative resources
 //        (https://developer.android.com/studio/build/shrink-code#unused-alt-resources)
-         resourceConfigurations += ['en', 'ua']
+        resourceConfigurations += ['en', 'uk']
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -47,16 +49,24 @@ android {
     }
     signingConfigs {
         production {
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+            if (keystorePropertiesFile.exists()) {
+                def sf = keystoreProperties['storeFile']
+                if (sf) {
+                    storeFile file(sf)
+                }
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
         }
         dev {
-            storeFile file(rootProject.SIGNING_KEY_DEBUG_PATH)
-            storePassword rootProject.SIGNING_KEY_DEBUG_PASSWORD
-            keyAlias rootProject.SIGNING_KEY_DEBUG_KEY
-            keyPassword rootProject.SIGNING_KEY_DEBUG_KEY_PASSWORD
+            def debugPath = rootProject.hasProperty('SIGNING_KEY_DEBUG_PATH') ? rootProject.SIGNING_KEY_DEBUG_PATH : null
+            if (debugPath && file(debugPath).exists()) {
+                storeFile file(debugPath)
+                storePassword rootProject.SIGNING_KEY_DEBUG_PASSWORD
+                keyAlias rootProject.SIGNING_KEY_DEBUG_KEY
+                keyPassword rootProject.SIGNING_KEY_DEBUG_KEY_PASSWORD
+            }
         }
     }
 
@@ -79,10 +89,14 @@ android {
                     // Android Studio creates and includes an empty rules file (located
                     // at the root directory of each module).
                     'proguard-rules.pro'
-            signingConfig signingConfigs.production
+            if (keystorePropertiesFile.exists() && keystoreProperties['storeFile']) {
+                signingConfig signingConfigs.production
+            }
         }
         debug {
-            signingConfig signingConfigs.dev
+            if (rootProject.hasProperty('SIGNING_KEY_DEBUG_PATH') && rootProject.SIGNING_KEY_DEBUG_PATH && file(rootProject.SIGNING_KEY_DEBUG_PATH).exists()) {
+                signingConfig signingConfigs.dev
+            }
             pseudoLocalesEnabled true
         }
     }
@@ -117,7 +131,7 @@ dependencies {
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation libs.firebase.bom
+    implementation platform(libs.firebase.bom)
 
     // Firebase SDK for Google Analytics
     implementation(libs.firebase.analytics) {

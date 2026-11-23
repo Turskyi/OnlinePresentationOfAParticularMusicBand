@@ -14,6 +14,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteException;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.room.Database;
 import androidx.room.OnConflictStrategy;
 import androidx.room.RoomDatabase;
@@ -51,10 +53,22 @@ public abstract class SongsDatabase extends RoomDatabase {
             applicationContext = context;
         }
 
+        private Context getLocalizedContext() {
+            LocaleListCompat locales = AppCompatDelegate.getApplicationLocales();
+            if (locales.isEmpty()) {
+                return applicationContext;
+            }
+            android.content.res.Configuration config = new android.content.res.Configuration(applicationContext.getResources().getConfiguration());
+            config.setLocales((android.os.LocaleList) locales.unwrap());
+            return applicationContext.createConfigurationContext(config);
+        }
+
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             db.query("PRAGMA synchronous = OFF");
+            recreateTable(db);
+            insertValuesInTable(db);
         }
 
         @Override
@@ -70,11 +84,12 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         private void fillBonusAlbum(@NonNull SupportSQLiteDatabase db) {
+            Context ctx = getLocalizedContext();
             List<String> bonusNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_noli_respicere_rmx),
-                    applicationContext.getString(R.string.song_name_fly_away),
-                    applicationContext.getString(R.string.song_name_whisper),
-                    applicationContext.getString(R.string.song_name_hate_number)
+                    ctx.getString(R.string.song_name_noli_respicere_rmx),
+                    ctx.getString(R.string.song_name_fly_away),
+                    ctx.getString(R.string.song_name_whisper),
+                    ctx.getString(R.string.song_name_hate_number)
             );
 
             List<Integer> bonusImageResourceIds = Arrays.asList(
@@ -85,22 +100,22 @@ public abstract class SongsDatabase extends RoomDatabase {
             );
 
             List<String> bonusImageLinks = Arrays.asList(
-                    applicationContext.getString(R.string.image_vt_dnb),
-                    applicationContext.getString(R.string.image_vt_cover),
-                    applicationContext.getString(R.string.image_whisper_cover),
-                    applicationContext.getString(R.string.image_hate_number_cover)
+                    ctx.getString(R.string.image_vt_dnb),
+                    ctx.getString(R.string.image_vt_cover),
+                    ctx.getString(R.string.image_whisper_cover),
+                    ctx.getString(R.string.image_hate_number_cover)
             );
 
             List<String> bonusLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_noli_respicere_rmx),
-                    applicationContext.getString(R.string.audio_fly_away),
-                    applicationContext.getString(R.string.audio_whisper),
-                    applicationContext.getString(R.string.audio_hate_number)
+                    ctx.getString(R.string.audio_noli_respicere_rmx),
+                    ctx.getString(R.string.audio_fly_away),
+                    ctx.getString(R.string.audio_whisper),
+                    ctx.getString(R.string.audio_hate_number)
             );
 
             fillAlbum(
                     db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
+                    ctx.getString(R.string.band_sense_of_silence),
                     Album.BONUS.name,
                     bonusNames,
                     bonusImageResourceIds,
@@ -110,20 +125,21 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         private void fillSenseOfSilenceLpAlbum(SupportSQLiteDatabase db) {
+            Context ctx = getLocalizedContext();
             List<String> senseOfSilenceNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_winter),
-                    applicationContext.getString(R.string.song_name_noli_respicere),
-                    applicationContext.getString(R.string.song_name_last_time),
-                    applicationContext.getString(R.string.song_name_taste_of_my_oblivion),
-                    applicationContext.getString(R.string.song_name_rays),
-                    applicationContext.getString(R.string.song_name_abyss),
-                    applicationContext.getString(R.string.song_name_not_the_end),
-                    applicationContext.getString(R.string.song_name_fear_again),
-                    applicationContext.getString(R.string.song_name_in_half),
-                    applicationContext.getString(R.string.song_name_wrist),
-                    applicationContext.getString(R.string.song_name_falling),
-                    applicationContext.getString(R.string.song_name_in_the_spring),
-                    applicationContext.getString(R.string.song_name_alesia)
+                    ctx.getString(R.string.song_name_winter),
+                    ctx.getString(R.string.song_name_noli_respicere),
+                    ctx.getString(R.string.song_name_last_time),
+                    ctx.getString(R.string.song_name_taste_of_my_oblivion),
+                    ctx.getString(R.string.song_name_rays),
+                    ctx.getString(R.string.song_name_abyss),
+                    ctx.getString(R.string.song_name_not_the_end),
+                    ctx.getString(R.string.song_name_fear_again),
+                    ctx.getString(R.string.song_name_in_half),
+                    ctx.getString(R.string.song_name_wrist),
+                    ctx.getString(R.string.song_name_falling),
+                    ctx.getString(R.string.song_name_in_the_spring),
+                    ctx.getString(R.string.song_name_alesia)
             );
 
             List<Integer> senseOfSilenceImageResourceIds = new ArrayList<>(Collections.nCopies(
@@ -133,28 +149,28 @@ public abstract class SongsDatabase extends RoomDatabase {
 
             List<String> senseOfSilenceImageResources = new ArrayList<>(Collections.nCopies(
                     senseOfSilenceNames.size(),
-                    applicationContext.getString(R.string.image_logo_black)
+                    ctx.getString(R.string.image_logo_black)
             ));
 
             List<String> senseOfSilenceLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_winter),
-                    applicationContext.getString(R.string.audio_noli_respicere),
-                    applicationContext.getString(R.string.audio_last_time),
-                    applicationContext.getString(R.string.audio_taste_of_my_oblivion),
-                    applicationContext.getString(R.string.audio_rays),
-                    applicationContext.getString(R.string.audio_abyss),
-                    applicationContext.getString(R.string.audio_not_the_end),
-                    applicationContext.getString(R.string.audio_fear_again),
-                    applicationContext.getString(R.string.audio_in_half),
-                    applicationContext.getString(R.string.audio_wrist),
-                    applicationContext.getString(R.string.audio_falling),
-                    applicationContext.getString(R.string.audio_in_the_spring),
-                    applicationContext.getString(R.string.audio_alesia)
+                    ctx.getString(R.string.audio_winter),
+                    ctx.getString(R.string.audio_noli_respicere),
+                    ctx.getString(R.string.audio_last_time),
+                    ctx.getString(R.string.audio_taste_of_my_oblivion),
+                    ctx.getString(R.string.audio_rays),
+                    ctx.getString(R.string.audio_abyss),
+                    ctx.getString(R.string.audio_not_the_end),
+                    ctx.getString(R.string.audio_fear_again),
+                    ctx.getString(R.string.audio_in_half),
+                    ctx.getString(R.string.audio_wrist),
+                    ctx.getString(R.string.audio_falling),
+                    ctx.getString(R.string.audio_in_the_spring),
+                    ctx.getString(R.string.audio_alesia)
             );
 
             fillAlbum(
                     db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
+                    ctx.getString(R.string.band_sense_of_silence),
                     Album.SENSE_OF_SILENCE_LP.name,
                     senseOfSilenceNames,
                     senseOfSilenceImageResourceIds,
@@ -164,11 +180,12 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         private void fillZombiAlbum(SupportSQLiteDatabase db) {
+            Context ctx = getLocalizedContext();
             List<String> zombiNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_zombi),
-                    applicationContext.getString(R.string.song_name_zombi_dubstep),
-                    applicationContext.getString(R.string.song_name_japanese_zombie),
-                    applicationContext.getString(R.string.song_name_zombie_instrumental)
+                    ctx.getString(R.string.song_name_zombi),
+                    ctx.getString(R.string.song_name_zombi_dubstep),
+                    ctx.getString(R.string.song_name_japanese_zombie),
+                    ctx.getString(R.string.song_name_zombie_instrumental)
             );
 
             List<Integer> zombiImageResourceIds = new ArrayList<>(Collections.nCopies(
@@ -178,19 +195,19 @@ public abstract class SongsDatabase extends RoomDatabase {
 
             List<String> zombiImageResources = new ArrayList<>(Collections.nCopies(
                     zombiNames.size(),
-                    applicationContext.getString(R.string.image_zombi)
+                    ctx.getString(R.string.image_zombi)
             ));
 
             List<String> zombiLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_zombi),
-                    applicationContext.getString(R.string.audio_zombi_dubstep),
-                    applicationContext.getString(R.string.audio_japanese_zombie),
-                    applicationContext.getString(R.string.audio_zombie_instrumental)
+                    ctx.getString(R.string.audio_zombi),
+                    ctx.getString(R.string.audio_zombi_dubstep),
+                    ctx.getString(R.string.audio_japanese_zombie),
+                    ctx.getString(R.string.audio_zombie_instrumental)
             );
 
             fillAlbum(
                     db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
+                    ctx.getString(R.string.band_sense_of_silence),
                     Album.ZOMBI.name,
                     zombiNames,
                     zombiImageResourceIds,
@@ -200,12 +217,13 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         private void fillCrimeAlbum(SupportSQLiteDatabase db) {
+            Context ctx = getLocalizedContext();
             List<String> crimeNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_to_astarta),
-                    applicationContext.getString(R.string.song_name_angelscream),
-                    applicationContext.getString(R.string.song_name_zombi_album),
-                    applicationContext.getString(R.string.song_name_did_not_want),
-                    applicationContext.getString(R.string.song_name_crime)
+                    ctx.getString(R.string.song_name_to_astarta),
+                    ctx.getString(R.string.song_name_angelscream),
+                    ctx.getString(R.string.song_name_zombi_album),
+                    ctx.getString(R.string.song_name_did_not_want),
+                    ctx.getString(R.string.song_name_crime)
             );
 
             List<Integer> crimeImageResourceIds = new ArrayList<>(Collections.nCopies(
@@ -215,20 +233,20 @@ public abstract class SongsDatabase extends RoomDatabase {
 
             List<String> crimeImageResources = new ArrayList<>(Collections.nCopies(
                     crimeNames.size(),
-                    applicationContext.getString(R.string.image_crime_cover)
+                    ctx.getString(R.string.image_crime_cover)
             ));
 
             List<String> crimeLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_to_astarta),
-                    applicationContext.getString(R.string.audio_angelscream),
-                    applicationContext.getString(R.string.audio_zombi_album_version),
-                    applicationContext.getString(R.string.audio_did_not_want),
-                    applicationContext.getString(R.string.audio_crime)
+                    ctx.getString(R.string.audio_to_astarta),
+                    ctx.getString(R.string.audio_angelscream),
+                    ctx.getString(R.string.audio_zombi_album_version),
+                    ctx.getString(R.string.audio_did_not_want),
+                    ctx.getString(R.string.audio_crime)
             );
 
             fillAlbum(
                     db,
-                    applicationContext.getString(R.string.band_sense_of_silence),
+                    ctx.getString(R.string.band_sense_of_silence),
                     Album.CRIME.name,
                     crimeNames,
                     crimeImageResourceIds,
@@ -238,10 +256,11 @@ public abstract class SongsDatabase extends RoomDatabase {
         }
 
         private void fillZigmundAfraidAlbum(SupportSQLiteDatabase db) {
+            Context ctx = getLocalizedContext();
             List<String> zigmundAfraidNames = Arrays.asList(
-                    applicationContext.getString(R.string.song_name_abroad),
-                    applicationContext.getString(R.string.song_name_abroad_rmx),
-                    applicationContext.getString(R.string.song_name_pleasure_was_mine)
+                    ctx.getString(R.string.song_name_abroad),
+                    ctx.getString(R.string.song_name_abroad_rmx),
+                    ctx.getString(R.string.song_name_pleasure_was_mine)
             );
 
             List<Integer> zigmundAfraidImageResourceIds = Arrays.asList(
@@ -251,20 +270,20 @@ public abstract class SongsDatabase extends RoomDatabase {
             );
 
             List<String> zigmundAfraidImageResources = Arrays.asList(
-                    applicationContext.getString(R.string.image_za),
-                    applicationContext.getString(R.string.image_vt_dnb),
-                    applicationContext.getString(R.string.image_pwm)
+                    ctx.getString(R.string.image_za),
+                    ctx.getString(R.string.image_vt_dnb),
+                    ctx.getString(R.string.image_pwm)
             );
 
             List<String> zigmundAfraidLinks = Arrays.asList(
-                    applicationContext.getString(R.string.audio_abroad),
-                    applicationContext.getString(R.string.audio_abroad_rmx),
-                    applicationContext.getString(R.string.audio_pleasure_was_mine)
+                    ctx.getString(R.string.audio_abroad),
+                    ctx.getString(R.string.audio_abroad_rmx),
+                    ctx.getString(R.string.audio_pleasure_was_mine)
             );
 
             fillAlbum(
                     db,
-                    applicationContext.getString(R.string.band_zigmund_afraid),
+                    ctx.getString(R.string.band_zigmund_afraid),
                     Album.ZIGMUND_AFRAID.name,
                     zigmundAfraidNames,
                     zigmundAfraidImageResourceIds,

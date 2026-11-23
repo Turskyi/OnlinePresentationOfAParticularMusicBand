@@ -4,10 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.music.android.sensilence.features.home.MainActivity"
     tools:ignore="Overdraw"
     tools:keep="@layout/activity_main">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"

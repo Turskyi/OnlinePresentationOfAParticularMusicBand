@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="24"
-    android:versionName="1.2.4">
+    android:versionCode="25"
+    android:versionName="1.2.5">
 
     <queries>
         <!-- Browser query
@@ -27,6 +27,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="DataExtractionRules">
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
 
         <!-- remove advertising dependency -->
         <meta-data
@@ -73,6 +82,20 @@
             android:parentActivityName="com.music.android.sensilence.features.home.MainActivity"
             android:theme="@style/SenseOfSilenceTheme" />
         <activity android:name="com.music.android.sensilence.common.MusicPlayerActivity" />
+
+        <receiver
+            android:name=".features.widget.AlbumDiscoveryWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/album_discovery_widget_info" />
+        </receiver>
 
         <!-- [START firebase_service] -->
         <service
