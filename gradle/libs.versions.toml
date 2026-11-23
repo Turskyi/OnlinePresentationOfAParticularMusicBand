@@ -60,3 +60,4 @@ rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = 
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
 rxjava3-bridge = { group = "com.github.akarnokd", name = "rxjava3-bridge", version.ref = "rxjava3Bridge" }
 viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+[plugins]
