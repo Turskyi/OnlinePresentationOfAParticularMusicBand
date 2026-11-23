@@ -117,7 +117,7 @@ dependencies {
     /* Firebase Bill of Materials.
      * By using the Firebase Android BoM,
      * app will always use compatible versions of the Firebase Android libraries. */
-    implementation libs.firebase.bom
+    implementation platform(libs.firebase.bom)
 
     // Firebase SDK for Google Analytics
     implementation(libs.firebase.analytics) {
