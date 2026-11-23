@@ -5,6 +5,12 @@ on:
     branches-ignore:
       - master
 
+# Keep only the newest build for each branch. A new push cancels an older
+# in-progress or queued run before it can upload an outdated APK.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
