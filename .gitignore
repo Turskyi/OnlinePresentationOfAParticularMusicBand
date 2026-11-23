@@ -23,3 +23,9 @@ projectFilesBackup1/
 # Generated Java bytecode and IDE compiler output
 *.class
 **/bin/
+
+# Keystores & sensitive properties
+key.properties
+keystore/
+*.keystore
+*.jks

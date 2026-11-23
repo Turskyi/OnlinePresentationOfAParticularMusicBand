@@ -18,6 +18,22 @@ jobs:
         with:
           java-version: 17
 
+      - name: Create key.properties and Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          mkdir -p keystore
+          echo "$KEYSTORE_BASE64" | base64 --decode > keystore/keystore
+          cat <<EOF > key.properties
+          storeFile=../keystore/keystore
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+
       - name: Generate Release APK
         run: ./gradlew assembleRelease
 

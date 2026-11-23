@@ -2,6 +2,7 @@
 [![Codemagic build status](https://api.codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/status_badge.svg)](https://codemagic.io/apps/60d07948ab5163f7f1fb5066/release-workflow/latest_build)
 [![Build & upload to Firebase App Distribution](https://github.com/Turskyi/OnlinePresentationOfAParticularMusicBand/actions/workflows/android_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/OnlinePresentationOfAParticularMusicBand/actions/workflows/android_ci.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Turskyi/OnlinePresentationOfAParticularMusicBand)
+[![wakatime](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/91ca904b-f3b6-406b-957b-2d2b22dba95f.svg)](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/91ca904b-f3b6-406b-957b-2d2b22dba95f)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/OnlinePresentationOfAParticularMusicBand">
 
 # sense.of.silence & Zigmund Afraid
